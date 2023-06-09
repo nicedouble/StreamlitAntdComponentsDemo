@@ -13,8 +13,8 @@ from streamlit_antd_components import tree, TreeItem
 
 
 def sidebar():
-    index = st.selectbox('index', [[0], [0, 2], None])
-    format_func = st.selectbox('format_func', ["None", 'lambda x:x.title()', 'lambda x:x.upper()'], 1)
+    index = st.selectbox('index', [0, 2, [0, 2], None])
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
     icon = st.selectbox('icon', [None, 'google', 'twitter'])
     height = st.selectbox('height(px)', [None, 300])
     open_index = st.selectbox('open_index', [None, [1, 11]])
@@ -26,7 +26,7 @@ def sidebar():
     return_index = st.checkbox('return_index')
     kw = dict(
         index=index,
-        format_func=eval(format_func),
+        format_func=eval(format_func) if isinstance(format_func, str) and 'lambda' in format_func else format_func,
         icon=icon,
         height=height,
         open_index=open_index,
@@ -70,6 +70,7 @@ def main(kw):
             TreeItem('item3', children=[
                 TreeItem('item3-1'),
                 TreeItem('item3-2'),
+                TreeItem('text'*30),
             ]),
         ], **kw)
         st.write(f'The selected tree item {"index" if return_index else "label"} : {item1}')

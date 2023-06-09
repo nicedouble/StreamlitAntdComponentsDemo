@@ -9,12 +9,12 @@
 @Software : PyCharm
 """
 import streamlit as st
-from streamlit_antd_components import menu, MenuItem, MenuDivider
+from streamlit_antd_components import menu, MenuItem
 
 
 def sidebar():
     index = st.selectbox('index', [0, 2])
-    format_func = st.selectbox('format_func', ["None", 'lambda x:x.title()', 'lambda x:x.upper()'], 1)
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
     size = st.slider('size(px)', 10, 20, 16)
     indent = st.slider('indent(px)', 0, 30, 24)
     open_index = st.selectbox('open_index', [None, [1, 3]])
@@ -22,7 +22,7 @@ def sidebar():
     return_index = st.checkbox('return_index')
     kw = dict(
         index=index,
-        format_func=eval(format_func),
+        format_func=eval(format_func) if isinstance(format_func, str) and 'lambda' in format_func else format_func,
         size=size,
         indent=indent,
         open_index=open_index,
@@ -35,7 +35,7 @@ def sidebar():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns(2)
+    col = st.columns(4)
     with col[0]:
         st.subheader('demo1')
         item0 = menu([MenuItem(f'menu{i}') for i in range(10)], **kw)
@@ -45,7 +45,7 @@ def main(kw):
             menu([MenuItem(f'menu{i}') for i in range(10)])
             """)
 
-    with col[1]:
+    with col[2]:
         st.subheader('demo2')
         item1 = menu([
             MenuItem('home', icon='house'),
@@ -57,12 +57,13 @@ def main(kw):
                     MenuItem('apple', icon='apple', children=[
                         MenuItem('admin', icon='person-circle'),
                         MenuItem('guest', icon='person'),
+                        MenuItem('twitter' * 5, icon='twitter'),
                     ]),
                 ]),
             ]),
             MenuItem('disabled', icon='send', disabled=True),
-            MenuDivider(),
-            MenuItem('reference', children_as_group=True, children=[
+            MenuItem(type='divider'),
+            MenuItem('reference', type='group', children=[
                 MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
                 MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
                 MenuItem('streamlit-components-tutorial', icon='info-circle',
@@ -86,8 +87,8 @@ def main(kw):
                 ]),
             ]),
             MenuItem('disabled', icon='send', disabled=True),
-            MenuDivider(),
-            MenuItem('reference', children_as_group=True, children=[
+            MenuItem(type='divider'),
+            MenuItem('reference', type='group', children=[
                 MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
                 MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
                 MenuItem('streamlit-components-tutorial', icon='info-circle',
@@ -99,7 +100,6 @@ def main(kw):
     with st.expander('API'):
         st.help(menu)
         st.help(MenuItem)
-        st.help(MenuDivider)
 
 
 MENU_DEMO = {

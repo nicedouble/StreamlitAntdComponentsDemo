@@ -14,7 +14,7 @@ from streamlit_antd_components import tabs, TabsItem
 
 def sidebar():
     index = st.selectbox('index', [0, 1])
-    format_func = st.selectbox('format_func', ["None", 'lambda x:x.title()', 'lambda x:x.upper()'], 1)
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
     height = st.selectbox('height(px)', [None, 150])
     align = st.selectbox('align', ["start", "center", "end"])
     position = st.selectbox('position', ["top", "right", "bottom", "left"])
@@ -29,7 +29,7 @@ def sidebar():
         height=height,
         grow=grow,
         return_index=return_index,
-        format_func=eval(format_func)
+        format_func=eval(format_func) if isinstance(format_func, str) and 'lambda' in format_func else format_func
     )
     return kw
 
@@ -63,19 +63,19 @@ def main(kw):
 
     st.subheader('demo3')
     tab2 = tabs([
-        TabsItem('apple', icon='apple'),
-        TabsItem('google', icon='google'),
-        TabsItem('github', icon='github'),
-        TabsItem('disabled', disabled=True),
+        dict(label='apple', icon='apple'),
+        dict(label='google', icon='google'),
+        dict(label='github', icon='github'),
+        dict(label='disabled', disabled=True),
     ], **kw)
     st.write(f'The selected tab {"index" if return_index else "label"} is: {tab2}')
     with st.expander('code'):
         st.code("""
         tabs([
-        TabsItem('apple', icon='apple'),
-        TabsItem('google', icon='google'),
-        TabsItem('github', icon='github'),
-        TabsItem('disabled', disabled=True),
+        dict(label='apple', icon='apple'),
+        dict(label='google', icon='google'),
+        dict(label='github', icon='github'),
+        dict(label='disabled', disabled=True),
     ])
         """)
 

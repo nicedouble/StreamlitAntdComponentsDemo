@@ -14,10 +14,10 @@ from streamlit_antd_components import buttons, ButtonsItem
 
 def sidebar():
     index = st.selectbox('index', [0, 1, None])
-    format_func = st.selectbox('format_func', ["None", 'lambda x:x.title()', 'lambda x:x.upper()'], 1)
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
     align = st.selectbox('align', ["start", "center", "end"])
     direction = st.selectbox('direction', ["horizontal", "vertical"])
-    shape = st.selectbox('shape', ["default", "round"])
+    shape = st.selectbox('shape', ["default", "round", "circle"])
     compact = st.checkbox('compact')
     grow = st.checkbox('grow')
     return_index = st.checkbox('return_index')
@@ -29,7 +29,7 @@ def sidebar():
         compact=compact,
         grow=grow,
         return_index=return_index,
-        format_func=eval(format_func)
+        format_func=eval(format_func) if isinstance(format_func, str) and 'lambda' in format_func else format_func
     )
     return kw
 
@@ -66,22 +66,22 @@ def main(kw):
     st.subheader('demo3')
     btn2 = buttons(
         items=[
-            ButtonsItem('apple', icon='apple'),
-            ButtonsItem('google', icon='google'),
-            ButtonsItem('github', icon='github'),
-            ButtonsItem('disabled', disabled=True),
-            ButtonsItem('link', href='https://ant.design/components/button', icon='link'),
+            dict(label='apple', icon='apple'),
+            dict(label='google', icon='google'),
+            dict(label='github', icon='github'),
+            dict(label='disabled', disabled=True),
+            dict(label='link', href='https://ant.design/components/button', icon='link'),
         ], **kw
     )
     st.write(f'The selected button {"index" if return_index else "label"} is: {btn2}')
     with st.expander('code'):
         st.code('''
         buttons([
-            ButtonsItem('apple', icon='apple'),
-            ButtonsItem('google', icon='google'),
-            ButtonsItem('github', icon='github'),
-            ButtonsItem('disabled', disabled=True),
-            ButtonsItem('link', href='https://ant.design/components/button', icon='link'),
+            dict(label='apple', icon='apple'),
+            dict(label='google', icon='google'),
+            dict(label='github', icon='github'),
+            dict(label='disabled', disabled=True),
+            dict(label='link', href='https://ant.design/components/button', icon='link'),
         ])
         ''')
 
