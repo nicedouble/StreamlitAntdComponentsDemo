@@ -35,17 +35,17 @@ def sidebar():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns(4)
+    col = st.columns([1, 0.2, 1])
     with col[0]:
         st.subheader('demo1')
-        item0 = menu([MenuItem(f'menu{i}') for i in range(10)], **kw)
+        item0 = menu([f'menu{i}' for i in range(10)], **kw)
         st.write(f'The selected menu item {"index" if return_index else "label"} : {item0}')
         with st.expander('code'):
             st.code("""
-            menu([MenuItem(f'menu{i}') for i in range(10)])
+            menu([f'menu{i}' for i in range(10)])
             """)
 
-    with col[2]:
+    with col[-1]:
         st.subheader('demo2')
         item1 = menu([
             MenuItem('home', icon='house'),
@@ -57,7 +57,7 @@ def main(kw):
                     MenuItem('apple', icon='apple', children=[
                         MenuItem('admin', icon='person-circle'),
                         MenuItem('guest', icon='person'),
-                        MenuItem('twitter' * 5, icon='twitter'),
+                        MenuItem('twitter' * 10, icon='twitter'),
                     ]),
                 ]),
             ]),
@@ -96,15 +96,17 @@ def main(kw):
             ]),
         ])
             """)
-    st.write('---')
-    with st.expander('API'):
-        st.help(menu)
-        st.help(MenuItem)
+
+
+def api():
+    st.help(menu)
+    st.help(MenuItem)
 
 
 MENU_DEMO = {
     'menu': {
         'sidebar': sidebar,
-        'main': main
+        'main': main,
+        'api': api
     }
 }

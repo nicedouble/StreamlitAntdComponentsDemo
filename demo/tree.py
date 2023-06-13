@@ -46,10 +46,10 @@ def main(kw):
     col = st.columns(2)
     with col[0]:
         st.subheader('demo1')
-        item0 = tree([TreeItem(f'item{i}') for i in range(10)], **kw)
+        item0 = tree([f'item{i}' for i in range(10)], **kw)
         st.write(f'The selected tree item {"index" if return_index else "label"} : {item0}')
         with st.expander('code'):
-            st.code("""tree([TreeItem(f'item{i}') for i in range(10)])""")
+            st.code("""tree([f'item{i}' for i in range(10)])""")
     with col[1]:
         st.subheader('demo2')
         item1 = tree([
@@ -70,7 +70,7 @@ def main(kw):
             TreeItem('item3', children=[
                 TreeItem('item3-1'),
                 TreeItem('item3-2'),
-                TreeItem('text'*30),
+                TreeItem('text' * 30),
             ]),
         ], **kw)
         st.write(f'The selected tree item {"index" if return_index else "label"} : {item1}')
@@ -97,17 +97,17 @@ def main(kw):
                 ]),
             ])
             """)
-    st.write('---')
-    with st.expander('API'):
-        st.help(tree)
-        st.help(TreeItem)
 
 
-pass
+def api():
+    st.help(tree)
+    st.help(TreeItem)
+
 
 TREE_DEMO = {
     'tree': {
         'sidebar': sidebar,
-        'main': main
+        'main': main,
+        'api': api
     }
 }

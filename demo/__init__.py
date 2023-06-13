@@ -12,5 +12,8 @@ from .buttons import BUTTONS_DEMO
 from .tabs import TABS_DEMO
 from .menu import MENU_DEMO
 from .tree import TREE_DEMO
+from .switch import SWITCH_DEMO
+from .divider import DIVIDER_DEMO
+from .cascader import CASCADER_DEMO
 
-DEMO = {**BUTTONS_DEMO, **TABS_DEMO, **MENU_DEMO, **TREE_DEMO}
+DEMO = {**BUTTONS_DEMO, **TABS_DEMO, **MENU_DEMO, **TREE_DEMO, **CASCADER_DEMO, **SWITCH_DEMO, **DIVIDER_DEMO}

@@ -79,15 +79,16 @@ def main(kw):
     ])
         """)
 
-    st.write('---')
-    with st.expander('API'):
-        st.help(tabs)
-        st.help(TabsItem)
+
+def api():
+    st.help(tabs)
+    st.help(TabsItem)
 
 
 TABS_DEMO = {
     'tabs': {
         'sidebar': sidebar,
-        'main': main
+        'main': main,
+        'api': api
     }
 }

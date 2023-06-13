@@ -85,15 +85,16 @@ def main(kw):
         ])
         ''')
 
-    st.write('---')
-    with st.expander('API'):
-        st.help(buttons)
-        st.help(ButtonsItem)
+
+def api():
+    st.help(buttons)
+    st.help(ButtonsItem)
 
 
 BUTTONS_DEMO = {
     'buttons': {
         'sidebar': sidebar,
-        'main': main
+        'main': main,
+        'api': api
     }
 }
