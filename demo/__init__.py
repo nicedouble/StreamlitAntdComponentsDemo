@@ -15,5 +15,15 @@ from .tree import TREE_DEMO
 from .switch import SWITCH_DEMO
 from .divider import DIVIDER_DEMO
 from .cascader import CASCADER_DEMO
+from .transfer import TRANSFER_DEMO
 
-DEMO = {**BUTTONS_DEMO, **TABS_DEMO, **MENU_DEMO, **TREE_DEMO, **CASCADER_DEMO, **SWITCH_DEMO, **DIVIDER_DEMO}
+DEMO = {
+    **BUTTONS_DEMO,
+    **TABS_DEMO,
+    **MENU_DEMO,
+    **TREE_DEMO,
+    **CASCADER_DEMO,
+    **TRANSFER_DEMO,
+    **SWITCH_DEMO,
+    **DIVIDER_DEMO
+}
