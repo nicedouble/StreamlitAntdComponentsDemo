@@ -16,14 +16,18 @@ from .switch import SWITCH_DEMO
 from .divider import DIVIDER_DEMO
 from .cascader import CASCADER_DEMO
 from .transfer import TRANSFER_DEMO
+from .segmented import SEGMENTED_DEMO
+from .alert import ALERT_DEMO
 
 DEMO = {
     **BUTTONS_DEMO,
     **TABS_DEMO,
+    **SEGMENTED_DEMO,
     **MENU_DEMO,
     **TREE_DEMO,
     **CASCADER_DEMO,
     **TRANSFER_DEMO,
     **SWITCH_DEMO,
-    **DIVIDER_DEMO
+    **DIVIDER_DEMO,
+    **ALERT_DEMO,
 }
