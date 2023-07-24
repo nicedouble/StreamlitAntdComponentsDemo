@@ -13,15 +13,21 @@ from streamlit_antd_components import switch, BsIcon
 
 
 def sidebar():
-    value = st.checkbox('value', True)
-    checked = st.selectbox('checked', [None, 'checked', 'BsIcon("sun")'], 2)
-    unchecked = st.selectbox('unchecked', [None, 'unchecked', 'BsIcon("moon")'], 2)
+    label = st.selectbox('label', [None, 'switch label'], 1)
+    value = st.checkbox('value')
+    checked = st.selectbox('checked', [None, 'yes', 'BsIcon("sun")'])
+    unchecked = st.selectbox('unchecked', [None, 'no', 'BsIcon("moon")'])
+    align = st.selectbox('align', ["start", "center", "end"])
+    position = st.selectbox('position', ["top", "right", "bottom", "left"], help='label position')
     size = st.selectbox('size', ["default", "small", "large"])
     disabled = st.checkbox('disabled')
     kw = dict(
+        label=label,
         value=value,
         checked=eval(checked) if isinstance(checked, str) and checked.startswith('BsIcon') else checked,
         unchecked=eval(unchecked) if isinstance(unchecked, str) and unchecked.startswith('BsIcon') else unchecked,
+        align=align,
+        position=position,
         size=size,
         disabled=disabled,
     )

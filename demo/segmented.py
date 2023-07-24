@@ -16,14 +16,16 @@ def sidebar():
     index = st.selectbox('index', [0, 1])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
     size = st.selectbox('size', ["small", "middle", "large"], 1)
+    align = st.selectbox('align', ["start", "center", "end"])
+    grow = st.checkbox('grow')
     disabled = st.checkbox('disabled')
-    use_container_width = st.checkbox('use_container_width')
     return_index = st.checkbox('return_index')
     kw = dict(
         index=index,
         size=size,
+        align=align,
         disabled=disabled,
-        use_container_width=use_container_width,
+        grow=grow,
         return_index=return_index,
         format_func=eval(format_func) if isinstance(format_func, str) and 'lambda' in format_func else format_func
     )
@@ -66,7 +68,6 @@ def main(kw):
             dict(label='google', icon='google'),
             dict(label='github', icon='github'),
             dict(label='disabled', disabled=True),
-            dict(label='link', href='https://ant.design/components/button', icon='link'),
         ], **kw
     )
     st.write(f'The selected segmented {"index" if return_index else "label"} is: {s2}')

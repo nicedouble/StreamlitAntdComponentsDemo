@@ -15,7 +15,7 @@ from streamlit_antd_components import divider
 def sidebar():
     label = st.text_input('label', 'divider')
     icon = st.selectbox('icon', [None, 'house'], 1)
-    align = st.selectbox('align', ['right', 'center', 'left'], 1)
+    align = st.selectbox('align', ['right', 'center', 'left'], 1, help='label align')
     direction = st.selectbox('direction', ["horizontal", "vertical"])
     dashed = st.checkbox('dashed')
     kw = dict(
