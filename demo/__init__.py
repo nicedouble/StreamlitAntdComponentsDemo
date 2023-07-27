@@ -18,6 +18,10 @@ from .cascader import CASCADER_DEMO
 from .transfer import TRANSFER_DEMO
 from .segmented import SEGMENTED_DEMO
 from .alert import ALERT_DEMO
+from .steps import STEPS_DEMO
+from .checkbox import CHECKBOX_DEMO
+from .rate import RATE_DEMO
+from .result import RESULT_DEMO
 
 DEMO = {
     **BUTTONS_DEMO,
@@ -30,4 +34,8 @@ DEMO = {
     **SWITCH_DEMO,
     **DIVIDER_DEMO,
     **ALERT_DEMO,
+    **STEPS_DEMO,
+    **RATE_DEMO,
+    **CHECKBOX_DEMO,
+    **RESULT_DEMO
 }

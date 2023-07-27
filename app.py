@@ -17,12 +17,22 @@ st.set_page_config(layout='wide', page_title='streamlit-antd-components')
 
 with st.sidebar.container():
     st.header('Streamlit-antd-component')
-    component = sac.menu(list(DEMO.keys()) + [
-        sac.MenuItem('reference', type='group', children=[
-            sac.MenuItem('Ant Design',icon='sign-intersection-y', href='https://ant.design/components/overview/'),
-            sac.MenuItem('github', icon='github', href='https://github.com/nicedouble/StreamlitAntdComponents')
-        ])
-    ], format_func='title')
+    component = sac.menu(
+        items=[
+            sac.MenuItem('general', type='group', children=['buttons']),
+            sac.MenuItem('layout', type='group', children=['divider']),
+            sac.MenuItem('navigation', type='group', children=['menu', 'steps']),
+            sac.MenuItem('data entry', type='group', children=['cascader', 'checkbox', 'rate', 'switch', 'transfer']),
+            sac.MenuItem('data display', type='group', children=['segmented', 'tabs', 'tree']),
+            sac.MenuItem('feedback', type='group', children=['alert', 'result']),
+            sac.MenuItem('reference', type='group', children=[
+                sac.MenuItem('Ant Design', icon='sign-intersection-y', href='https://ant.design/components/overview/'),
+                sac.MenuItem('github', icon='github', href='https://github.com/nicedouble/StreamlitAntdComponents'),
+                sac.MenuItem('bootstrap icons', icon='bootstrap', href='https://icons.getbootstrap.com/'),
+            ])
+        ],
+        index=1,
+        format_func='title')
     com_ = DEMO.get(component)
 
 with st.container():

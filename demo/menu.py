@@ -15,7 +15,7 @@ from streamlit_antd_components import menu, MenuItem
 def sidebar():
     index = st.selectbox('index', [0, 2])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    size = st.slider('size(px)', 10, 20, 16)
+    size = st.selectbox('size', ['middle', 'small', 'large'])
     indent = st.slider('indent(px)', 0, 30, 24)
     open_index = st.selectbox('open_index', [None, [1, 3]])
     open_all = st.checkbox('open_all', True)
