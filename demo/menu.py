@@ -35,7 +35,7 @@ def sidebar():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns([1, 0.2, 1])
+    col = st.columns([0.5, 0.1, 1])
     with col[0]:
         st.subheader('demo1')
         item0 = menu([f'menu{i}' for i in range(10)], **kw)
@@ -48,54 +48,42 @@ def main(kw):
     with col[-1]:
         st.subheader('demo2')
         item1 = menu([
-            MenuItem('home', icon='house'),
+            MenuItem('home', icon='house', tag='Tag'),
             MenuItem('app', icon='app', children=[
                 MenuItem('store', icon='bag-check'),
                 MenuItem('brand', icon='award', children=[
                     MenuItem('github', icon='github'),
-                    MenuItem('google', icon='google'),
-                    MenuItem('apple', icon='apple', children=[
-                        MenuItem('admin', icon='person-circle'),
-                        MenuItem('guest', icon='person'),
-                        MenuItem('twitter' * 10, icon='twitter'),
-                    ]),
+                    MenuItem('apple', icon='apple'),
                 ]),
             ]),
+            MenuItem('multipleline' * 10, icon='twitter'),
             MenuItem('disabled', icon='send', disabled=True),
             MenuItem(type='divider'),
             MenuItem('reference', type='group', children=[
                 MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
                 MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
-                MenuItem('streamlit-components-tutorial', icon='info-circle',
-                         href='https://streamlit-components-tutorial.netlify.app/'),
             ]),
         ], **kw)
         st.write(f'The selected menu item {"index" if return_index else "label"} : {item1}')
         with st.expander('code'):
             st.code("""
             menu([
-            MenuItem('home', icon='house'),
+            MenuItem('home', icon='house', tag='Tag'),
             MenuItem('app', icon='app', children=[
                 MenuItem('store', icon='bag-check'),
                 MenuItem('brand', icon='award', children=[
                     MenuItem('github', icon='github'),
-                    MenuItem('google', icon='google'),
-                    MenuItem('apple', icon='apple', children=[
-                        MenuItem('admin', icon='person-circle'),
-                        MenuItem('guest', icon='person'),
-                    ]),
+                    MenuItem('apple', icon='apple'),
                 ]),
             ]),
+            MenuItem('multipleline' * 10, icon='twitter'),
             MenuItem('disabled', icon='send', disabled=True),
             MenuItem(type='divider'),
             MenuItem('reference', type='group', children=[
                 MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
                 MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
-                MenuItem('streamlit-components-tutorial', icon='info-circle',
-                         href='https://streamlit-components-tutorial.netlify.app/'),
             ]),
-        ])
-            """)
+        ])""")
 
 
 def api():

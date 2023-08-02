@@ -23,7 +23,8 @@ with st.sidebar.container():
             sac.MenuItem('layout', type='group', children=['divider']),
             sac.MenuItem('navigation', type='group', children=['menu', 'steps']),
             sac.MenuItem('data entry', type='group', children=['cascader', 'checkbox', 'rate', 'switch', 'transfer']),
-            sac.MenuItem('data display', type='group', children=['segmented', 'tabs', 'tree']),
+            sac.MenuItem('data display', type='group',
+                         children=['segmented', 'tabs', 'tree', {'label': 'tag', 'tag': 'New'}]),
             sac.MenuItem('feedback', type='group', children=['alert', 'result']),
             sac.MenuItem('reference', type='group', children=[
                 sac.MenuItem('Ant Design', icon='sign-intersection-y', href='https://ant.design/components/overview/'),
@@ -36,6 +37,10 @@ with st.sidebar.container():
     com_ = DEMO.get(component)
 
 with st.container():
+    sac.alert(f'''
+    Welcome to Streamlit-antd-components ! 
+    Aim to be a good extension of streamlit component !
+    The latest version is : {sac.__VERSION__}''', banner=True, closable=True, type='success')
     tabs = st.tabs(['demo', 'api'])
     with tabs[0]:
         col = st.columns([1, 0.2, 3])

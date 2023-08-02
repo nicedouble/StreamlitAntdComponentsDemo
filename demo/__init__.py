@@ -22,6 +22,7 @@ from .steps import STEPS_DEMO
 from .checkbox import CHECKBOX_DEMO
 from .rate import RATE_DEMO
 from .result import RESULT_DEMO
+from .tag import TAG_DEMO
 
 DEMO = {
     **BUTTONS_DEMO,
@@ -37,5 +38,6 @@ DEMO = {
     **STEPS_DEMO,
     **RATE_DEMO,
     **CHECKBOX_DEMO,
-    **RESULT_DEMO
+    **RESULT_DEMO,
+    **TAG_DEMO
 }
