@@ -8,40 +8,32 @@
 @Project  : StreamlitAntdComponentsDemo
 @Software : PyCharm
 """
-import streamlit as st
-from streamlit_antd_components import switch, BsIcon
+from ..utils import *
 
 
 def sidebar():
-    label = st.selectbox('label', [None, 'switch label'], 1)
-    value = st.checkbox('value')
+    label = st.selectbox('label', [None, 'label'])
+    value = st.checkbox('value', True)
     checked = st.selectbox('checked', [None, 'yes', 'BsIcon("sun")'])
     unchecked = st.selectbox('unchecked', [None, 'no', 'BsIcon("moon")'])
     align = st.selectbox('align', ["start", "center", "end"])
     position = st.selectbox('position', ["top", "right", "bottom", "left"], help='label position')
     size = st.selectbox('size', ["default", "small", "large"])
     disabled = st.checkbox('disabled')
-    kw = dict(
-        label=label,
-        value=value,
-        checked=eval(checked) if isinstance(checked, str) and checked.startswith('BsIcon') else checked,
-        unchecked=eval(unchecked) if isinstance(unchecked, str) and unchecked.startswith('BsIcon') else unchecked,
-        align=align,
-        position=position,
-        size=size,
-        disabled=disabled,
-    )
-    return kw
+    return update_kw(locals())
 
 
 def main(kw):
-    s = switch(**kw)
+    s = sac.switch(**kw)
     st.write(f'switch return value: {s}')
+    show_code(f'''
+    sac.switch({code_kw(kw)})
+    ''', True)
 
 
 def api():
-    st.help(switch)
-    st.help(BsIcon)
+    st.help(sac.switch)
+    st.help(sac.BsIcon)
 
 
 SWITCH_DEMO = {

@@ -8,8 +8,7 @@
 @Project  : StreamlitAntdComponentsDemo
 @Software : PyCharm
 """
-import streamlit as st
-from streamlit_antd_components import divider
+from ..utils import *
 
 
 def sidebar():
@@ -23,11 +22,14 @@ def sidebar():
 
 
 def main(kw):
-    divider(**kw)
+    sac.divider(**kw)
+    show_code(f'''
+    sac.divider({code_kw(kw)})
+    ''', True)
 
 
 def api():
-    st.help(divider)
+    st.help(sac.divider)
 
 
 DIVIDER_DEMO = {

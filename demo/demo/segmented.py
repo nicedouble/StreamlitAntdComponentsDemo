@@ -8,8 +8,7 @@
 @Project  : StreamlitAntdComponentsDemo
 @Software : PyCharm
 """
-import streamlit as st
-from streamlit_antd_components import segmented, SegmentedItem
+from ..utils import *
 
 
 def sidebar():
@@ -20,49 +19,39 @@ def sidebar():
     grow = st.checkbox('grow')
     disabled = st.checkbox('disabled')
     return_index = st.checkbox('return_index')
-    kw = dict(
-        index=index,
-        size=size,
-        align=align,
-        disabled=disabled,
-        grow=grow,
-        return_index=return_index,
-        format_func=eval(format_func) if isinstance(format_func, str) and 'lambda' in format_func else format_func
-    )
-    return kw
+    return update_kw(locals())
 
 
 def main(kw):
     return_index = kw.get('return_index')
 
     st.subheader('demo1')
-    s0 = segmented(['item1', 'item2', 'item3'], **kw)
+    s0 = sac.segmented(['item1', 'item2', 'item3'], **kw)
     st.write(f'The selected segmented {"index" if return_index else "label"} is: {s0}')
-    with st.expander('code'):
-        st.code('''
-        segmented(['item1', 'item2', 'item3'])
-        ''')
+    show_code(f'''
+    sac.segmented(['item1', 'item2', 'item3'], {code_kw(kw)})
+    ''')
 
     st.subheader('demo2')
-    s1 = segmented([
-        SegmentedItem(icon='chevron-bar-left'),
-        SegmentedItem(icon='chevron-left'),
-        SegmentedItem(icon='chevron-right'),
-        SegmentedItem(icon='chevron-bar-right'),
+    s1 = sac.segmented([
+        sac.SegmentedItem(icon='chevron-bar-left'),
+        sac.SegmentedItem(icon='chevron-left'),
+        sac.SegmentedItem(icon='chevron-right'),
+        sac.SegmentedItem(icon='chevron-bar-right'),
     ], **kw)
     st.write(f'The selected segmented {"index" if return_index else "label"} is: {s1}')
-    with st.expander('code'):
-        st.code('''
-        segmented([
-        SegmentedItem(icon='chevron-bar-left'),
-        SegmentedItem(icon='chevron-left'),
-        SegmentedItem(icon='chevron-right'),
-        SegmentedItem(icon='chevron-bar-right'),
-    ])
-        ''')
+    show_code(f'''
+    sac.segmented([
+        sac.SegmentedItem(icon='chevron-bar-left'),
+        sac.SegmentedItem(icon='chevron-left'),
+        sac.SegmentedItem(icon='chevron-right'),
+        sac.SegmentedItem(icon='chevron-bar-right'),
+    ], {code_kw(kw)}
+    )
+    ''')
 
     st.subheader('demo3')
-    s2 = segmented(
+    s2 = sac.segmented(
         items=[
             dict(label='apple', icon='apple'),
             dict(label='google', icon='google'),
@@ -71,21 +60,21 @@ def main(kw):
         ], **kw
     )
     st.write(f'The selected segmented {"index" if return_index else "label"} is: {s2}')
-    with st.expander('code'):
-        st.code('''
-        segmented(items=[
+    show_code(f'''
+    sac.segmented(
+        items=[
             dict(label='apple', icon='apple'),
             dict(label='google', icon='google'),
             dict(label='github', icon='github'),
             dict(label='disabled', disabled=True),
-            dict(label='link', href='https://ant.design/components/button', icon='link'),
-        ])
-        ''')
+        ], {code_kw(kw)}
+    )
+    ''')
 
 
 def api():
-    st.help(segmented)
-    st.help(SegmentedItem)
+    st.help(sac.segmented)
+    st.help(sac.SegmentedItem)
 
 
 SEGMENTED_DEMO = {

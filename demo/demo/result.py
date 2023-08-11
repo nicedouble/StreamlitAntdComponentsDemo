@@ -8,12 +8,11 @@
 @Project  : StreamlitAntdComponentsDemo
 @Software : PyCharm
 """
-import streamlit as st
-from streamlit_antd_components import result
+from ..utils import *
 
 
 def sidebar():
-    title = st.selectbox('title', [None, 'title'])
+    title = st.selectbox('title', [None, 'title', '**markdown bold**'])
     subtitle = st.selectbox('subtitle', [None, 'subtitle'], 1)
     status = st.selectbox('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500])
     icon = st.selectbox('icon', [None, 'house', 'google'])
@@ -21,11 +20,14 @@ def sidebar():
 
 
 def main(kw):
-    result(**kw)
+    sac.result(**kw)
+    show_code(f'''
+        sac.result({code_kw(kw)})
+        ''', open=True)
 
 
 def api():
-    st.help(result)
+    st.help(sac.result)
 
 
 RESULT_DEMO = {
