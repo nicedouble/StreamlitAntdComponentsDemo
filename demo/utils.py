@@ -39,9 +39,9 @@ def show_code(x: str, open: bool = False):
 
 
 def show_color(colors: list):
-    s = sac.buttons(['select', 'picker'], label='color', size='small', compact=True, position='left',shape='round')
+    s = sac.buttons(['select', 'picker'], label='color', size='small', compact=True, position='left', shape='round')
     if s == 'select':
         color = st.selectbox('color', colors, label_visibility='collapsed')
     else:
-        color = st.color_picker('color', label_visibility='collapsed')
+        color = st.color_picker('color', value='#25C3B0', label_visibility='collapsed')
     return color

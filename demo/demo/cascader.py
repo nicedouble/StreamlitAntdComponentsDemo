@@ -12,7 +12,7 @@ from ..utils import *
 
 
 def sidebar():
-    label = st.selectbox('label', [None, 'label'])
+    label = st.selectbox('label', [None, 'label'], 1)
     index = st.selectbox('index', [None, 0, [1, 3, 6, 7]])
     format_func = st.selectbox('format_func', FORMAT, 1)
     placeholder = st.text_input('placeholder', 'Please choose')
@@ -42,6 +42,10 @@ def main(kw):
             ]),
         ]),
         sac.CasItem('disabled', icon='send', disabled=True),
+        sac.CasItem('other1'),
+        sac.CasItem('other2'),
+        sac.CasItem('other3'),
+        sac.CasItem('other4'),
     ], **kw)
     st.write(f'The selected cascader item {"index" if return_index else "label"} : {item}')
     show_code(f'''
@@ -60,6 +64,10 @@ def main(kw):
             ]),
         ]),
         sac.CasItem('disabled', icon='send', disabled=True),
+        sac.CasItem('other1'),
+        sac.CasItem('other2'),
+        sac.CasItem('other3'),
+        sac.CasItem('other4'),
     ], {code_kw(kw)})
     ''', True)
 
