@@ -12,7 +12,7 @@ from ..utils import *
 
 
 def sidebar():
-    label = st.selectbox('label', [None, 'label'], 1)
+    label = st.selectbox('label', LABEL, 1)
     index = st.selectbox('index', [0, 2, [0, 2], None])
     format_func = st.selectbox('format_func', FORMAT, 1)
     icon = st.selectbox('icon', [None, 'table', 'database'], 1)
@@ -21,7 +21,6 @@ def sidebar():
     open_all = st.checkbox('open_all', True)
     checkbox = st.checkbox('checkbox', True)
     checkbox_strict = st.checkbox('checkbox_strict')
-    multiple = st.checkbox('multiple')
     show_line = st.checkbox('show_line', True)
     return_index = st.checkbox('return_index')
     return update_kw(locals())
@@ -30,7 +29,7 @@ def sidebar():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns(2)
+    col = st.columns([1, 2])
     with col[0]:
         st.subheader('demo1')
         item0 = sac.tree(items=[f'item{i}' for i in range(10)], **kw)
@@ -41,7 +40,7 @@ def main(kw):
     with col[1]:
         st.subheader('demo2')
         item1 = sac.tree(items=[
-            sac.TreeItem('item1'),
+            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False)),
             sac.TreeItem('item2', icon='apple', children=[
                 sac.TreeItem('item2-1', icon='github'),
                 sac.TreeItem('item2-2', children=[
@@ -64,7 +63,7 @@ def main(kw):
         st.write(f'The selected tree item {"index" if return_index else "label"} : {item1}')
         show_code(f'''
         sac.tree(items=[
-            sac.TreeItem('item1'),
+            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False)),
             sac.TreeItem('item2', icon='apple', children=[
                 sac.TreeItem('item2-1', icon='github'),
                 sac.TreeItem('item2-2', children=[

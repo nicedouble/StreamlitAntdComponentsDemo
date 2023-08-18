@@ -22,7 +22,7 @@ def sidebar():
     if 'kv' not in st.session_state:
         st.session_state['kv'] = {'min_value': 0, 'max_value': 3, 'value': 2}
 
-    label = st.selectbox('label', [None, 'label'])
+    label = st.selectbox('label', LABEL)
     value = st.number_input('value', **st.session_state['kv'])
     count = st.number_input('count', 5, 100, 5, 5)
     symbol = st.selectbox('symbol', [None, 'A', sac.BsIcon("bell-fill")])

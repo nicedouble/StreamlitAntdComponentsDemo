@@ -17,10 +17,10 @@ def sidebar():
         label='message',
         options=[
             'alert message',
-            '**markdown bold**',
-            '**markdown bold** <span style="color:red">html tag</span>'
+            '**alert message**',
+            '**alert message** <a href="https://ant.design/components/overview" target="_blank" class="badge badge-info">link</a>'
         ], index=1)
-    description = st.selectbox('description', [None, 'alert description', '**markdown text**'])
+    description = st.selectbox('description', [None, 'alert description', '**alert description**'])
     type = st.selectbox('type', ['info', 'success', 'warning', 'error'])
     height = st.selectbox('height', [None, 100])
     icon = st.checkbox('icon', True)

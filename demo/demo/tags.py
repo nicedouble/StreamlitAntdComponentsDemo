@@ -16,23 +16,27 @@ def sidebar():
     format_func = st.selectbox('format_func', FORMAT, 1)
     align = st.selectbox('align', ["start", "center", "end"])
     direction = st.selectbox('direction', ["horizontal", "vertical"])
+    checkable = st.checkbox('checkable', help='tags checkable mode')
     return update_kw(locals())
 
 
 def main(kw):
     st.subheader('demo1')
-    sac.tags(items=['tag1', 'tag2', 'tag3'], **kw)
+    t = sac.tags(items=['tag1', 'tag2', 'tag3'], **kw)
+    st.write(f"The selected tags item label : {t}")
+
     show_code(f'''
     sac.tags(['tag1', 'tag2', 'tag3'],{code_kw(kw)})
     ''', open=True)
 
     st.subheader('demo2')
-    sac.tags([
+    t1 = sac.tags([
         sac.Tag(label='red', icon='house', color='red'),
         sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
         sac.Tag(label='orange', icon='google', color='orange', closable=True),
         sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
     ], **kw)
+    st.write(f"The selected tags item label : {t1}")
     show_code(f'''
     sac.tags([
         sac.Tag(label='red', icon='house', color='red'),

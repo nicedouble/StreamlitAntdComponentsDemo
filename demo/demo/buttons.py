@@ -12,7 +12,7 @@ from ..utils import *
 
 
 def sidebar():
-    label = st.selectbox('label', [None, 'label'])
+    label = st.selectbox('label', LABEL)
     index = st.selectbox('index', [0, 1, None])
     format_func = st.selectbox('format_func', FORMAT, 1)
     align = st.selectbox('align', ["start", "center", "end"])

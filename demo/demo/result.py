@@ -12,8 +12,8 @@ from ..utils import *
 
 
 def sidebar():
-    title = st.selectbox('title', [None, 'title', '**markdown bold**'])
-    subtitle = st.selectbox('subtitle', [None, 'subtitle'], 1)
+    title = st.selectbox('title', [None, 'title', '**title**'])
+    subtitle = st.selectbox('subtitle', [None, 'subtitle','**subtitle**'], 1)
     status = st.selectbox('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500])
     icon = st.selectbox('icon', [None, 'house', 'google'])
     return locals()

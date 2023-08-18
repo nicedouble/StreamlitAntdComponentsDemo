@@ -13,6 +13,12 @@ import streamlit as st
 import streamlit_antd_components as sac
 
 FORMAT = [None, 'title', 'upper', "lambda x:f'A_{x}'"]
+LABEL = [
+    None,
+    'label',
+    '**label**',
+    '**label** <span class="badge rounded-pill badge-info">Info</span>'
+]
 
 
 def update_kw(d: dict, remove_keys: list = None):

@@ -23,6 +23,9 @@ def sidebar():
 
 
 def main(kw):
+    sac.alert(message='Warning',
+              description='**segmented** will be deprecated in next version! The same effect can be achieved using **buttons** by set `compact=True`',
+              type='warning', icon=True, closable=True)
     return_index = kw.get('return_index')
 
     st.subheader('demo1')
@@ -70,7 +73,6 @@ def main(kw):
         ], {code_kw(kw)}
     )
     ''')
-
 
 def api():
     st.help(sac.segmented)

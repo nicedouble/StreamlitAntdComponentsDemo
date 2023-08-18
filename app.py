@@ -16,45 +16,46 @@ import streamlit_antd_components as sac
 st.set_page_config(layout='wide', page_title='streamlit-antd-components')
 
 with st.sidebar.container():
+    # tag
     modified = sac.Tag('Modified', color='blue', bordered=False)
     new = sac.Tag('New', color='green', bordered=False)
+    deprecated = sac.Tag('Deprecated', color='orange', bordered=False)
 
     st.header('Streamlit-antd-component')
     menu = sac.menu(
         items=[
-            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons', tag=modified)]),
+            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
             sac.MenuItem('layout', type='group', children=['divider']),
             sac.MenuItem(
-                label='navigation', type='group',
-                children=[
-                    sac.MenuItem('menu', tag=modified),
-                    sac.MenuItem('pagination', tag=new),
+                label='navigation', type='group', children=[
+                    sac.MenuItem('menu'),
+                    sac.MenuItem('pagination'),
                     'steps'
                 ]
             ),
             sac.MenuItem(
                 label='data entry', type='group',
                 children=[
-                    sac.MenuItem('cascader', tag=modified),
+                    sac.MenuItem('cascader'),
                     'checkbox', 'rate', 'switch', 'transfer'
                 ]
             ),
             sac.MenuItem(
                 label='data display', type='group',
                 children=[
-                    'segmented', 'tabs', 'tree',
-                    sac.MenuItem('tag', tag=modified,
-                                 children=[
-                                     sac.MenuItem('tag'),
-                                     sac.MenuItem('tags'),
-                                 ])
+                    sac.MenuItem('segmented', tag=deprecated),
+                    'tabs',
+                    sac.MenuItem('tree', tag=modified),
+                    sac.MenuItem('tag', children=[
+                        sac.MenuItem('tag'),
+                        sac.MenuItem('tags', tag=modified),
+                    ])
                 ]
             ),
             sac.MenuItem(
-                label='feedback', type='group',
-                children=[
-                    sac.MenuItem('alert', tag=modified),
-                    sac.MenuItem('result', tag=modified)
+                label='feedback', type='group', children=[
+                    sac.MenuItem('alert'),
+                    sac.MenuItem('result')
                 ]
             ),
             sac.MenuItem(type='divider'),
@@ -84,7 +85,7 @@ with st.container():
     version_href = f"https://pypi.org/project/streamlit-antd-components/{sac.__VERSION__}/"
     sac.alert(
         message=f'Welcome to **Streamlit-antd-components**, the latest version : '
-                f'**<a href="{version_href}" target="_blank" style="color:green">{sac.__VERSION__}</a>**',
+                f'**<a href="{version_href}" target="_blank" class="badge badge-success rounded-pill">{sac.__VERSION__}</a>**',
         banner=True, closable=True, type='success')
 
     tabs = sac.tabs([

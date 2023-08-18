@@ -37,7 +37,7 @@ def main(kw):
     with col[-1]:
         st.subheader('demo2')
         item1 = sac.menu([
-            sac.MenuItem('home', icon='house', tag='Tag'),
+            sac.MenuItem('home', icon='house', tag=sac.Tag('Tag',color='green',bordered=False)),
             sac.MenuItem('app', icon='app', children=[
                 sac.MenuItem('store', icon='bag-check'),
                 sac.MenuItem('brand', icon='award', children=[
@@ -56,7 +56,7 @@ def main(kw):
         st.write(f'The selected menu item {"index" if return_index else "label"} : {item1}')
         show_code(f'''
         sac.menu([
-            sac.MenuItem('home', icon='house', tag='Tag'),
+            sac.MenuItem('home', icon='house', tag=sac.Tag('Tag',color='green',bordered=False)),
             sac.MenuItem('app', icon='app', children=[
                 sac.MenuItem('store', icon='bag-check'),
                 sac.MenuItem('brand', icon='award', children=[

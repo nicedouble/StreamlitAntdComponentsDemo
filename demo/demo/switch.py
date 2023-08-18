@@ -13,7 +13,7 @@ from streamlit_antd_components.utils.data_class import BsIcon
 
 
 def sidebar():
-    label = st.selectbox('label', [None, 'label'])
+    label = st.selectbox('label', LABEL)
     value = st.checkbox('value', True)
     checked = st.selectbox('checked', [None, 'yes', BsIcon("sun")])
     unchecked = st.selectbox('unchecked', [None, 'no', BsIcon("moon")])
