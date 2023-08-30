@@ -13,13 +13,13 @@ from ..utils import *
 
 def sidebar():
     label = st.selectbox('label', LABEL, 1)
-    index = st.selectbox('index', [None, 0, [1, 3, 6, 7]])
+    index = st.selectbox('index', [None, 0, [1, 3, 6, 7]], 1)
     format_func = st.selectbox('format_func', FORMAT, 1)
     placeholder = st.text_input('placeholder', 'Please choose')
-    multiple = st.checkbox('multiple')
+    multiple = st.checkbox('multiple', True)
     disabled = st.checkbox('disabled')
-    search = st.checkbox('search')
-    clear = st.checkbox('clear')
+    search = st.checkbox('search', True)
+    clear = st.checkbox('clear', True)
     strict = st.checkbox('strict')
     return_index = st.checkbox('return_index')
     return update_kw(locals())
@@ -27,27 +27,28 @@ def sidebar():
 
 def main(kw):
     return_index = kw.get('return_index')
-    item = sac.cascader(items=[
-        sac.CasItem('home', icon='house'),
-        sac.CasItem('app', icon='app', children=[
-            sac.CasItem('store', icon='bag-check'),
-            sac.CasItem('brand', icon='award', children=[
-                sac.CasItem('github', icon='github'),
-                sac.CasItem('google', icon='google'),
-                sac.CasItem('apple', icon='apple', children=[
-                    sac.CasItem('admin', icon='person-circle'),
-                    sac.CasItem('guest', icon='person'),
-                    sac.CasItem('twitter' * 5, icon='twitter'),
+    with st.expander('demo', True):
+        item = sac.cascader(items=[
+            sac.CasItem('home', icon='house'),
+            sac.CasItem('app', icon='app', children=[
+                sac.CasItem('store', icon='bag-check'),
+                sac.CasItem('brand', icon='award', children=[
+                    sac.CasItem('github', icon='github'),
+                    sac.CasItem('google', icon='google'),
+                    sac.CasItem('apple', icon='apple', children=[
+                        sac.CasItem('admin', icon='person-circle'),
+                        sac.CasItem('guest', icon='person'),
+                        sac.CasItem('twitter' * 5, icon='twitter'),
+                    ]),
                 ]),
             ]),
-        ]),
-        sac.CasItem('disabled', icon='send', disabled=True),
-        sac.CasItem('other1'),
-        sac.CasItem('other2'),
-        sac.CasItem('other3'),
-        sac.CasItem('other4'),
-    ], **kw)
-    st.write(f'The selected cascader item {"index" if return_index else "label"} : {item}')
+            sac.CasItem('disabled', icon='send', disabled=True),
+            sac.CasItem('other1'),
+            sac.CasItem('other2'),
+            sac.CasItem('other3'),
+            sac.CasItem('other4'),
+        ], **kw)
+        st.write(f'The selected cascader item {"index" if return_index else "label"} : {item}')
     show_code(f'''
     sac.cascader(items=[
         sac.CasItem('home', icon='house'),

@@ -13,13 +13,13 @@ from ..utils import *
 
 def sidebar():
     label = st.selectbox('label', LABEL)
-    index = st.selectbox('index', [0, 1, None])
+    index = st.selectbox('index', [0, 1, None], 1)
     format_func = st.selectbox('format_func', FORMAT, 1)
-    align = st.selectbox('align', ["start", "center", "end"])
+    align = st.selectbox('align', ["start", "center", "end"], 1)
     position = st.selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
     size = st.selectbox('size', ['default', 'small', 'large'])
     direction = st.selectbox('direction', ["horizontal", "vertical"])
-    shape = st.selectbox('shape', ["default", "round", "circle"])
+    shape = st.selectbox('shape', ["default", "round", "circle"], 1)
     compact = st.checkbox('compact')
     return_index = st.checkbox('return_index')
     return update_kw(locals())
@@ -55,8 +55,9 @@ def main(kw):
     st.subheader('demo3')
     btn2 = sac.buttons([
         dict(label='apple', icon='apple'),
-        dict(label='google', icon='google'),
-        dict(label='github', icon='github'),
+        dict(label='google', icon='google', color='orange'),
+        dict(label='github', icon='github', color='#25C3B0'),
+        dict(label='twitter', icon='twitter', color='var(--primary)'),
         dict(label='disabled', disabled=True),
         dict(label='link', href='https://ant.design/components/button', icon='link'),
     ], **kw)
@@ -64,8 +65,9 @@ def main(kw):
     show_code(f'''
     sac.buttons([
         dict(label='apple', icon='apple'),
-        dict(label='google', icon='google'),
-        dict(label='github', icon='github'),
+        dict(label='google', icon='google', color='orange'),
+        dict(label='github', icon='github', color='#25C3B0'),
+        dict(label='twitter', icon='twitter', color='var(--primary)'),
         dict(label='disabled', disabled=True),
         dict(label='link', href='https://ant.design/components/button', icon='link'),
     ], {code_kw(kw)})

@@ -43,12 +43,12 @@ with st.sidebar.container():
             sac.MenuItem(
                 label='data display', type='group',
                 children=[
-                    sac.MenuItem('segmented', tag=deprecated),
+                    sac.MenuItem('segmented'),
                     'tabs',
                     sac.MenuItem('tree', tag=modified),
                     sac.MenuItem('tag', children=[
                         sac.MenuItem('tag'),
-                        sac.MenuItem('tags', tag=modified),
+                        sac.MenuItem('tags'),
                     ])
                 ]
             ),
@@ -94,7 +94,7 @@ with st.container():
     ], align='center', format_func='title')
 
     if tabs == 'demo':
-        col = st.columns([1, 0.1, 3])
+        col = st.columns([1, 3])
         with col[0].expander(f"{menu} params", True):
             kw = com_.get('sidebar')()
         with col[-1]:

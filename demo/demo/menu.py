@@ -25,21 +25,12 @@ def sidebar():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns([1, 0.1, 1])
-    with col[0]:
-        st.subheader('demo1')
-        item0 = sac.menu([f'menu{i}' for i in range(10)], **kw)
-        st.write(f'The selected menu item {"index" if return_index else "label"} : {item0}')
-        show_code(f'''
-        sac.menu([f'menu{{i}}' for i in range(10)], {code_kw(kw)})
-        ''')
-
-    with col[-1]:
-        st.subheader('demo2')
+    col = st.columns([1, 1.5])
+    with col[0].expander('demo', True):
         item1 = sac.menu([
-            sac.MenuItem('home', icon='house', tag=sac.Tag('Tag',color='green',bordered=False)),
+            sac.MenuItem('home', icon='house', tag=sac.Tag('Tag', color='green', bordered=False)),
             sac.MenuItem('app', icon='app', children=[
-                sac.MenuItem('store', icon='bag-check'),
+                sac.MenuItem('store', icon='bag-check', tag='Tag0'),
                 sac.MenuItem('brand', icon='award', children=[
                     sac.MenuItem('github', icon='github'),
                     sac.MenuItem('apple', icon='apple'),
@@ -54,11 +45,12 @@ def main(kw):
             ]),
         ], **kw)
         st.write(f'The selected menu item {"index" if return_index else "label"} : {item1}')
+    with col[-1]:
         show_code(f'''
         sac.menu([
             sac.MenuItem('home', icon='house', tag=sac.Tag('Tag',color='green',bordered=False)),
             sac.MenuItem('app', icon='app', children=[
-                sac.MenuItem('store', icon='bag-check'),
+                sac.MenuItem('store', icon='bag-check', tag='Tag0'),
                 sac.MenuItem('brand', icon='award', children=[
                     sac.MenuItem('github', icon='github'),
                     sac.MenuItem('apple', icon='apple'),
@@ -72,7 +64,7 @@ def main(kw):
                 sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
             ]),
         ], {code_kw(kw)})
-        ''')
+        ''', True)
 
 
 def api():

@@ -13,11 +13,11 @@ from streamlit_antd_components.utils.data_class import BsIcon
 
 
 def sidebar():
-    label = st.selectbox('label', LABEL)
+    label = st.selectbox('label', LABEL, 1)
     value = st.checkbox('value', True)
-    checked = st.selectbox('checked', [None, 'yes', BsIcon("sun")])
-    unchecked = st.selectbox('unchecked', [None, 'no', BsIcon("moon")])
-    align = st.selectbox('align', ["start", "center", "end"])
+    checked = st.selectbox('checked', [None, 'yes', BsIcon("sun")], 2)
+    unchecked = st.selectbox('unchecked', [None, 'no', BsIcon("moon")], 2)
+    align = st.selectbox('align', ["start", "center", "end"], 1)
     position = st.selectbox('position', ["top", "right", "bottom", "left"], help='label position')
     size = st.selectbox('size', ["default", "small", "large"])
     disabled = st.checkbox('disabled')
@@ -25,8 +25,9 @@ def sidebar():
 
 
 def main(kw):
-    s = sac.switch(**kw)
-    st.write(f'switch return value: {s}')
+    with st.expander('demo', True):
+        s = sac.switch(**kw)
+        st.write(f'switch return value: {s}')
     show_code(f'''from streamlit_antd_components.utils.data_class import BsIcon
 
 sac.switch({code_kw(kw)})

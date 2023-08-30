@@ -29,20 +29,12 @@ def sidebar():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns([1, 2])
-    with col[0]:
-        st.subheader('demo1')
-        item0 = sac.tree(items=[f'item{i}' for i in range(10)], **kw)
-        st.write(f'The selected tree item {"index" if return_index else "label"} : {item0}')
-        show_code(f'''
-        sac.tree(items=[f'item{{i}}' for i in range(10)], {code_kw(kw)})
-        ''')
-    with col[1]:
-        st.subheader('demo2')
+    col = st.columns([1, 1.5])
+    with col[0].expander('demo', True):
         item1 = sac.tree(items=[
-            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False)),
-            sac.TreeItem('item2', icon='apple', children=[
-                sac.TreeItem('item2-1', icon='github'),
+            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False), tooltip='item1 tooltip'),
+            sac.TreeItem('item2', icon='apple', tooltip='item2 tooltip', children=[
+                sac.TreeItem('item2-1', icon='github', tag='tag0'),
                 sac.TreeItem('item2-2', children=[
                     sac.TreeItem('item2-2-1'),
                     sac.TreeItem('item2-2-2'),
@@ -61,11 +53,12 @@ def main(kw):
             ]),
         ], **kw)
         st.write(f'The selected tree item {"index" if return_index else "label"} : {item1}')
+    with col[1]:
         show_code(f'''
         sac.tree(items=[
-            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False)),
-            sac.TreeItem('item2', icon='apple', children=[
-                sac.TreeItem('item2-1', icon='github'),
+            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False), tooltip='item1 tooltip'),
+            sac.TreeItem('item2', icon='apple', tooltip='item2 tooltip', children=[
+                sac.TreeItem('item2-1', icon='github', tag='tag0'),
                 sac.TreeItem('item2-2', children=[
                     sac.TreeItem('item2-2-1'),
                     sac.TreeItem('item2-2-2'),
@@ -82,7 +75,7 @@ def main(kw):
                 sac.TreeItem('item3-2'),
                 sac.TreeItem('text' * 30),
             ]),
-        ], {code_kw(kw)})''')
+        ], {code_kw(kw)})''', True)
 
 
 def api():

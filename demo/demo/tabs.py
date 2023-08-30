@@ -15,7 +15,7 @@ def sidebar():
     index = st.selectbox('index', [0, 1])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
     height = st.selectbox('height(px)', [None, 150])
-    align = st.selectbox('align', ["start", "center", "end"])
+    align = st.selectbox('align', ["start", "center", "end"], 1)
     position = st.selectbox('position', ["top", "right", "bottom", "left"])
     shape = st.selectbox('shape', ['default', 'card'])
     grow = st.checkbox('grow')

@@ -26,7 +26,7 @@ def sidebar():
     value = st.number_input('value', **st.session_state['kv'])
     count = st.number_input('count', 5, 100, 5, 5)
     symbol = st.selectbox('symbol', [None, 'A', sac.BsIcon("bell-fill")])
-    align = st.selectbox('align', ["start", "center", "end"])
+    align = st.selectbox('align', ["start", "center", "end"], 1)
     position = st.selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
     size = st.number_input('size', 10, 50, 20, 5)
     color = show_color([None, 'orange', 'green'])
@@ -37,8 +37,9 @@ def sidebar():
 
 
 def main(kw):
-    r = sac.rate(**kw)
-    st.write(f'The rate value is: {r}')
+    with st.expander('demo', True):
+        r = sac.rate(**kw)
+        st.write(f'The rate value is: {r}')
     show_code(f'''
     sac.rate({code_kw(kw)})
     ''', True)

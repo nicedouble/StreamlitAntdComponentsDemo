@@ -14,7 +14,7 @@ from ..utils import *
 def sidebar():
     label = st.text_input('label', 'divider')
     icon = st.selectbox('icon', [None, 'house'], 1)
-    align = st.selectbox('align', ['start', 'center', 'end'], help='label align')
+    align = st.selectbox('align', ['start', 'center', 'end'], 1, help='label align')
     direction = st.selectbox('direction', ["horizontal", "vertical"])
     dashed = st.checkbox('dashed')
     bold = st.checkbox('bold', help='label font weight bold')
@@ -22,7 +22,8 @@ def sidebar():
 
 
 def main(kw):
-    sac.divider(**kw)
+    with st.expander('demo', True):
+        sac.divider(**kw)
     show_code(f'''
     sac.divider({code_kw(kw)})
     ''', True)

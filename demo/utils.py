@@ -38,7 +38,7 @@ def code_kw(d: dict):
 
 
 def show_code(x: str, open: bool = False):
-    with st.expander('Code', open):
+    with st.expander('code', open):
         st.code(f'''
         import streamlit_antd_components as sac\n{x}
         ''', line_numbers=True)

@@ -23,7 +23,8 @@ def sidebar():
 
 
 def main(kw):
-    sac.tag(**kw)
+    with st.expander('demo',True):
+        sac.tag(**kw)
     show_code(f'''
     sac.tag({code_kw(kw)})
     ''', open=True)
