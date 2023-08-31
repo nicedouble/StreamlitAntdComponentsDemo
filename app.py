@@ -37,7 +37,8 @@ with st.sidebar.container():
                 label='data entry', type='group',
                 children=[
                     sac.MenuItem('cascader'),
-                    'checkbox', 'rate', 'switch', 'transfer'
+                    'checkbox', 'rate', 'switch',
+                    sac.MenuItem('transfer', tag=modified)
                 ]
             ),
             sac.MenuItem(
