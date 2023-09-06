@@ -12,15 +12,16 @@ from ..utils import *
 
 
 def sidebar():
-    label = st.selectbox('label', LABEL, 1)
+    c = st.columns(2)
+    label = c[0].selectbox('label', LABEL, 1)
     index = st.selectbox('index', [None, 0, [0, 1]], 2)
     format_func = st.selectbox('format_func', FORMAT, 1)
     align = st.selectbox('align', ["start", "center", "end"], 1)
-    position = st.selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
+    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
     check_all = st.checkbox('check_all', True, help='show check all box')
     disabled = st.checkbox('disabled')
     return_index = st.checkbox('return_index')
-    return update_kw(locals())
+    return update_kw(locals(), ['c'])
 
 
 def main(kw):

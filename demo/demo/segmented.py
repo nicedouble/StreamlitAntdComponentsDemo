@@ -14,12 +14,15 @@ from ..utils import *
 def sidebar():
     index = st.selectbox('index', [0, 1])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    size = st.selectbox('size', ["small", "middle", "large"], 1)
-    align = st.selectbox('align', ["start", "center", "end"])
-    grow = st.checkbox('grow')
-    disabled = st.checkbox('disabled')
-    return_index = st.checkbox('return_index')
-    return update_kw(locals())
+    size = st.selectbox('size', ['xs', 'sm', 'md', 'lg', 'xl'], 1)
+    align = st.selectbox('align', ["start", "center", "end"], 1)
+    direction = st.selectbox('direction', ["horizontal", "vertical"])
+    c = st.columns(2)
+    grow = c[0].checkbox('grow')
+    disabled = c[0].checkbox('disabled')
+    readonly = c[1].checkbox('readonly')
+    return_index = c[1].checkbox('return_index')
+    return update_kw(locals(), ['c'])
 
 
 def main(kw):
@@ -70,6 +73,7 @@ def main(kw):
         ], {code_kw(kw)}
     )
     ''')
+
 
 def api():
     st.help(sac.segmented)

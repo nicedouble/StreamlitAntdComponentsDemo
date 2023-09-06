@@ -10,10 +10,28 @@
 """
 
 import streamlit as st
-from demo.demo import DEMO
 import streamlit_antd_components as sac
+from demo.demo import DEMO
+from demo.overview import overview
 
 st.set_page_config(layout='wide', page_title='streamlit-antd-components')
+
+st.markdown(f'''
+    <style>
+    .stApp .main .block-container{{
+        padding-top:30px
+    }}
+    .stApp [data-testid='stSidebar']>div:nth-child(1)>div:nth-child(2){{
+        padding-top:50px
+    }}
+    iframe{{
+        display:block;
+    }}
+    </style>
+    ''', unsafe_allow_html=True)
+
+if 'index' not in st.session_state:
+    st.session_state['index'] = 0
 
 with st.sidebar.container():
     # tag
@@ -21,10 +39,12 @@ with st.sidebar.container():
     new = sac.Tag('New', color='green', bordered=False)
     deprecated = sac.Tag('Deprecated', color='orange', bordered=False)
 
-    st.header('Streamlit-antd-component')
+    # menu
+    st.subheader('Streamlit-antd-components')
     menu = sac.menu(
         items=[
-            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
+            sac.MenuItem('overview'),
+            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons', tag=modified)]),
             sac.MenuItem('layout', type='group', children=['divider']),
             sac.MenuItem(
                 label='navigation', type='group', children=[
@@ -44,9 +64,9 @@ with st.sidebar.container():
             sac.MenuItem(
                 label='data display', type='group',
                 children=[
-                    sac.MenuItem('segmented'),
+                    sac.MenuItem('segmented', tag=modified),
                     'tabs',
-                    sac.MenuItem('tree', tag=modified),
+                    sac.MenuItem('tree'),
                     sac.MenuItem('tag', children=[
                         sac.MenuItem('tag'),
                         sac.MenuItem('tags'),
@@ -59,46 +79,30 @@ with st.sidebar.container():
                     sac.MenuItem('result')
                 ]
             ),
-            sac.MenuItem(type='divider'),
-            sac.MenuItem('reference', type='group', children=[
-                sac.MenuItem('Ant Design', icon='sign-intersection-y', href='https://ant.design/components/overview/'),
-                sac.MenuItem('github', icon='github', href='https://github.com/nicedouble/StreamlitAntdComponents'),
-                sac.MenuItem('bootstrap icons', icon='bootstrap', href='https://icons.getbootstrap.com/'),
-            ])
         ],
-        index=1,
+        index=st.session_state['index'],
         open_all=True,
         size='small',
-        format_func='title')
-    com_ = DEMO.get(menu)
+        format_func='title',
+        indent=30,
+    )
 
 with st.container():
-    st.markdown(f'''
-        <style>
-        .stApp .main .block-container{{
-            padding-top:30px
-        }}
-        iframe{{
-            display:block;
-        }}
-        </style>
-        ''', unsafe_allow_html=True)
     version_href = f"https://pypi.org/project/streamlit-antd-components/{sac.__VERSION__}/"
     sac.alert(
         message=f'Welcome to **Streamlit-antd-components**, the latest version : '
                 f'**<a href="{version_href}" target="_blank" class="badge badge-success rounded-pill">{sac.__VERSION__}</a>**',
         banner=True, closable=True, type='success')
-
-    tabs = sac.tabs([
-        sac.TabsItem('demo', icon='easel'),
-        sac.TabsItem('api', icon='cursor')
-    ], align='center', format_func='title')
-
-    if tabs == 'demo':
-        col = st.columns([1, 3])
-        with col[0].expander(f"{menu} params", True):
-            kw = com_.get('sidebar')()
-        with col[-1]:
-            com_.get('main')(kw)
+    if menu == 'overview':
+        overview()
     else:
-        com_.get('api')()
+        com_ = DEMO.get(menu)
+        tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], align='center')
+        if tabs == 'Demo':
+            col = st.columns([1, 3])
+            with col[0].expander(f"{menu} params", True):
+                kw = com_.get('sidebar')()
+            with col[-1]:
+                com_.get('main')(kw)
+        else:
+            com_.get('api')()

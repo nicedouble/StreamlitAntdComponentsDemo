@@ -22,18 +22,20 @@ def sidebar():
     if 'kv' not in st.session_state:
         st.session_state['kv'] = {'min_value': 0, 'max_value': 3, 'value': 2}
 
-    label = st.selectbox('label', LABEL)
+    c = st.columns(2)
+    label = c[0].selectbox('label', LABEL, 1)
     value = st.number_input('value', **st.session_state['kv'])
     count = st.number_input('count', 5, 100, 5, 5)
     symbol = st.selectbox('symbol', [None, 'A', sac.BsIcon("bell-fill")])
     align = st.selectbox('align', ["start", "center", "end"], 1)
-    position = st.selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
+    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
     size = st.number_input('size', 10, 50, 20, 5)
     color = show_color([None, 'orange', 'green'])
-    half = st.checkbox('half', on_change=callback, key='half')
-    clear = st.checkbox('clear')
-    readonly = st.checkbox('readonly')
-    return locals()
+    c1 = st.columns([1, 1, 1.5])
+    half = c1[0].checkbox('half', on_change=callback, key='half')
+    clear = c1[1].checkbox('clear')
+    readonly = c1[2].checkbox('readonly')
+    return update_kw(locals(), ['c', 'c1'])
 
 
 def main(kw):

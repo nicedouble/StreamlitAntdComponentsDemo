@@ -12,17 +12,20 @@ from ..utils import *
 
 
 def sidebar():
-    label = st.selectbox('label', LABEL)
+    c = st.columns(2)
+    label = c[0].selectbox('label', LABEL)
     index = st.selectbox('index', [0, 1, None], 1)
     format_func = st.selectbox('format_func', FORMAT, 1)
     align = st.selectbox('align', ["start", "center", "end"], 1)
-    position = st.selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
+    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
     size = st.selectbox('size', ['default', 'small', 'large'])
     direction = st.selectbox('direction', ["horizontal", "vertical"])
-    shape = st.selectbox('shape', ["default", "round", "circle"], 1)
-    compact = st.checkbox('compact')
-    return_index = st.checkbox('return_index')
-    return update_kw(locals())
+    c1 = st.columns(2)
+    shape = c1[0].selectbox('shape', ["default", "round", "circle"], 1)
+    type = c1[1].selectbox('type', ['default', 'primary'])
+    compact = c1[0].checkbox('compact')
+    return_index = c1[1].checkbox('return_index')
+    return update_kw(locals(), ['c', 'c1'])
 
 
 def main(kw):

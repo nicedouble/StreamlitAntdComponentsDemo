@@ -18,12 +18,13 @@ def sidebar():
     icon = st.selectbox('icon', [None, 'table', 'database'], 1)
     height = st.selectbox('height(px)', [None, 300])
     open_index = st.selectbox('open_index', [None, [1, 3]])
-    open_all = st.checkbox('open_all', True)
-    checkbox = st.checkbox('checkbox', True)
-    checkbox_strict = st.checkbox('checkbox_strict')
-    show_line = st.checkbox('show_line', True)
+    c = st.columns([1, 1.5])
+    open_all = c[0].checkbox('open_all', True)
+    checkbox = c[0].checkbox('checkbox', True)
+    show_line = c[1].checkbox('show_line', True)
+    checkbox_strict = c[1].checkbox('checkbox_strict')
     return_index = st.checkbox('return_index')
-    return update_kw(locals())
+    return update_kw(locals(), ['c'])
 
 
 def main(kw):

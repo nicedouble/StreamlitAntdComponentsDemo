@@ -14,7 +14,7 @@ from ..utils import *
 
 def sidebar():
     format_func = st.selectbox('format_func', FORMAT, 1)
-    align = st.selectbox('align', ["start", "center", "end"])
+    align = st.selectbox('align', ["start", "center", "end"], 1)
     direction = st.selectbox('direction', ["horizontal", "vertical"])
     checkable = st.checkbox('checkable', help='tags checkable mode')
     return update_kw(locals())
