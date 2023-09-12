@@ -12,11 +12,11 @@
 from ..utils import *
 
 
-def sidebar():
-    format_func = st.selectbox('format_func', FORMAT, 1)
-    align = st.selectbox('align', ["start", "center", "end"], 1)
-    direction = st.selectbox('direction', ["horizontal", "vertical"])
-    checkable = st.checkbox('checkable', help='tags checkable mode')
+def params(key):
+    format_func = st.selectbox('format_func', FORMAT, 1, key=f'ff-{key}')
+    align = st.selectbox('align', ["start", "center", "end"], 1, key=f'al-{key}')
+    direction = st.selectbox('direction', ["horizontal", "vertical"], key=f'dir-{key}')
+    checkable = st.checkbox('checkable', help='tags checkable mode', key=f'che-{key}')
     return update_kw(locals())
 
 
@@ -53,7 +53,7 @@ def api():
 
 TAGS_DEMO = {
     'tags': {
-        'sidebar': sidebar,
+        'params': params,
         'main': main,
         'api': api
     }

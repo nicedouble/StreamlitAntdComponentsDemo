@@ -11,29 +11,29 @@
 from ..utils import *
 
 
-def sidebar():
-    index = st.selectbox('index', [0, 1])
-    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    placement = st.selectbox('placement', ["horizontal", "vertical"], help='title placement')
-    size = st.selectbox('size', ["default", "small"])
-    direction = st.selectbox('direction', ["horizontal", "vertical"])
-    type = st.selectbox('type', ['default', 'navigation', 'inline'])
-    dot = st.checkbox('dot')
-    return_index = st.checkbox('return_index')
+def params(key):
+    index = st.selectbox('index', [0, 1], key=f'in-{key}')
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1, key=f'ff-{key}')
+    placement = st.selectbox('placement', ["horizontal", "vertical"], help='title placement', key=f'pl-{key}')
+    size = st.selectbox('size', ["default", "small"], key=f'si-{key}')
+    direction = st.selectbox('direction', ["horizontal", "vertical"], key=f'dir-{key}')
+    type = st.selectbox('type', ['default', 'navigation', 'inline'], key=f'ty-{key}')
+    dot = st.checkbox('dot', key=f'dot-{key}')
+    return_index = st.checkbox('return_index', key=f're-{key}')
     return update_kw(locals())
 
 
 def main(kw):
     return_index = kw.get('return_index')
 
-    st.subheader('demo1')
+    st.subheader('demo1', False)
     s0 = sac.steps(['item1', 'item2', 'item3'], **kw)
     st.write(f'The selected steps {"index" if return_index else "label"} is: {s0}')
     show_code(f'''
     sac.steps(['item1', 'item2', 'item3'], {code_kw(kw)})
     ''', True)
 
-    st.subheader('demo2')
+    st.subheader('demo2', False)
     s2 = sac.steps(
         items=[
             sac.StepsItem(title='step 1', subtitle='extra msg', description='description text'),
@@ -62,7 +62,7 @@ def api():
 
 STEPS_DEMO = {
     'steps': {
-        'sidebar': sidebar,
+        'params': params,
         'main': main,
         'api': api
     }

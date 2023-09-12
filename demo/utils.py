@@ -44,10 +44,11 @@ def show_code(x: str, open: bool = False):
         ''', line_numbers=True)
 
 
-def show_color(colors: list):
-    s = sac.buttons(['select', 'picker'], label='color', size='small', compact=True, position='left', shape='round')
+def show_color(colors: list, key):
+    s = sac.buttons(['select', 'picker'], label='color', size='small', compact=True, position='left', shape='round',
+                    key=f'btn-{key}')
     if s == 'select':
-        color = st.selectbox('color', colors, label_visibility='collapsed')
+        color = st.selectbox('color', colors, label_visibility='collapsed', key=f'box-{key}')
     else:
-        color = st.color_picker('color', value='#25C3B0', label_visibility='collapsed')
+        color = st.color_picker('color', value='#25C3B0', label_visibility='collapsed', key=f'picker-{key}')
     return color

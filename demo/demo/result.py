@@ -11,11 +11,11 @@
 from ..utils import *
 
 
-def sidebar():
-    title = st.selectbox('title', [None, 'title', '**title**'])
-    subtitle = st.selectbox('subtitle', [None, 'subtitle','**subtitle**'], 1)
-    status = st.selectbox('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500])
-    icon = st.selectbox('icon', [None, 'house', 'google'])
+def params(key):
+    title = st.selectbox('title', [None, 'title', '**title**'], key=f'ti-{key}')
+    subtitle = st.selectbox('subtitle', [None, 'subtitle', '**subtitle**'], 1, key=f'sub-{key}')
+    status = st.selectbox('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500], key=f'sta-{key}')
+    icon = st.selectbox('icon', [None, 'house', 'google'], key=f'ic-{key}')
     return locals()
 
 
@@ -32,7 +32,7 @@ def api():
 
 RESULT_DEMO = {
     'result': {
-        'sidebar': sidebar,
+        'params': params,
         'main': main,
         'api': api
     }

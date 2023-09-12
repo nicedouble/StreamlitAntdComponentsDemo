@@ -11,34 +11,34 @@
 from ..utils import *
 
 
-def sidebar():
+def params(key):
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL)
-    index = st.selectbox('index', [0, 1, None], 1)
-    format_func = st.selectbox('format_func', FORMAT, 1)
-    align = st.selectbox('align', ["start", "center", "end"], 1)
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
-    size = st.selectbox('size', ['default', 'small', 'large'])
-    direction = st.selectbox('direction', ["horizontal", "vertical"])
+    label = c[0].selectbox('label', LABEL, key=f'la-{key}')
+    index = st.selectbox('index', [0, 1, None], 1, key=f'in-{key}')
+    format_func = st.selectbox('format_func', FORMAT, 1, key=f'ff-{key}')
+    align = st.selectbox('align', ["start", "center", "end"], 1, key=f'ali-{key}')
+    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position', key=f'pos-{key}')
+    size = st.selectbox('size', ['default', 'small', 'large'], key=f'si-{key}')
+    direction = st.selectbox('direction', ["horizontal", "vertical"], key=f'dir-{key}')
     c1 = st.columns(2)
-    shape = c1[0].selectbox('shape', ["default", "round", "circle"], 1)
-    type = c1[1].selectbox('type', ['default', 'primary'])
-    compact = c1[0].checkbox('compact')
-    return_index = c1[1].checkbox('return_index')
+    shape = c1[0].selectbox('shape', ["default", "round", "circle"], 1, key=f'sa-{key}')
+    type = c1[1].selectbox('type', ['default', 'primary'], key=f'ty-{key}')
+    compact = c1[0].checkbox('compact', key=f'com-{key}')
+    return_index = c1[1].checkbox('return_index', key=f're-{key}')
     return update_kw(locals(), ['c', 'c1'])
 
 
 def main(kw):
     return_index = kw.get('return_index')
 
-    st.subheader('demo1')
+    st.subheader('demo1', False)
     btn0 = sac.buttons(['button1', 'button2', 'button3'], **kw)
     st.write(f'The selected button {"index" if return_index else "label"} is: {btn0}')
     show_code(f'''
     sac.buttons(['button1', 'button2', 'button3'], {code_kw(kw)})
     ''')
 
-    st.subheader('demo2')
+    st.subheader('demo2', False)
     btn1 = sac.buttons([
         sac.ButtonsItem(icon='chevron-bar-left'),
         sac.ButtonsItem(icon='chevron-left'),
@@ -55,7 +55,7 @@ def main(kw):
     ], {code_kw(kw)})
     ''')
 
-    st.subheader('demo3')
+    st.subheader('demo3', False)
     btn2 = sac.buttons([
         dict(label='apple', icon='apple'),
         dict(label='google', icon='google', color='orange'),
@@ -84,7 +84,7 @@ def api():
 
 BUTTONS_DEMO = {
     'buttons': {
-        'sidebar': sidebar,
+        'params': params,
         'main': main,
         'api': api
     }

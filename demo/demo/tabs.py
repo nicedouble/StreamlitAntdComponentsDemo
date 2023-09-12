@@ -11,36 +11,36 @@
 from ..utils import *
 
 
-def sidebar():
-    index = st.selectbox('index', [0, 1])
-    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    height = st.selectbox('height(px)', [None, 150])
-    align = st.selectbox('align', ["start", "center", "end"], 1)
-    position = st.selectbox('position', ["top", "right", "bottom", "left"])
-    shape = st.selectbox('shape', ['default', 'card'])
-    grow = st.checkbox('grow')
-    return_index = st.checkbox('return_index')
+def params(key):
+    index = st.selectbox('index', [0, 1], key=f'in-{key}')
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1, key=f'ff-{key}')
+    height = st.selectbox('height(px)', [None, 150], key=f'h-{key}')
+    align = st.selectbox('align', ["start", "center", "end"], 1, key=f'al-{key}')
+    position = st.selectbox('position', ["top", "right", "bottom", "left"], key=f'pos-{key}')
+    shape = st.selectbox('shape', ['default', 'card'], key=f'sh-{key}')
+    grow = st.checkbox('grow', key=f'grow-{key}')
+    return_index = st.checkbox('return_index', key=f're-{key}')
     return update_kw(locals())
 
 
 def main(kw):
     return_index = kw.get('return_index')
 
-    st.subheader('demo1')
+    st.subheader('demo1', False)
     tab0 = sac.tabs(['tab1', 'tab2', 'tab3'], **kw)
-    st.write(f'The selected tab {"index" if return_index else "label"} is: {tab0}')
+    st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab0}')
     show_code(f'''
     sac.tabs(['tab1', 'tab2', 'tab3'], {code_kw(kw)})
     ''')
 
-    st.subheader('demo2')
+    st.subheader('demo2', False)
     tab1 = sac.tabs([
         sac.TabsItem(icon='table'),
         sac.TabsItem(icon='pie-chart-fill'),
         sac.TabsItem(icon='graph-up-arrow'),
         sac.TabsItem(icon='bar-chart'),
     ], **kw)
-    st.write(f'The selected tab {"index" if return_index else "label"} is: {tab1}')
+    st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab1}')
     show_code(f'''
     sac.tabs([
         sac.TabsItem(icon='table'),
@@ -50,14 +50,14 @@ def main(kw):
     ], {code_kw(kw)})
     ''')
 
-    st.subheader('demo3')
+    st.subheader('demo3', False)
     tab2 = sac.tabs([
         dict(label='apple', icon='apple'),
         dict(label='google', icon='google'),
         dict(label='github', icon='github'),
         dict(label='disabled', disabled=True),
     ], **kw)
-    st.write(f'The selected tab {"index" if return_index else "label"} is: {tab2}')
+    st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab2}')
     show_code(f'''
     sac.tabs([
         dict(label='apple', icon='apple'),
@@ -75,7 +75,7 @@ def api():
 
 TABS_DEMO = {
     'tabs': {
-        'sidebar': sidebar,
+        'params': params,
         'main': main,
         'api': api
     }

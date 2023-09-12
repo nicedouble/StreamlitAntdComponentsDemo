@@ -11,20 +11,20 @@
 from ..utils import *
 
 
-def sidebar():
-    label = st.selectbox('label', LABEL)
-    index = st.selectbox('index', [[0, 1], None])
-    titles = st.selectbox('titles', [None, ['source', 'target'], ['source'], ['', 'target']], 1)
-    format_func = st.selectbox('format_func', FORMAT, 1)
-    width = st.selectbox('width', [None, '100%', 200])
-    height = st.selectbox('height', [None, 400])
+def params(key):
+    label = st.selectbox('label', LABEL, key=f'la-{key}')
+    index = st.selectbox('index', [[0, 1], None], key=f'in-{key}')
+    titles = st.selectbox('titles', [None, ['source', 'target'], ['source'], ['', 'target']], 1, key=f'ti-{key}')
+    format_func = st.selectbox('format_func', FORMAT, 1, key=f'ff-{key}')
+    width = st.selectbox('width', [None, '100%', 200], key=f'w-{key}')
+    height = st.selectbox('height', [None, 400], key=f'h-{key}')
     c = st.columns(2)
-    search = c[0].checkbox('search', True)
-    pagination = c[1].checkbox('pagination', True)
-    oneway = c[0].checkbox('oneway')
-    reload = c[1].checkbox('reload', True)
-    disabled = c[0].checkbox('disabled')
-    return_index = c[1].checkbox('return_index')
+    search = c[0].checkbox('search', True, key=f'se-{key}')
+    pagination = c[1].checkbox('pagination', True, key=f'pa-{key}')
+    oneway = c[0].checkbox('oneway', key=f'one-{key}')
+    reload = c[1].checkbox('reload', True, key=f'reload-{key}')
+    disabled = c[0].checkbox('disabled', key=f'dis-{key}')
+    return_index = c[1].checkbox('return_index', key=f're-{key}')
     return update_kw(locals(), ['c'])
 
 
@@ -43,7 +43,7 @@ def api():
 
 TRANSFER_DEMO = {
     'transfer': {
-        'sidebar': sidebar,
+        'params': params,
         'main': main,
         'api': api
     }

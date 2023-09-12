@@ -11,19 +11,19 @@
 from ..utils import *
 
 
-def sidebar():
-    label = st.selectbox('label', LABEL, 1)
-    index = st.selectbox('index', [0, 2, [0, 2], None])
-    format_func = st.selectbox('format_func', FORMAT, 1)
-    icon = st.selectbox('icon', [None, 'table', 'database'], 1)
-    height = st.selectbox('height(px)', [None, 300])
-    open_index = st.selectbox('open_index', [None, [1, 3]])
+def params(key):
+    label = st.selectbox('label', LABEL, 1, key=f'la-{key}')
+    index = st.selectbox('index', [0, 2, [0, 2], None], key=f'in-{key}')
+    format_func = st.selectbox('format_func', FORMAT, 1, key=f'ff-{key}')
+    icon = st.selectbox('icon', [None, 'table', 'database'], 1, key=f'ic-{key}')
+    height = st.selectbox('height(px)', [None, 300], key=f'h-{key}')
+    open_index = st.selectbox('open_index', [None, [1, 3]], key=f'oi-{key}')
     c = st.columns([1, 1.5])
-    open_all = c[0].checkbox('open_all', True)
-    checkbox = c[0].checkbox('checkbox', True)
-    show_line = c[1].checkbox('show_line', True)
-    checkbox_strict = c[1].checkbox('checkbox_strict')
-    return_index = st.checkbox('return_index')
+    open_all = c[0].checkbox('open_all', True, key=f'oa-{key}')
+    checkbox = c[0].checkbox('checkbox', True, key=f'ch-{key}')
+    show_line = c[1].checkbox('show_line', True, key=f'sl-{key}')
+    checkbox_strict = c[1].checkbox('checkbox_strict', key=f'cs-{key}')
+    return_index = st.checkbox('return_index', key=f're-{key}')
     return update_kw(locals(), ['c'])
 
 
@@ -86,7 +86,7 @@ def api():
 
 TREE_DEMO = {
     'tree': {
-        'sidebar': sidebar,
+        'params': params,
         'main': main,
         'api': api
     }

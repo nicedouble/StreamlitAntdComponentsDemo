@@ -44,7 +44,7 @@ with st.sidebar.container():
     menu = sac.menu(
         items=[
             sac.MenuItem('overview'),
-            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons', tag=modified)]),
+            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
             sac.MenuItem('layout', type='group', children=['divider']),
             sac.MenuItem(
                 label='navigation', type='group', children=[
@@ -58,7 +58,7 @@ with st.sidebar.container():
                 children=[
                     sac.MenuItem('cascader'),
                     'checkbox', 'rate', 'switch',
-                    sac.MenuItem('transfer', tag=modified)
+                    sac.MenuItem('transfer')
                 ]
             ),
             sac.MenuItem(
@@ -101,7 +101,7 @@ with st.container():
         if tabs == 'Demo':
             col = st.columns([1, 3])
             with col[0].expander(f"{menu} params", True):
-                kw = com_.get('sidebar')()
+                kw = com_.get('params')(menu)
             with col[-1]:
                 com_.get('main')(kw)
         else:
