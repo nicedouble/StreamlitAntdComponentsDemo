@@ -12,16 +12,16 @@ from ..utils import *
 from streamlit_antd_components.utils.data_class import BsIcon
 
 
-def params(key):
+def params():
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL, 1, key=f'la-{key}')
-    value = st.checkbox('value', True, key=f'va-{key}')
-    checked = st.selectbox('checked', [None, 'yes', BsIcon("sun")], 2, key=f'ch-{key}')
-    unchecked = st.selectbox('unchecked', [None, 'no', BsIcon("moon")], 2, key=f'un-{key}')
-    align = st.selectbox('align', ["start", "center", "end"], 1, key=f'al-{key}')
-    position = c[1].selectbox('position', ["top", "right", "bottom", "left"], help='label position', key=f'pos-{key}')
-    size = st.selectbox('size', ["default", "small", "large"], key=f'si-{key}')
-    disabled = st.checkbox('disabled', key=f'dis-{key}')
+    label = c[0].selectbox('label', LABEL, 1)
+    value = st.checkbox('value', True)
+    checked = st.selectbox('checked', [None, 'yes', BsIcon("sun")], 2)
+    unchecked = st.selectbox('unchecked', [None, 'no', BsIcon("moon")], 2)
+    align = st.selectbox('align', ["start", "center", "end"], 1)
+    position = c[1].selectbox('position', ["top", "right", "bottom", "left"], help='label position')
+    size = st.selectbox('size', ["default", "small", "large"])
+    disabled = st.checkbox('disabled')
     return update_kw(locals(), ['c'])
 
 

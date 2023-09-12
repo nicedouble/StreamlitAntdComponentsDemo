@@ -11,17 +11,17 @@
 from ..utils import *
 
 
-def params(key):
-    label = st.selectbox('label', LABEL, 1, key=f'la-{key}')
-    index = st.selectbox('index', [None, 0, [1, 3, 6, 7]], 1, key=f'in-{key}')
-    format_func = st.selectbox('format_func', FORMAT, 1, key=f'ff-{key}')
-    placeholder = st.text_input('placeholder', 'Please choose', key=f'pl-{key}')
-    multiple = st.checkbox('multiple', True, key=f'mu-{key}')
-    disabled = st.checkbox('disabled', key=f'dis-{key}')
-    search = st.checkbox('search', True, key=f'se-{key}')
-    clear = st.checkbox('clear', True, key=f'cl-{key}')
-    strict = st.checkbox('strict', key=f'str-{key}')
-    return_index = st.checkbox('return_index', key=f're-{key}')
+def params():
+    label = st.selectbox('label', LABEL, 1)
+    index = st.selectbox('index', [None, 0, [1, 3, 6, 7]], 1)
+    format_func = st.selectbox('format_func', FORMAT, 1)
+    placeholder = st.text_input('placeholder', 'Please choose')
+    multiple = st.checkbox('multiple', True)
+    disabled = st.checkbox('disabled')
+    search = st.checkbox('search', True)
+    clear = st.checkbox('clear', True)
+    strict = st.checkbox('strict')
+    return_index = st.checkbox('return_index')
     return update_kw(locals())
 
 

@@ -101,7 +101,7 @@ with st.container():
         if tabs == 'Demo':
             col = st.columns([1, 3])
             with col[0].expander(f"{menu} params", True):
-                kw = com_.get('params')(menu)
+                kw = com_.get('params')()
             with col[-1]:
                 com_.get('main')(kw)
         else:

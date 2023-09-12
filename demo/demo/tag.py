@@ -12,13 +12,13 @@
 from ..utils import *
 
 
-def params(key):
-    label = st.text_input('label', 'Tag', key=f'la-{key}')
-    color = show_color([None, 'green', 'gold', 'blue'], key=f'co-{key}')
-    icon = st.selectbox('icon', [None, 'house', 'twitter'], 1, key=f'ic-{key}')
-    link = st.selectbox('link', [None, 'https://ant.design/components/tag'], key=f'li-{key}')
-    bordered = st.checkbox('bordered', True, key=f'bo-{key}')
-    closable = st.checkbox('closable', True, key=f'cl-{key}')
+def params():
+    label = st.text_input('label', 'Tag')
+    color = show_color([None, 'green', 'gold', 'blue'])
+    icon = st.selectbox('icon', [None, 'house', 'twitter'], 1)
+    link = st.selectbox('link', [None, 'https://ant.design/components/tag'])
+    bordered = st.checkbox('bordered', True)
+    closable = st.checkbox('closable', True)
     return update_kw(locals())
 
 

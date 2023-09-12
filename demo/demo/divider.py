@@ -11,13 +11,13 @@
 from ..utils import *
 
 
-def params(key):
-    label = st.text_input('label', 'divider', key=f'la-{key}')
-    icon = st.selectbox('icon', [None, 'house'], 1, key=f'ic-{key}')
-    align = st.selectbox('align', ['start', 'center', 'end'], 1, help='label align', key=f'al-{key}')
-    direction = st.selectbox('direction', ["horizontal", "vertical"], key=f'dir-{key}')
-    dashed = st.checkbox('dashed', key=f'da-{key}')
-    bold = st.checkbox('bold', help='label font weight bold', key=f'bo-{key}')
+def params():
+    label = st.text_input('label', 'divider')
+    icon = st.selectbox('icon', [None, 'house'], 1)
+    align = st.selectbox('align', ['start', 'center', 'end'], 1, help='label align')
+    direction = st.selectbox('direction', ["horizontal", "vertical"])
+    dashed = st.checkbox('dashed')
+    bold = st.checkbox('bold', help='label font weight bold')
     return locals()
 
 

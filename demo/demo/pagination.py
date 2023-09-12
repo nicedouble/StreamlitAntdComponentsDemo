@@ -11,16 +11,16 @@
 from ..utils import *
 
 
-def params(key):
-    total = st.number_input('total', 0, 200, 100, 50, key=f'to-{key}')
-    index = st.selectbox('index', [1, 2], key=f'in-{key}')
-    page_size = st.number_input('page_size', 5, 20, 10, 5, key=f'ps-{key}')
-    align = st.selectbox('align', ["start", "center", "end"], 1, key=f'al-{key}')
-    circle = st.checkbox('circle', key=f'ci-{key}')
-    disabled = st.checkbox('disabled', key=f'dis-{key}')
-    jump = st.checkbox('jump', True, key=f'ju-{key}')
-    simple = st.checkbox('simple', key=f'si-{key}')
-    show_total = st.checkbox('show_total', True, key=f'sh-{key}')
+def params():
+    total = st.number_input('total', 0, 200, 100, 50)
+    index = st.selectbox('index', [1, 2])
+    page_size = st.number_input('page_size', 5, 20, 10, 5)
+    align = st.selectbox('align', ["start", "center", "end"], 1)
+    circle = st.checkbox('circle')
+    disabled = st.checkbox('disabled')
+    jump = st.checkbox('jump', True)
+    simple = st.checkbox('simple')
+    show_total = st.checkbox('show_total', True)
     return locals()
 
 

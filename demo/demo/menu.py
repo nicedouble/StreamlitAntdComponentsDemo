@@ -11,14 +11,14 @@
 from ..utils import *
 
 
-def params(key):
-    index = st.selectbox('index', [0, 2], key=f'in-{key}')
-    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1, key=f'ff-{key}')
-    size = st.selectbox('size', ['middle', 'small', 'large'], key=f'si-{key}')
-    indent = st.slider('indent(px)', 0, 30, 24, key=f'ind-{key}')
-    open_index = st.selectbox('open_index', [None, [1, 3]], key=f'oi-{key}')
-    open_all = st.checkbox('open_all', True, key=f'oa-{key}')
-    return_index = st.checkbox('return_index', key=f're-{key}')
+def params():
+    index = st.selectbox('index', [0, 2])
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
+    size = st.selectbox('size', ['middle', 'small', 'large'])
+    indent = st.slider('indent(px)', 0, 30, 24)
+    open_index = st.selectbox('open_index', [None, [1, 3]])
+    open_all = st.checkbox('open_all', True)
+    return_index = st.checkbox('return_index')
     return update_kw(locals())
 
 

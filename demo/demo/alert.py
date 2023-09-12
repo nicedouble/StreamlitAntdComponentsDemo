@@ -12,20 +12,20 @@
 from ..utils import *
 
 
-def params(key):
+def params():
     message = st.selectbox(
         label='message',
         options=[
             'alert message',
             '**alert message**',
             '**alert message** <a href="https://ant.design/components/overview" target="_blank" class="badge badge-info">link</a>'
-        ], index=1, key=f'me-{key}')
-    description = st.selectbox('description', [None, 'alert description', '**alert description**'], key=f'de-{key}')
-    type = st.selectbox('type', ['info', 'success', 'warning', 'error'], key=f'ty-{key}')
-    height = st.selectbox('height', [None, 100], key=f'h-{key}')
-    icon = st.checkbox('icon', True, key=f'i-{key}')
-    closable = st.checkbox('closable', True, key=f'c-{key}')
-    banner = st.checkbox('banner', True, key=f'b-{key}')
+        ], index=1)
+    description = st.selectbox('description', [None, 'alert description', '**alert description**'])
+    type = st.selectbox('type', ['info', 'success', 'warning', 'error'])
+    height = st.selectbox('height', [None, 100])
+    icon = st.checkbox('icon', True)
+    closable = st.checkbox('closable', True)
+    banner = st.checkbox('banner', True)
     return locals()
 
 

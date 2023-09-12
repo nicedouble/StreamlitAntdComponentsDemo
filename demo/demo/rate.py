@@ -11,23 +11,22 @@
 from ..utils import *
 
 
-def params(key):
+def params():
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL, 1, key=f'la-{key}')
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position', key=f'pos-{key}')
+    label = c[0].selectbox('label', LABEL, 1)
+    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
     container = st.container()
     c1 = st.columns([1, 1, 1.5])
-    half = c1[0].checkbox('half', key='half')
-    clear = c1[1].checkbox('clear', key=f'cl-{key}')
-    readonly = c1[2].checkbox('readonly', key=f'read-{key}')
+    half = c1[0].checkbox('half')
+    clear = c1[1].checkbox('clear')
+    readonly = c1[2].checkbox('readonly')
     with container:
-        value = st.number_input('value', min_value=.0, max_value=5.0, value=2.0, step=0.5 if half else 1.0,
-                                key=f'va-{key}')
-        count = st.number_input('count', 5, 100, 5, 5, key=f'co-{key}')
-        symbol = st.selectbox('symbol', [None, 'A', sac.BsIcon("bell-fill")], key=f'sy-{key}')
-        align = st.selectbox('align', ["start", "center", "end"], 1, key=f'al-{key}')
-        size = st.number_input('size', 10, 50, 20, 5, key=f'si-{key}')
-        color = show_color([None, 'orange', 'green'], key=f'co-{key}')
+        value = st.number_input('value', min_value=.0, max_value=5.0, value=2.0, step=0.5 if half else 1.0)
+        count = st.number_input('count', 5, 100, 5, 5)
+        symbol = st.selectbox('symbol', [None, 'A', sac.BsIcon("bell-fill")])
+        align = st.selectbox('align', ["start", "center", "end"], 1)
+        size = st.number_input('size', 10, 50, 20, 5)
+        color = show_color([None, 'orange', 'green'])
     return update_kw(locals(), ['c', 'c1', 'container'])
 
 

@@ -32,6 +32,7 @@ def update_kw(d: dict, remove_keys: list = None):
     return d
 
 
+@st.cache_data
 def code_kw(d: dict):
     # dict to kw string
     return ", ".join(f'{k}={FORMAT[-1]}' if isinstance(v, Callable) else f'{k}={v!r}' for k, v in d.items())
@@ -44,11 +45,10 @@ def show_code(x: str, open: bool = False):
         ''', line_numbers=True)
 
 
-def show_color(colors: list, key):
-    s = sac.buttons(['select', 'picker'], label='color', size='small', compact=True, position='left', shape='round',
-                    key=f'btn-{key}')
+def show_color(colors: list):
+    s = sac.buttons(['select', 'picker'], label='color', size='small', compact=True, position='left', shape='round')
     if s == 'select':
-        color = st.selectbox('color', colors, label_visibility='collapsed', key=f'box-{key}')
+        color = st.selectbox('color', colors, label_visibility='collapsed')
     else:
-        color = st.color_picker('color', value='#25C3B0', label_visibility='collapsed', key=f'picker-{key}')
+        color = st.color_picker('color', value='#25C3B0', label_visibility='collapsed')
     return color

@@ -11,15 +11,15 @@
 from ..utils import *
 
 
-def params(key):
-    index = st.selectbox('index', [0, 1], key=f'in-{key}')
-    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1, key=f'ff-{key}')
-    placement = st.selectbox('placement', ["horizontal", "vertical"], help='title placement', key=f'pl-{key}')
-    size = st.selectbox('size', ["default", "small"], key=f'si-{key}')
-    direction = st.selectbox('direction', ["horizontal", "vertical"], key=f'dir-{key}')
-    type = st.selectbox('type', ['default', 'navigation', 'inline'], key=f'ty-{key}')
-    dot = st.checkbox('dot', key=f'dot-{key}')
-    return_index = st.checkbox('return_index', key=f're-{key}')
+def params():
+    index = st.selectbox('index', [0, 1])
+    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
+    placement = st.selectbox('placement', ["horizontal", "vertical"], help='title placement')
+    size = st.selectbox('size', ["default", "small"])
+    direction = st.selectbox('direction', ["horizontal", "vertical"])
+    type = st.selectbox('type', ['default', 'navigation', 'inline'])
+    dot = st.checkbox('dot')
+    return_index = st.checkbox('return_index')
     return update_kw(locals())
 
 
