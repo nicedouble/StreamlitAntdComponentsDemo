@@ -75,5 +75,5 @@ def overview():
             items=[f'item{i}' for i in range(30)],
             index=[0, 1], reload=True,
             format_func='title')
-        st.button('Go to transfer', on_click=redirect, args=(14,))
+        st.button('Go to transfer', on_click=redirect, args=(15,))
     st.caption('Click the sidebar menu to show more components detailed usage.')
