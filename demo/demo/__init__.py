@@ -25,6 +25,7 @@ from .result import RESULT_DEMO
 from .tag import TAG_DEMO
 from .tags import TAGS_DEMO
 from .pagination import PAGINATION_DEMO
+from .chip import CHIP_DEMO
 
 DEMO = {
     **BUTTONS_DEMO,
@@ -43,5 +44,6 @@ DEMO = {
     **RESULT_DEMO,
     **TAG_DEMO,
     **TAGS_DEMO,
-    **PAGINATION_DEMO
+    **PAGINATION_DEMO,
+    **CHIP_DEMO
 }

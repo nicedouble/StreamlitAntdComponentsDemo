@@ -44,7 +44,7 @@ with st.sidebar.container():
     menu = sac.menu(
         items=[
             sac.MenuItem('overview'),
-            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
+            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons', tag=modified)]),
             sac.MenuItem('layout', type='group', children=['divider']),
             sac.MenuItem(
                 label='navigation', type='group', children=[
@@ -57,7 +57,9 @@ with st.sidebar.container():
                 label='data entry', type='group',
                 children=[
                     sac.MenuItem('cascader'),
-                    'checkbox', 'rate', 'switch',
+                    'checkbox',
+                    sac.MenuItem('chip', tag=new),
+                    'rate', 'switch',
                     sac.MenuItem('transfer')
                 ]
             ),
@@ -99,10 +101,10 @@ with st.container():
         com_ = DEMO.get(menu)
         tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], align='center')
         if tabs == 'Demo':
-            col = st.columns([1, 3])
-            with col[0].expander(f"{menu} params", True):
+            col = st.columns([3, 1])
+            with col[-1].expander(f"{menu} params", True):
                 kw = com_.get('params')()
-            with col[-1]:
+            with col[0]:
                 com_.get('main')(kw)
         else:
             com_.get('api')()

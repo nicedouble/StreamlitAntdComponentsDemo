@@ -30,7 +30,8 @@ def params():
 
 
 def main(kw):
-    sac.alert(**kw)
+    with st.expander('demo',True):
+        sac.alert(**kw)
     show_code(f'''
         sac.alert({code_kw(kw)})
         ''', open=True)

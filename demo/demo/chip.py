@@ -2,9 +2,9 @@
 # _*_coding:utf-8_*_
 
 """
-@Time     : 2023/7/11 16:22
+@Time     : 2023/9/15 16:16
 @Author   : ji hao ran
-@File     : segmented.py
+@File     : chip.py
 @Project  : StreamlitAntdComponentsDemo
 @Software : PyCharm
 """
@@ -13,32 +13,30 @@ from ..utils import *
 
 def params():
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL)
+    label = c[0].selectbox('label', LABEL, 1)
     position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
-    index = st.selectbox('index', [0, 1])
+    index = st.selectbox('index', [0, [0, 1], None])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    radius = st.selectbox('radius', ['xs', 'sm', 'md', 'lg', 'xl'], 2)
+    radius = st.selectbox('radius', ['xs', 'sm', 'md', 'lg', 'xl'], 3)
     size = st.selectbox('size', ['xs', 'sm', 'md', 'lg', 'xl'], 2)
     align = st.selectbox('align', ["start", "center", "end"], 1)
     direction = st.selectbox('direction', ["horizontal", "vertical"])
-    c = st.columns(2)
-    grow = c[0].checkbox('grow')
-    disabled = c[0].checkbox('disabled')
-    readonly = c[1].checkbox('readonly')
-    return_index = c[1].checkbox('return_index')
+    variant = st.selectbox('variant', ['outline', 'light', 'filled'], 2)
+    multiple = st.checkbox('multiple')
+    return_index = st.checkbox('return_index')
     return update_kw(locals(), ['c'])
 
 
 def main(kw):
     return_index = kw.get('return_index')
     with st.expander('demo', True):
-        seg = sac.segmented(
+        seg = sac.chip(
             items=[
-                sac.SegmentedItem(label='apple'),
-                sac.SegmentedItem(icon='google'),
-                sac.SegmentedItem(label='github', icon='github'),
-                sac.SegmentedItem(label='link', icon='link', href='https://mantine.dev/core/segmented-control/'),
-                sac.SegmentedItem(label='disabled', disabled=True),
+                sac.ChipItem(label='apple'),
+                sac.ChipItem(icon='google'),
+                sac.ChipItem(label='github', icon='github'),
+                sac.ChipItem(label='twitter', icon='twitter'),
+                sac.ChipItem(label='disabled', disabled=True),
             ], **kw
         )
         st.write(f'The selected segmented {"index" if return_index else "label"} is: {seg}')
@@ -60,8 +58,8 @@ def api():
     st.help(sac.SegmentedItem)
 
 
-SEGMENTED_DEMO = {
-    'segmented': {
+CHIP_DEMO = {
+    'chip': {
         'params': params,
         'main': main,
         'api': api

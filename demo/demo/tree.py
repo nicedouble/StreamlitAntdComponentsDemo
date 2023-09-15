@@ -30,53 +30,53 @@ def params():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns([1, 1.5])
-    with col[0].expander('demo', True):
-        item1 = sac.tree(items=[
-            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False), tooltip='item1 tooltip'),
-            sac.TreeItem('item2', icon='apple', tooltip='item2 tooltip', children=[
-                sac.TreeItem('item2-1', icon='github', tag='tag0'),
-                sac.TreeItem('item2-2', children=[
-                    sac.TreeItem('item2-2-1'),
-                    sac.TreeItem('item2-2-2'),
-                    sac.TreeItem('item2-2-3', children=[
-                        sac.TreeItem('item2-2-3-1'),
-                        sac.TreeItem('item2-2-3-2'),
-                        sac.TreeItem('item2-2-3-3'),
+    with st.expander('demo', True):
+        c = st.columns(3)
+        with c[1]:
+            item1 = sac.tree(items=[
+                sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False), tooltip='item1 tooltip'),
+                sac.TreeItem('item2', icon='apple', tooltip='item2 tooltip', children=[
+                    sac.TreeItem('item2-1', icon='github', tag='tag0'),
+                    sac.TreeItem('item2-2', children=[
+                        sac.TreeItem('item2-2-1'),
+                        sac.TreeItem('item2-2-2'),
+                        sac.TreeItem('item2-2-3', children=[
+                            sac.TreeItem('item2-2-3-1'),
+                            sac.TreeItem('item2-2-3-2'),
+                            sac.TreeItem('item2-2-3-3'),
+                        ]),
                     ]),
                 ]),
-            ]),
-            sac.TreeItem('disabled', disabled=True),
-            sac.TreeItem('item3', children=[
-                sac.TreeItem('item3-1'),
-                sac.TreeItem('item3-2'),
-                sac.TreeItem('text' * 30),
-            ]),
-        ], **kw)
-        st.write(f'The selected tree item {"index" if return_index else "label"} : {item1}')
-    with col[1]:
-        show_code(f'''
-        sac.tree(items=[
-            sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False), tooltip='item1 tooltip'),
-            sac.TreeItem('item2', icon='apple', tooltip='item2 tooltip', children=[
-                sac.TreeItem('item2-1', icon='github', tag='tag0'),
-                sac.TreeItem('item2-2', children=[
-                    sac.TreeItem('item2-2-1'),
-                    sac.TreeItem('item2-2-2'),
-                    sac.TreeItem('item2-2-3', children=[
-                        sac.TreeItem('item2-2-3-1'),
-                        sac.TreeItem('item2-2-3-2'),
-                        sac.TreeItem('item2-2-3-3'),
-                    ]),
+                sac.TreeItem('disabled', disabled=True),
+                sac.TreeItem('item3', children=[
+                    sac.TreeItem('item3-1'),
+                    sac.TreeItem('item3-2'),
+                    sac.TreeItem('text' * 30),
+                ]),
+            ], **kw)
+            st.write(f'The selected tree item {"index" if return_index else "label"} : {item1}')
+    show_code(f'''
+    sac.tree(items=[
+        sac.TreeItem('item1', tag=sac.Tag('tag', color='red', bordered=False), tooltip='item1 tooltip'),
+        sac.TreeItem('item2', icon='apple', tooltip='item2 tooltip', children=[
+            sac.TreeItem('item2-1', icon='github', tag='tag0'),
+            sac.TreeItem('item2-2', children=[
+                sac.TreeItem('item2-2-1'),
+                sac.TreeItem('item2-2-2'),
+                sac.TreeItem('item2-2-3', children=[
+                    sac.TreeItem('item2-2-3-1'),
+                    sac.TreeItem('item2-2-3-2'),
+                    sac.TreeItem('item2-2-3-3'),
                 ]),
             ]),
-            sac.TreeItem('disabled', disabled=True),
-            sac.TreeItem('item3', children=[
-                sac.TreeItem('item3-1'),
-                sac.TreeItem('item3-2'),
-                sac.TreeItem('text' * 30),
-            ]),
-        ], {code_kw(kw)})''', True)
+        ]),
+        sac.TreeItem('disabled', disabled=True),
+        sac.TreeItem('item3', children=[
+            sac.TreeItem('item3-1'),
+            sac.TreeItem('item3-2'),
+            sac.TreeItem('text' * 30),
+        ]),
+    ], {code_kw(kw)})''')
 
 
 def api():

@@ -20,7 +20,8 @@ def params():
 
 
 def main(kw):
-    sac.result(**kw)
+    with st.expander('demo',True):
+        sac.result(**kw)
     show_code(f'''
         sac.result({code_kw(kw)})
         ''', open=True)

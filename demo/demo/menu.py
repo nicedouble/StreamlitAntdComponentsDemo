@@ -25,46 +25,46 @@ def params():
 def main(kw):
     return_index = kw.get('return_index')
 
-    col = st.columns([1, 1.5])
-    with col[0].expander('demo', True):
-        item1 = sac.menu([
-            sac.MenuItem('home', icon='house', tag=sac.Tag('Tag', color='green', bordered=False)),
-            sac.MenuItem('app', icon='app', children=[
-                sac.MenuItem('store', icon='bag-check', tag='Tag0'),
-                sac.MenuItem('brand', icon='award', children=[
-                    sac.MenuItem('github', icon='github'),
-                    sac.MenuItem('apple', icon='apple'),
+    with st.expander('demo', True):
+        c=st.columns(3)
+        with c[1]:
+            item = sac.menu([
+                sac.MenuItem('home', icon='house', tag=sac.Tag('Tag', color='green', bordered=False)),
+                sac.MenuItem('app', icon='app', children=[
+                    sac.MenuItem('store', icon='bag-check', tag='Tag0'),
+                    sac.MenuItem('brand', icon='award', children=[
+                        sac.MenuItem('github', icon='github'),
+                        sac.MenuItem('apple', icon='apple'),
+                    ]),
                 ]),
-            ]),
-            sac.MenuItem('multipleline' * 10, icon='twitter'),
-            sac.MenuItem('disabled', icon='send', disabled=True),
-            sac.MenuItem(type='divider'),
-            sac.MenuItem('reference', type='group', children=[
-                sac.MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
-                sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
-            ]),
-        ], **kw)
-        st.write(f'The selected menu item {"index" if return_index else "label"} : {item1}')
-    with col[-1]:
-        show_code(f'''
-        sac.menu([
-            sac.MenuItem('home', icon='house', tag=sac.Tag('Tag',color='green',bordered=False)),
-            sac.MenuItem('app', icon='app', children=[
-                sac.MenuItem('store', icon='bag-check', tag='Tag0'),
-                sac.MenuItem('brand', icon='award', children=[
-                    sac.MenuItem('github', icon='github'),
-                    sac.MenuItem('apple', icon='apple'),
+                sac.MenuItem('multipleline' * 5, icon='twitter'),
+                sac.MenuItem('disabled', icon='send', disabled=True),
+                sac.MenuItem(type='divider'),
+                sac.MenuItem('reference', type='group', children=[
+                    sac.MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
+                    sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
                 ]),
+            ], **kw)
+            st.write(f'The selected menu item {"index" if return_index else "label"} : {item}')
+    show_code(f'''
+    sac.menu([
+        sac.MenuItem('home', icon='house', tag=sac.Tag('Tag',color='green',bordered=False)),
+        sac.MenuItem('app', icon='app', children=[
+            sac.MenuItem('store', icon='bag-check', tag='Tag0'),
+            sac.MenuItem('brand', icon='award', children=[
+                sac.MenuItem('github', icon='github'),
+                sac.MenuItem('apple', icon='apple'),
             ]),
-            sac.MenuItem('multipleline' * 10, icon='twitter'),
-            sac.MenuItem('disabled', icon='send', disabled=True),
-            sac.MenuItem(type='divider'),
-            sac.MenuItem('reference', type='group', children=[
-                sac.MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
-                sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
-            ]),
-        ], {code_kw(kw)})
-        ''', True)
+        ]),
+        sac.MenuItem('multipleline' * 5, icon='twitter'),
+        sac.MenuItem('disabled', icon='send', disabled=True),
+        sac.MenuItem(type='divider'),
+        sac.MenuItem('reference', type='group', children=[
+            sac.MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
+            sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
+        ]),
+    ], {code_kw(kw)})
+    ''')
 
 
 def api():

@@ -26,46 +26,22 @@ def params():
 def main(kw):
     return_index = kw.get('return_index')
 
-    st.subheader('demo1', False)
-    tab0 = sac.tabs(['tab1', 'tab2', 'tab3'], **kw)
-    st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab0}')
-    show_code(f'''
-    sac.tabs(['tab1', 'tab2', 'tab3'], {code_kw(kw)})
-    ''')
-
-    st.subheader('demo2', False)
-    tab1 = sac.tabs([
-        sac.TabsItem(icon='table'),
-        sac.TabsItem(icon='pie-chart-fill'),
-        sac.TabsItem(icon='graph-up-arrow'),
-        sac.TabsItem(icon='bar-chart'),
-    ], **kw)
-    st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab1}')
+    with st.expander('demo', True):
+        tab = sac.tabs([
+            sac.TabsItem(label='apple'),
+            sac.TabsItem(icon='google'),
+            sac.TabsItem(label='github', icon='github'),
+            sac.TabsItem(label='disabled', disabled=True),
+        ], **kw)
+        st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab}')
     show_code(f'''
     sac.tabs([
-        sac.TabsItem(icon='table'),
-        sac.TabsItem(icon='pie-chart-fill'),
-        sac.TabsItem(icon='graph-up-arrow'),
-        sac.TabsItem(icon='bar-chart'),
+        sac.TabsItem(label='apple'),
+        sac.TabsItem(icon='google'),
+        sac.TabsItem(label='github', icon='github'),
+        sac.TabsItem(label='disabled', disabled=True),
     ], {code_kw(kw)})
-    ''')
-
-    st.subheader('demo3', False)
-    tab2 = sac.tabs([
-        dict(label='apple', icon='apple'),
-        dict(label='google', icon='google'),
-        dict(label='github', icon='github'),
-        dict(label='disabled', disabled=True),
-    ], **kw)
-    st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab2}')
-    show_code(f'''
-    sac.tabs([
-        dict(label='apple', icon='apple'),
-        dict(label='google', icon='google'),
-        dict(label='github', icon='github'),
-        dict(label='disabled', disabled=True),
-    ], {code_kw(kw)})
-    ''')
+    ''', True)
 
 
 def api():

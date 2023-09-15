@@ -26,23 +26,16 @@ def params():
 def main(kw):
     return_index = kw.get('return_index')
 
-    st.subheader('demo1', False)
-    s0 = sac.steps(['item1', 'item2', 'item3'], **kw)
-    st.write(f'The selected steps {"index" if return_index else "label"} is: {s0}')
-    show_code(f'''
-    sac.steps(['item1', 'item2', 'item3'], {code_kw(kw)})
-    ''', True)
-
-    st.subheader('demo2', False)
-    s2 = sac.steps(
-        items=[
-            sac.StepsItem(title='step 1', subtitle='extra msg', description='description text'),
-            dict(title='step 2'),
-            dict(title='step 3'),
-            dict(title='step 4', disabled=True),
-        ], **kw
-    )
-    st.write(f'The selected steps {"index" if return_index else "label"} is: {s2}')
+    with st.expander('demo', True):
+        step = sac.steps(
+            items=[
+                sac.StepsItem(title='step 1', subtitle='extra msg', description='description text'),
+                dict(title='step 2'),
+                dict(title='step 3'),
+                dict(title='step 4', disabled=True),
+            ], **kw
+        )
+        st.write(f'The selected steps {"index" if return_index else "label"} is: {step}')
     show_code(f'''
     sac.steps(
         items=[

@@ -21,25 +21,17 @@ def params():
 
 
 def main(kw):
-    st.subheader('demo1')
-    t = sac.tags(items=['tag1', 'tag2', 'tag3'], **kw)
-    st.write(f"The selected tags item label : {t}")
-
-    show_code(f'''
-    sac.tags(['tag1', 'tag2', 'tag3'],{code_kw(kw)})
-    ''', open=True)
-
-    st.subheader('demo2')
-    t1 = sac.tags([
-        sac.Tag(label='red', icon='house', color='red'),
-        sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
-        sac.Tag(label='orange', icon='google', color='orange', closable=True),
-        sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
-    ], **kw)
-    st.write(f"The selected tags item label : {t1}")
+    with st.expander('demo', True):
+        t1 = sac.tags([
+            sac.Tag(label='tag'),
+            sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
+            sac.Tag(label='orange', icon='google', color='orange', closable=True),
+            sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
+        ], **kw)
+        st.write(f"The selected tags item label : {t1}")
     show_code(f'''
     sac.tags([
-        sac.Tag(label='red', icon='house', color='red'),
+        sac.Tag(label='tag'),
         sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
         sac.Tag(label='orange', icon='google', color='orange', closable=True),
         sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),

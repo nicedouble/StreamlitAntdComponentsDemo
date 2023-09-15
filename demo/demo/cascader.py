@@ -70,7 +70,7 @@ def main(kw):
         sac.CasItem('other3'),
         sac.CasItem('other4'),
     ], {code_kw(kw)})
-    ''', True)
+    ''')
 
 
 def api():

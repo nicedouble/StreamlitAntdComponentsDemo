@@ -14,15 +14,15 @@ from ..utils import *
 def params():
     c = st.columns(2)
     label = c[0].selectbox('label', LABEL)
-    index = st.selectbox('index', [0, 1, None], 1)
+    index = st.selectbox('index', [0, 1, None])
     format_func = st.selectbox('format_func', FORMAT, 1)
     align = st.selectbox('align', ["start", "center", "end"], 1)
     position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
-    size = st.selectbox('size', ['default', 'small', 'large'])
+    size = st.selectbox('size', ['small', 'default', 'large'], 1)
     direction = st.selectbox('direction', ["horizontal", "vertical"])
     c1 = st.columns(2)
     shape = c1[0].selectbox('shape', ["default", "round", "circle"], 1)
-    type = c1[1].selectbox('type', ['default', 'primary'])
+    type = c1[1].selectbox('type', ['primary', 'default', 'dashed', 'text', 'link'], 1)
     compact = c1[0].checkbox('compact')
     return_index = c1[1].checkbox('return_index')
     return update_kw(locals(), ['c', 'c1'])
@@ -31,50 +31,26 @@ def params():
 def main(kw):
     return_index = kw.get('return_index')
 
-    st.subheader('demo1', False)
-    btn0 = sac.buttons(['button1', 'button2', 'button3'], **kw)
-    st.write(f'The selected button {"index" if return_index else "label"} is: {btn0}')
-    show_code(f'''
-    sac.buttons(['button1', 'button2', 'button3'], {code_kw(kw)})
-    ''')
-
-    st.subheader('demo2', False)
-    btn1 = sac.buttons([
-        sac.ButtonsItem(icon='chevron-bar-left'),
-        sac.ButtonsItem(icon='chevron-left'),
-        sac.ButtonsItem(icon='chevron-right'),
-        sac.ButtonsItem(icon='chevron-bar-right'),
-    ], **kw)
-    st.write(f'The selected button {"index" if return_index else "label"} is: {btn1}')
+    with st.expander('demo', True):
+        btn = sac.buttons([
+            sac.ButtonsItem(label='check'),
+            sac.ButtonsItem(icon='facebook'),
+            sac.ButtonsItem(label='github', icon='github', color='#25C3B0'),
+            sac.ButtonsItem(label='twitter', icon='twitter', color='var(--primary)'),
+            sac.ButtonsItem(label='disabled', disabled=True),
+            sac.ButtonsItem(label='link', href='https://ant.design/components/button', icon='link'),
+        ], **kw)
+        st.write(f'The selected button {"index" if return_index else "label"} is: {btn}')
     show_code(f'''
     sac.buttons([
-        sac.ButtonsItem(icon='chevron-bar-left'),
-        sac.ButtonsItem(icon='chevron-left'),
-        sac.ButtonsItem(icon='chevron-right'),
-        sac.ButtonsItem(icon='chevron-bar-right'),
+        sac.ButtonsItem(label='check'),
+        sac.ButtonsItem(icon='facebook'),
+        sac.ButtonsItem(label='github', icon='github', color='#25C3B0'),
+        sac.ButtonsItem(label='twitter', icon='twitter', color='var(--primary)'),
+        sac.ButtonsItem(label='disabled', disabled=True),
+        sac.ButtonsItem(label='link', href='https://ant.design/components/button', icon='link'),
     ], {code_kw(kw)})
-    ''')
-
-    st.subheader('demo3', False)
-    btn2 = sac.buttons([
-        dict(label='apple', icon='apple'),
-        dict(label='google', icon='google', color='orange'),
-        dict(label='github', icon='github', color='#25C3B0'),
-        dict(label='twitter', icon='twitter', color='var(--primary)'),
-        dict(label='disabled', disabled=True),
-        dict(label='link', href='https://ant.design/components/button', icon='link'),
-    ], **kw)
-    st.write(f'The selected button {"index" if return_index else "label"} is: {btn2}')
-    show_code(f'''
-    sac.buttons([
-        dict(label='apple', icon='apple'),
-        dict(label='google', icon='google', color='orange'),
-        dict(label='github', icon='github', color='#25C3B0'),
-        dict(label='twitter', icon='twitter', color='var(--primary)'),
-        dict(label='disabled', disabled=True),
-        dict(label='link', href='https://ant.design/components/button', icon='link'),
-    ], {code_kw(kw)})
-    ''')
+    ''', True)
 
 
 def api():
