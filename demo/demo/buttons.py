@@ -21,7 +21,7 @@ def params():
     size = st.radio('size', ['small', 'default', 'large'], 1, horizontal=True)
     direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
     shape = st.radio('shape', ["default", "round", "circle"], 1, horizontal=True)
-    type = sac.segmented(label='type', items=['primary', 'default', 'dashed', 'text', 'link'], size='sm')
+    type = sac.segmented(label='type', items=['primary', 'default', 'dashed', 'text', 'link'], index=1, size='sm')
     c = st.columns(2)
     compact = c[0].checkbox('compact')
     return_index = c[1].checkbox('return_index')
