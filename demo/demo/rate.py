@@ -24,7 +24,7 @@ def params():
         value = st.number_input('value', min_value=.0, max_value=5.0, value=2.0, step=0.5 if half else 1.0)
         count = st.number_input('count', 5, 100, 5, 5)
         symbol = st.selectbox('symbol', [None, 'A', sac.BsIcon("bell-fill")])
-        align = st.selectbox('align', ["start", "center", "end"], 1)
+        align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
         size = st.number_input('size', 10, 50, 20, 5)
         color = show_color([None, 'orange', 'green'])
     return update_kw(locals(), ['c', 'c1', 'container'])

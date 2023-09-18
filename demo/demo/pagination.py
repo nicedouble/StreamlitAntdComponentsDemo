@@ -15,7 +15,7 @@ def params():
     total = st.number_input('total', 0, 200, 100, 50)
     index = st.selectbox('index', [1, 2])
     page_size = st.number_input('page_size', 5, 20, 10, 5)
-    align = st.selectbox('align', ["start", "center", "end"], 1)
+    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
     circle = st.checkbox('circle')
     disabled = st.checkbox('disabled')
     jump = st.checkbox('jump', True)

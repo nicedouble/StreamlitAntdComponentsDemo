@@ -21,7 +21,7 @@ def params():
             '**alert message** <a href="https://ant.design/components/overview" target="_blank" class="badge badge-info">link</a>'
         ], index=1)
     description = st.selectbox('description', [None, 'alert description', '**alert description**'])
-    type = st.selectbox('type', ['info', 'success', 'warning', 'error'])
+    type = st.radio('type', ['info', 'success', 'warning', 'error'], horizontal=True)
     height = st.selectbox('height', [None, 100])
     icon = st.checkbox('icon', True)
     closable = st.checkbox('closable', True)
@@ -30,7 +30,7 @@ def params():
 
 
 def main(kw):
-    with st.expander('demo',True):
+    with st.expander('demo', True):
         sac.alert(**kw)
     show_code(f'''
         sac.alert({code_kw(kw)})

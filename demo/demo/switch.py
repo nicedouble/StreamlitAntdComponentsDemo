@@ -18,9 +18,9 @@ def params():
     value = st.checkbox('value', True)
     checked = st.selectbox('checked', [None, 'yes', BsIcon("sun")], 2)
     unchecked = st.selectbox('unchecked', [None, 'no', BsIcon("moon")], 2)
-    align = st.selectbox('align', ["start", "center", "end"], 1)
+    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
     position = c[1].selectbox('position', ["top", "right", "bottom", "left"], help='label position')
-    size = st.selectbox('size', ["default", "small", "large"])
+    size = st.radio('size', ["default", "small", "large"], horizontal=True)
     disabled = st.checkbox('disabled')
     return update_kw(locals(), ['c'])
 

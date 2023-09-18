@@ -14,8 +14,8 @@ from ..utils import *
 def params():
     label = st.text_input('label', 'divider')
     icon = st.selectbox('icon', [None, 'house'], 1)
-    align = st.selectbox('align', ['start', 'center', 'end'], 1, help='label align')
-    direction = st.selectbox('direction', ["horizontal", "vertical"])
+    align = st.radio('align', ['start', 'center', 'end'], 1, help='label align', horizontal=True)
+    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
     dashed = st.checkbox('dashed')
     bold = st.checkbox('bold', help='label font weight bold')
     return locals()

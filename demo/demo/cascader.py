@@ -45,8 +45,6 @@ def main(kw):
             sac.CasItem('disabled', icon='send', disabled=True),
             sac.CasItem('other1'),
             sac.CasItem('other2'),
-            sac.CasItem('other3'),
-            sac.CasItem('other4'),
         ], **kw)
         st.write(f'The selected cascader item {"index" if return_index else "label"} : {item}')
     show_code(f'''
@@ -66,11 +64,9 @@ def main(kw):
         ]),
         sac.CasItem('disabled', icon='send', disabled=True),
         sac.CasItem('other1'),
-        sac.CasItem('other2'),
-        sac.CasItem('other3'),
-        sac.CasItem('other4'),
+        sac.CasItem('other2')
     ], {code_kw(kw)})
-    ''')
+    ''', True)
 
 
 def api():

@@ -14,7 +14,7 @@ from ..utils import *
 def params():
     index = st.selectbox('index', [0, 2])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    size = st.selectbox('size', ['middle', 'small', 'large'])
+    size = st.radio('size', ['middle', 'small', 'large'], horizontal=True)
     indent = st.slider('indent(px)', 0, 30, 24)
     open_index = st.selectbox('open_index', [None, [1, 3]])
     open_all = st.checkbox('open_all', True)
@@ -26,7 +26,7 @@ def main(kw):
     return_index = kw.get('return_index')
 
     with st.expander('demo', True):
-        c=st.columns(3)
+        c = st.columns(3)
         with c[1]:
             item = sac.menu([
                 sac.MenuItem('home', icon='house', tag=sac.Tag('Tag', color='green', bordered=False)),

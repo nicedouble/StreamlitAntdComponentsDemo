@@ -14,8 +14,8 @@ from ..utils import *
 
 def params():
     format_func = st.selectbox('format_func', FORMAT, 1)
-    align = st.selectbox('align', ["start", "center", "end"], 1)
-    direction = st.selectbox('direction', ["horizontal", "vertical"])
+    align = st.radio('align', ["start", "center", "end"], 1,horizontal=True)
+    direction = st.radio('direction', ["horizontal", "vertical"],horizontal=True)
     checkable = st.checkbox('checkable', help='tags checkable mode')
     return update_kw(locals())
 

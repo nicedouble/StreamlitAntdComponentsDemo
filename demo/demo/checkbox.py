@@ -14,10 +14,10 @@ from ..utils import *
 def params():
     c = st.columns(2)
     label = c[0].selectbox('label', LABEL, 1)
+    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
     index = st.selectbox('index', [None, 0, [0, 1]], 2)
     format_func = st.selectbox('format_func', FORMAT, 1)
-    align = st.selectbox('align', ["start", "center", "end"], 1)
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
+    align = st.radio('align', ["start", "center", "end"], 1,horizontal=True)
     check_all = st.checkbox('check_all', True, help='show check all box')
     disabled = st.checkbox('disabled')
     return_index = st.checkbox('return_index')

@@ -14,10 +14,10 @@ from ..utils import *
 def params():
     index = st.selectbox('index', [0, 1])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    placement = st.selectbox('placement', ["horizontal", "vertical"], help='title placement')
-    size = st.selectbox('size', ["default", "small"])
-    direction = st.selectbox('direction', ["horizontal", "vertical"])
-    type = st.selectbox('type', ['default', 'navigation', 'inline'])
+    placement = st.radio('placement', ["horizontal", "vertical"], help='title placement',horizontal=True)
+    size = st.radio('size', ["default", "small"],horizontal=True)
+    direction = st.radio('direction', ["horizontal", "vertical"],horizontal=True)
+    type = st.radio('type', ['default', 'navigation', 'inline'],horizontal=True)
     dot = st.checkbox('dot')
     return_index = st.checkbox('return_index')
     return update_kw(locals())
@@ -30,9 +30,9 @@ def main(kw):
         step = sac.steps(
             items=[
                 sac.StepsItem(title='step 1', subtitle='extra msg', description='description text'),
-                dict(title='step 2'),
-                dict(title='step 3'),
-                dict(title='step 4', disabled=True),
+                sac.StepsItem(title='step 2'),
+                sac.StepsItem(title='step 3'),
+                sac.StepsItem(title='step 4', disabled=True),
             ], **kw
         )
         st.write(f'The selected steps {"index" if return_index else "label"} is: {step}')
@@ -40,9 +40,9 @@ def main(kw):
     sac.steps(
         items=[
             sac.StepsItem(title='step 1', subtitle='extra msg', description='description text'),
-            dict(title='step 2'),
-            dict(title='step 3'),
-            dict(title='step 4', disabled=True),
+            sac.StepsItem(title='step 2'),
+            sac.StepsItem(title='step 3'),
+            sac.StepsItem(title='step 4', disabled=True),
         ], {code_kw(kw)}
     )
     ''', True)
