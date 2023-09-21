@@ -65,7 +65,7 @@ def main(kw):
         sac.CasItem('disabled', icon='send', disabled=True),
         sac.CasItem('other1'),
         sac.CasItem('other2')
-    ], {code_kw(kw)})
+    ], {code_kw(kw, sac.cascader)})
     ''', True)
 
 

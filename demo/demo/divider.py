@@ -25,7 +25,7 @@ def main(kw):
     with st.expander('demo', True):
         sac.divider(**kw)
     show_code(f'''
-    sac.divider({code_kw(kw)})
+    sac.divider({code_kw(kw, sac.divider)})
     ''', True)
 
 

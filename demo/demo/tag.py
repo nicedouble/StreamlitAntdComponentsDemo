@@ -26,7 +26,7 @@ def main(kw):
     with st.expander('demo', True):
         sac.tag(**kw)
     show_code(f'''
-    sac.tag({code_kw(kw)})
+    sac.tag({code_kw(kw, sac.tag)})
     ''', open=True)
 
 

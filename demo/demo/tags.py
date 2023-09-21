@@ -14,8 +14,8 @@ from ..utils import *
 
 def params():
     format_func = st.selectbox('format_func', FORMAT, 1)
-    align = st.radio('align', ["start", "center", "end"], 1,horizontal=True)
-    direction = st.radio('direction', ["horizontal", "vertical"],horizontal=True)
+    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
+    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
     checkable = st.checkbox('checkable', help='tags checkable mode')
     return update_kw(locals())
 
@@ -35,7 +35,7 @@ def main(kw):
         sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
         sac.Tag(label='orange', icon='google', color='orange', closable=True),
         sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
-    ], {code_kw(kw)})''', open=True)
+    ], {code_kw(kw, sac.tags)})''', open=True)
 
 
 def api():

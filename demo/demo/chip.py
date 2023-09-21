@@ -21,7 +21,7 @@ def params():
     size = st.radio('size', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
     align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
     direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
-    variant = st.radio('variant', ['outline', 'light', 'filled'], 1, horizontal=True)
+    variant = st.radio('variant', ['filled', 'outline', 'light'], horizontal=True)
     c = st.columns(2)
     multiple = c[0].checkbox('multiple', True)
     return_index = c[1].checkbox('return_index')
@@ -49,7 +49,7 @@ def main(kw):
             sac.ChipItem(label='github', icon='github'),
             sac.ChipItem(label='twitter', icon='twitter'),
             sac.ChipItem(label='disabled', disabled=True),
-        ], {code_kw(kw)}
+        ], {code_kw(kw, sac.chip)}
     )
     ''', True)
 

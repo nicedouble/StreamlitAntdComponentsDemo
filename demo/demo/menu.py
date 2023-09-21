@@ -63,7 +63,7 @@ def main(kw):
             sac.MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
             sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
         ]),
-    ], {code_kw(kw)})
+    ], {code_kw(kw, sac.menu)})
     ''')
 
 

@@ -11,6 +11,7 @@
 from typing import Callable
 import streamlit as st
 import streamlit_antd_components as sac
+import inspect
 
 FORMAT = [None, 'title', 'upper', "lambda x:f'A_{x}'"]
 LABEL = [
@@ -33,9 +34,16 @@ def update_kw(d: dict, remove_keys: list = None):
 
 
 @st.cache_data
-def code_kw(d: dict):
+def code_kw(kw: dict, _func):
+    # func default kw
+    default_kw = {
+        k: v.default for k, v in inspect.signature(_func).parameters.items() if
+        v.default is not inspect.Parameter.empty
+    }
+    # filter kw
+    new_kw = {k: v for k, v in kw.items() if v != default_kw.get(k)}
     # dict to kw string
-    return ", ".join(f'{k}={FORMAT[-1]}' if isinstance(v, Callable) else f'{k}={v!r}' for k, v in d.items())
+    return ", ".join(f'{k}={FORMAT[-1]}' if isinstance(v, Callable) else f'{k}={v!r}' for k, v in new_kw.items())
 
 
 def show_code(x: str, open: bool = False):

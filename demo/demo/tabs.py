@@ -40,7 +40,7 @@ def main(kw):
         sac.TabsItem(icon='google'),
         sac.TabsItem(label='github', icon='github'),
         sac.TabsItem(label='disabled', disabled=True),
-    ], {code_kw(kw)})
+    ], {code_kw(kw, sac.tabs)})
     ''', True)
 
 

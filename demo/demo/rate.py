@@ -35,7 +35,7 @@ def main(kw):
         r = sac.rate(**kw)
         st.write(f'The rate value is: {r}')
     show_code(f'''
-    sac.rate({code_kw(kw)})
+    sac.rate({code_kw(kw, sac.rate)})
     ''', True)
 
 

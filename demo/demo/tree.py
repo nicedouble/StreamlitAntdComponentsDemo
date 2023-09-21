@@ -76,7 +76,7 @@ def main(kw):
             sac.TreeItem('item3-2'),
             sac.TreeItem('text' * 30),
         ]),
-    ], {code_kw(kw)})''')
+    ], {code_kw(kw, sac.tree)})''')
 
 
 def api():

@@ -29,7 +29,7 @@ def main(kw):
         r = sac.pagination(**kw)
         st.write(f'The selected pagination number is: {r}')
     show_code(f'''
-    sac.pagination({code_kw(kw)})
+    sac.pagination({code_kw(kw, sac.pagination)})
     ''', True)
 
 

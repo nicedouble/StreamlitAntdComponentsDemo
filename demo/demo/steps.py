@@ -14,10 +14,10 @@ from ..utils import *
 def params():
     index = st.selectbox('index', [0, 1])
     format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    placement = st.radio('placement', ["horizontal", "vertical"], help='title placement',horizontal=True)
-    size = st.radio('size', ["default", "small"],horizontal=True)
-    direction = st.radio('direction', ["horizontal", "vertical"],horizontal=True)
-    type = st.radio('type', ['default', 'navigation', 'inline'],horizontal=True)
+    placement = st.radio('placement', ["horizontal", "vertical"], help='title placement', horizontal=True)
+    size = st.radio('size', ["default", "small"], horizontal=True)
+    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
+    type = st.radio('type', ['default', 'navigation', 'inline'], horizontal=True)
     dot = st.checkbox('dot')
     return_index = st.checkbox('return_index')
     return update_kw(locals())
@@ -43,7 +43,7 @@ def main(kw):
             sac.StepsItem(title='step 2'),
             sac.StepsItem(title='step 3'),
             sac.StepsItem(title='step 4', disabled=True),
-        ], {code_kw(kw)}
+        ], {code_kw(kw, sac.steps)}
     )
     ''', True)
 

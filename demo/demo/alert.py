@@ -33,7 +33,7 @@ def main(kw):
     with st.expander('demo', True):
         sac.alert(**kw)
     show_code(f'''
-        sac.alert({code_kw(kw)})
+        sac.alert({code_kw(kw, sac.alert)})
         ''', open=True)
 
 

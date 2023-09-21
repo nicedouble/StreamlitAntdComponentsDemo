@@ -16,7 +16,7 @@ def params():
     index = st.selectbox('index', [[0, 1], None])
     titles = st.selectbox('titles', [None, ['source', 'target'], ['source'], ['', 'target']], 1)
     format_func = st.selectbox('format_func', FORMAT, 1)
-    width = st.selectbox('width', [None, '100%', 200], 1)
+    width = st.selectbox('width', [None, '100%', 200])
     height = st.selectbox('height', [None, 400])
     c = st.columns(2)
     search = c[0].checkbox('search', True)
@@ -36,7 +36,7 @@ def main(kw):
             t = sac.transfer(items=[f'item{i}' for i in range(30)], **kw)
             st.write(f'The transfer target item {"index" if return_index else "label"} : {t}')
     show_code(f'''
-    sac.transfer(items=[f'item{{i}}' for i in range(30)], {code_kw(kw)})
+    sac.transfer(items=[f'item{{i}}' for i in range(30)], {code_kw(kw, sac.transfer)})
     ''')
 
 

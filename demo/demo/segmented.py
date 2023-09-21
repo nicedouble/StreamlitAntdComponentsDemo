@@ -50,7 +50,7 @@ def main(kw):
             sac.SegmentedItem(label='github', icon='github'),
             sac.SegmentedItem(label='link', icon='link', href='https://mantine.dev/core/segmented-control/'),
             sac.SegmentedItem(label='disabled', disabled=True),
-        ], {code_kw(kw)}
+        ], {code_kw(kw, sac.segmented)}
     )
     ''', True)
 
