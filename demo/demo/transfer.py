@@ -46,6 +46,7 @@ def api():
 
 TRANSFER_DEMO = {
     'transfer': {
+        'doc': 'Double column transfer choice box.',
         'params': params,
         'main': main,
         'api': api

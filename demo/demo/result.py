@@ -33,6 +33,7 @@ def api():
 
 RESULT_DEMO = {
     'result': {
+        'doc': 'Used to feed back the results of a series of operational tasks.',
         'params': params,
         'main': main,
         'api': api

@@ -22,7 +22,6 @@ from .steps import STEPS_DEMO
 from .checkbox import CHECKBOX_DEMO
 from .rate import RATE_DEMO
 from .result import RESULT_DEMO
-from .tag import TAG_DEMO
 from .tags import TAGS_DEMO
 from .pagination import PAGINATION_DEMO
 from .chip import CHIP_DEMO
@@ -42,7 +41,6 @@ DEMO = {
     **RATE_DEMO,
     **CHECKBOX_DEMO,
     **RESULT_DEMO,
-    **TAG_DEMO,
     **TAGS_DEMO,
     **PAGINATION_DEMO,
     **CHIP_DEMO

@@ -74,6 +74,7 @@ def api():
 
 MENU_DEMO = {
     'menu': {
+        'doc': 'A versatile menu for navigation.',
         'params': params,
         'main': main,
         'api': api

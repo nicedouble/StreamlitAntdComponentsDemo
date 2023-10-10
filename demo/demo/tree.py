@@ -86,6 +86,7 @@ def api():
 
 TREE_DEMO = {
     'tree': {
+        'doc': 'A hierarchical list structure component.',
         'params': params,
         'main': main,
         'api': api

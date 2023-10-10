@@ -35,6 +35,7 @@ def api():
 
 DIVIDER_DEMO = {
     'divider': {
+        'doc': 'A divider line separates different content.',
         'params': params,
         'main': main,
         'api': api

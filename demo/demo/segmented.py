@@ -62,6 +62,7 @@ def api():
 
 SEGMENTED_DEMO = {
     'segmented': {
+        'doc': 'A linear set of two or more segments.',
         'params': params,
         'main': main,
         'api': api

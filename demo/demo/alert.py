@@ -43,6 +43,7 @@ def api():
 
 ALERT_DEMO = {
     'alert': {
+        'doc': 'Alert component for feedback.',
         'params': params,
         'main': main,
         'api': api

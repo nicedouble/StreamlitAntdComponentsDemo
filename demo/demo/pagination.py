@@ -39,6 +39,7 @@ def api():
 
 PAGINATION_DEMO = {
     'pagination': {
+        'doc': 'A long list can be divided into several pages.',
         'params': params,
         'main': main,
         'api': api

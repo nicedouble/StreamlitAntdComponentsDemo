@@ -57,6 +57,7 @@ def api():
 
 CHECKBOX_DEMO = {
     'checkbox': {
+        'doc': 'A group of checkbox.',
         'params': params,
         'main': main,
         'api': api

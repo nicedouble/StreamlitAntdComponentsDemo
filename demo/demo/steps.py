@@ -55,6 +55,7 @@ def api():
 
 STEPS_DEMO = {
     'steps': {
+        'doc': 'A navigation bar that guides users through the steps of a task.',
         'params': params,
         'main': main,
         'api': api

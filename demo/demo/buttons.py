@@ -60,6 +60,7 @@ def api():
 
 BUTTONS_DEMO = {
     'buttons': {
+        'doc': 'A group of buttons component.',
         'params': params,
         'main': main,
         'api': api

@@ -51,6 +51,7 @@ def api():
 
 TABS_DEMO = {
     'tabs': {
+        'doc': 'A tabs component.',
         'params': params,
         'main': main,
         'api': api

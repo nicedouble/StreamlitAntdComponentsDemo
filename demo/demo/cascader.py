@@ -76,6 +76,7 @@ def api():
 
 CASCADER_DEMO = {
     'cascader': {
+        'doc': 'Cascade selection box.',
         'params': params,
         'main': main,
         'api': api

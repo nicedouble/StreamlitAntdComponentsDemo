@@ -46,6 +46,7 @@ def api():
 
 SWITCH_DEMO = {
     'switch': {
+        'doc': 'Switching between two states or on-off state.',
         'params': params,
         'main': main,
         'api': api

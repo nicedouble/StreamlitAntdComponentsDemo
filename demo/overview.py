@@ -22,7 +22,7 @@ def overview():
     :heart: This package is mainly inspired by [Ant Design](https://ant.design/components/overview/) and has developed more than 10 components to extend streamlit,
     and help users have more choices to display their data.   
     :heart: All components are designed to fit streamlit theme style.   
-    :heart: Support latest version [Bootstrap Icon](https://icons.getbootstrap.com/)(`v1.10.5`).   
+    :heart: Support [Bootstrap Icon](https://icons.getbootstrap.com/)(`v1.10.5`).   
     :heart: Give me a :star:  on [Github](https://github.com/nicedouble/StreamlitAntdComponents) if you like this package.
     Issues can be discussed in [Github issues](https://github.com/nicedouble/StreamlitAntdComponents/issues) or [streamlit-community](https://discuss.streamlit.io/t/new-component-streamlit-antd-components-more-widgets-to-extend-streamlit/43313)
     ''')

@@ -23,7 +23,7 @@ def params():
     with container:
         value = st.number_input('value', min_value=.0, max_value=5.0, value=2.0, step=0.5 if half else 1.0)
         count = st.number_input('count', 5, 100, 5, 5)
-        symbol = st.selectbox('symbol', [None, 'A', sac.BsIcon("bell-fill")])
+        symbol = st.selectbox('symbol', [None, 'A', 'sac.BsIcon("bell-fill")'])
         align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
         size = st.number_input('size', 10, 50, 20, 5)
         color = show_color([None, 'orange', 'green'])
@@ -31,11 +31,13 @@ def params():
 
 
 def main(kw):
+    if kw.get('symbol') == 'sac.BsIcon("bell-fill")':
+        kw.update(symbol=sac.BsIcon("bell-fill"))
     with st.expander('demo', True):
         r = sac.rate(**kw)
         st.write(f'The rate value is: {r}')
     show_code(f'''
-    sac.rate({code_kw(kw, sac.rate)})
+    sac.rate({code_kw(kw, sac.rate).replace('BsIcon', 'sac.BsIcon').replace('name=', '')})
     ''', True)
 
 
@@ -45,6 +47,7 @@ def api():
 
 RATE_DEMO = {
     'rate': {
+        'doc': 'Rate component.',
         'params': params,
         'main': main,
         'api': api

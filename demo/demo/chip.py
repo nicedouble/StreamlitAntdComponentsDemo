@@ -61,6 +61,7 @@ def api():
 
 CHIP_DEMO = {
     'chip': {
+        'doc': 'Pick one or multiple values with inline controls.',
         'params': params,
         'main': main,
         'api': api

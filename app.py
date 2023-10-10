@@ -9,10 +9,11 @@
 @Software : PyCharm
 """
 
-import streamlit as st
-import streamlit_antd_components as sac
 from demo.demo import DEMO
 from demo.overview import overview
+from demo.callback import callback_usage
+from demo.session_state import session_usage
+from demo.utils import *
 
 st.set_page_config(layout='wide', page_title='streamlit-antd-components')
 
@@ -38,13 +39,18 @@ with st.sidebar.container():
     modified = sac.Tag('Modified', color='blue', bordered=False)
     new = sac.Tag('New', color='green', bordered=False)
     deprecated = sac.Tag('Deprecated', color='orange', bordered=False)
-
+    c = st.columns([1, 12])
+    with c[0]:
+        # logo
+        show_image(Path(__file__).parent.joinpath('logo.svg'), svg=True, height=25)
+    with c[1]:
+        # title
+        st.subheader(f'Streamlit-antd-components `v{sac.__VERSION__}`')
     # menu
-    st.subheader('Streamlit-antd-components')
     menu = sac.menu(
         items=[
             sac.MenuItem('overview'),
-            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons', tag=modified)]),
+            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
             sac.MenuItem('layout', type='group', children=['divider']),
             sac.MenuItem(
                 label='navigation', type='group', children=[
@@ -58,7 +64,7 @@ with st.sidebar.container():
                 children=[
                     sac.MenuItem('cascader'),
                     'checkbox',
-                    sac.MenuItem('chip', tag=new),
+                    sac.MenuItem('chip'),
                     'rate', 'switch',
                     sac.MenuItem('transfer')
                 ]
@@ -66,14 +72,11 @@ with st.sidebar.container():
             sac.MenuItem(
                 label='data display', type='group',
                 children=[
-                    sac.MenuItem('segmented', tag=modified),
+                    sac.MenuItem('segmented'),
                     'tabs',
                     sac.MenuItem('tree'),
-                    sac.MenuItem('tag', children=[
-                        sac.MenuItem('tag'),
-                        sac.MenuItem('tags'),
-                    ])
-                ]
+                    sac.MenuItem('tags'),
+                ],
             ),
             sac.MenuItem(
                 label='feedback', type='group', children=[
@@ -81,25 +84,28 @@ with st.sidebar.container():
                     sac.MenuItem('result')
                 ]
             ),
+            sac.MenuItem(type='divider'),
+            sac.MenuItem('session state usage', tag=new),
+            sac.MenuItem('callback usage', tag=new),
         ],
         index=st.session_state['index'],
         open_all=True,
         size='small',
         format_func='title',
-        indent=30,
     )
 
 with st.container():
-    version_href = f"https://pypi.org/project/streamlit-antd-components/{sac.__VERSION__}/"
-    sac.alert(
-        message=f'Welcome to **Streamlit-antd-components**, the latest version : '
-                f'**<a href="{version_href}" target="_blank" class="badge badge-success rounded-pill">{sac.__VERSION__}</a>**',
-        banner=True, closable=True, type='success')
     if menu == 'overview':
         overview()
+    elif menu == 'callback usage':
+        callback_usage()
+    elif menu == 'session state usage':
+        session_usage()
     else:
         com_ = DEMO.get(menu)
-        tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], align='center')
+        st.subheader(menu.title(), anchor=False)
+        st.write(com_.get('doc'))
+        tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], align='start')
         if tabs == 'Demo':
             col = st.columns([3, 1])
             with col[-1].expander(f"{menu} params", True):

@@ -17,10 +17,13 @@ def params():
     align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
     direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
     checkable = st.checkbox('checkable', help='tags checkable mode')
+    return_index = st.checkbox('return_index')
     return update_kw(locals())
 
 
 def main(kw):
+    return_index = kw.get('return_index')
+
     with st.expander('demo', True):
         t1 = sac.tags([
             sac.Tag(label='tag'),
@@ -28,7 +31,8 @@ def main(kw):
             sac.Tag(label='orange', icon='google', color='orange', closable=True),
             sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
         ], **kw)
-        st.write(f"The selected tags item label : {t1}")
+        if kw.get('checkable'):
+            st.write(f'The selected tags {"index" if return_index else "label"} is: {t1}')
     show_code(f'''
     sac.tags([
         sac.Tag(label='tag'),
@@ -45,6 +49,7 @@ def api():
 
 TAGS_DEMO = {
     'tags': {
+        'doc': 'Tag for categorizing or markup.',
         'params': params,
         'main': main,
         'api': api
