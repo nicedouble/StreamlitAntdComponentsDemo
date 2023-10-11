@@ -30,7 +30,7 @@ def session_usage():
     st.write('Change other component parameter by session state.')
     sac.checkbox(['a', 'b', 'c'], label='sac.checkbox', index=[0, 1], key='checkbox')
     st.radio('st.radio', st.session_state['checkbox'])
-    with st.expander('demo'):
+    with st.expander('code'):
         st.code('''
         import streamlit as st
         import streamlit_antd_components as sac
