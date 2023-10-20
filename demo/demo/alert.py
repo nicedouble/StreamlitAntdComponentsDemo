@@ -16,16 +16,15 @@ def params():
     message = st.selectbox(
         label='message',
         options=[
-            'alert message',
-            '**alert message**',
-            '**alert message** <a href="https://ant.design/components/overview" target="_blank" class="badge badge-info">link</a>'
-        ], index=1)
-    description = st.selectbox('description', [None, 'alert description', '**alert description**'])
-    type = sac.segmented(label='type', items=['info', 'success', 'warning', 'error'], size='sm')
-    height = st.selectbox('height', [None, 100])
+            'Alert Message',
+            'Alert Message <a href="https://ant.design/components/overview" target="_blank" class="badge badge-info">link</a>'
+        ])
+    description = st.selectbox('description', [None, 'description text ' * 10], 1)
+    type = st.radio('type', ['info', 'success', 'warning', 'error'], horizontal=True)
+    radius = st.radio('radius', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
+    banner = st.selectbox('banner', [True, False, [True, False], [False, True]])
     icon = st.checkbox('icon', True)
     closable = st.checkbox('closable', True)
-    banner = st.checkbox('banner', True)
     return locals()
 
 

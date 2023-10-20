@@ -62,19 +62,3 @@ def show_color(colors: list):
     else:
         color = st.color_picker('color', value='#25C3B0', label_visibility='collapsed')
     return color
-
-
-def show_image(img_path, width: str = None, height: str = None, svg=False):
-    img_path = Path(img_path) if isinstance(img_path, str) else img_path
-    img_str = base64.b64encode(img_path.read_bytes()).decode()
-    default_css = "text-align:center"
-    if svg:
-        img_src = f'data:image/svg+xml;base64,{img_str}'
-    else:
-        img_src = f'data:image/png;base64,{img_str}'
-    img_html = f"""
-    <div>
-    <img src={img_src} width={width} height={height}>
-    </div>
-    """
-    st.markdown(img_html, unsafe_allow_html=True)

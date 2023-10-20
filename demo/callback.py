@@ -13,8 +13,8 @@ import streamlit_antd_components as sac
 
 
 def callback_usage():
-    sac.alert('''Use callback function in component by set component's `on_change`,`args`,`kwargs` parameters, 
-    and **`key`** parameter must not be None !''', icon=True)
+    sac.alert('Attention', '''Use callback function in component by set component's `on_change`,`args`,`kwargs` parameters.
+        and **`key` parameter must not be None** !''', icon=True)
 
     st.subheader('Counter')
     st.write('Store click times by callback.')

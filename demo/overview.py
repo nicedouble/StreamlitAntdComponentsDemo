@@ -18,8 +18,9 @@ def redirect(index=0):
 
 def overview():
     st.subheader('Introduce', False)
-    st.markdown('''
-    :heart: This package is mainly inspired by [Ant Design](https://ant.design/components/overview/) and has developed more than 10 components to extend streamlit,
+    st.info(f'''
+    :heart: Streamlit-antd-component is inspired by [Ant Design](https://ant.design/components/overview/) and [Mantine](https://v6.mantine.dev/),
+     and has developed more than 10 customer components to extend streamlit,
     and help users have more choices to display their data.   
     :heart: All components are designed to fit streamlit theme style.   
     :heart: Support [Bootstrap Icon](https://icons.getbootstrap.com/)(`v1.10.5`).   

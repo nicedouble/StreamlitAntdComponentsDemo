@@ -39,13 +39,8 @@ with st.sidebar.container():
     modified = sac.Tag('Modified', color='blue', bordered=False)
     new = sac.Tag('New', color='green', bordered=False)
     deprecated = sac.Tag('Deprecated', color='orange', bordered=False)
-    c = st.columns([1, 12])
-    with c[0]:
-        # logo
-        show_image(Path(__file__).parent.joinpath('logo.svg'), svg=True, height=25)
-    with c[1]:
-        # title
-        st.subheader(f'Streamlit-antd-components `v{sac.__VERSION__}`')
+    # title
+    st.subheader(f'Streamlit-antd-components(:violet[***v{sac.__VERSION__}***])')
     # menu
     menu = sac.menu(
         items=[
@@ -63,7 +58,7 @@ with st.sidebar.container():
                 label='data entry', type='group',
                 children=[
                     sac.MenuItem('cascader'),
-                    'checkbox',
+                    sac.MenuItem('checkbox', tag=modified),
                     sac.MenuItem('chip'),
                     'rate', 'switch',
                     sac.MenuItem('transfer')
@@ -72,7 +67,7 @@ with st.sidebar.container():
             sac.MenuItem(
                 label='data display', type='group',
                 children=[
-                    sac.MenuItem('segmented'),
+                    sac.MenuItem('segmented', tag=modified),
                     'tabs',
                     sac.MenuItem('tree'),
                     sac.MenuItem('tags'),
@@ -80,13 +75,13 @@ with st.sidebar.container():
             ),
             sac.MenuItem(
                 label='feedback', type='group', children=[
-                    sac.MenuItem('alert'),
+                    sac.MenuItem('alert', tag=modified),
                     sac.MenuItem('result')
                 ]
             ),
             sac.MenuItem(type='divider'),
-            sac.MenuItem('session state usage', tag=new),
-            sac.MenuItem('callback usage', tag=new),
+            sac.MenuItem('session state usage'),
+            sac.MenuItem('callback usage'),
         ],
         index=st.session_state['index'],
         open_all=True,
