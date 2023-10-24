@@ -98,8 +98,10 @@ with st.container():
         session_usage()
     else:
         com_ = DEMO.get(menu)
+        # component introduce
         st.subheader(menu.title(), anchor=False)
         st.write(com_.get('doc'))
+        # component demo and api
         tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], align='start')
         if tabs == 'Demo':
             col = st.columns([3, 1])
