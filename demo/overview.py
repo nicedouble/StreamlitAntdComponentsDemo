@@ -17,7 +17,7 @@ def redirect(index=0):
 
 
 def overview():
-    st.header('Introduce', False)
+    st.header(':smile: Introduce', False)
     st.info(f'''
     :heart: **[Streamlit-antd-components](https://github.com/nicedouble/StreamlitAntdComponents)** is inspired by
      [Ant Design](https://ant.design/components/overview/) and [Mantine](https://v6.mantine.dev/),
@@ -28,7 +28,7 @@ def overview():
     Issues can be discussed in [Github issues](https://github.com/nicedouble/StreamlitAntdComponents/issues) or [streamlit-community](https://discuss.streamlit.io/t/new-component-streamlit-antd-components-more-widgets-to-extend-streamlit/43313)
     ''')
 
-    st.header('Component preview', False)
+    st.header(':sunglasses: Component preview', False)
     c = st.columns(3)
     with c[0].expander(':rainbow[Buttons]', True):
         sac.buttons(
