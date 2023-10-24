@@ -21,7 +21,7 @@ def overview():
     st.info(f'''
     :heart: **[Streamlit-antd-components](https://github.com/nicedouble/StreamlitAntdComponents)** is inspired by
      [Ant Design](https://ant.design/components/overview/) and [Mantine](https://v6.mantine.dev/),
-     has developed more than 10 customer components to extend streamlit.   
+     has developed more than 10 custom components to extend streamlit.   
     :heart: All components are designed to fit streamlit theme style.   
     :heart: Support [Bootstrap Icon](https://icons.getbootstrap.com/)(`v1.10.5`).   
     :heart: Give me a :star:  on [Github](https://github.com/nicedouble/StreamlitAntdComponents) if you like this package.
