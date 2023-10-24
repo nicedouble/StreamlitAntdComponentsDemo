@@ -29,38 +29,38 @@ def main(kw):
         c = st.columns(3)
         with c[1]:
             item = sac.menu([
-                sac.MenuItem('home', icon='house', tag=sac.Tag('Tag', color='green', bordered=False)),
-                sac.MenuItem('app', icon='app', children=[
-                    sac.MenuItem('store', icon='bag-check', tag='Tag0'),
-                    sac.MenuItem('brand', icon='award', children=[
-                        sac.MenuItem('github', icon='github'),
-                        sac.MenuItem('apple', icon='apple'),
+                sac.MenuItem('home', icon='house-fill'),
+                sac.MenuItem('products', icon='box-fill', children=[
+                    sac.MenuItem('apple', icon='apple', tag=sac.Tag('USA', color='green', bordered=False)),
+                    sac.MenuItem('other', icon='git', children=[
+                        sac.MenuItem('google', icon='google'),
+                        sac.MenuItem('gitlab', icon='gitlab'),
+                        sac.MenuItem('wechat' * 5, icon='wechat'),
                     ]),
                 ]),
-                sac.MenuItem('multipleline' * 5, icon='twitter'),
                 sac.MenuItem('disabled', icon='send', disabled=True),
                 sac.MenuItem(type='divider'),
                 sac.MenuItem('reference', type='group', children=[
-                    sac.MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
-                    sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
+                    sac.MenuItem('antd-menu', icon='heart-fill', href='https://ant.design/components/menu#menu'),
+                    sac.MenuItem('bootstrap-icon', icon='bootstrap-fill', href='https://icons.getbootstrap.com/'),
                 ]),
             ], **kw)
             st.write(f'The selected menu item {"index" if return_index else "label"} : {item}')
     show_code(f'''
     sac.menu([
-        sac.MenuItem('home', icon='house', tag=sac.Tag('Tag',color='green',bordered=False)),
-        sac.MenuItem('app', icon='app', children=[
-            sac.MenuItem('store', icon='bag-check', tag='Tag0'),
-            sac.MenuItem('brand', icon='award', children=[
-                sac.MenuItem('github', icon='github'),
-                sac.MenuItem('apple', icon='apple'),
+        sac.MenuItem('home', icon='house-fill'),
+        sac.MenuItem('products', icon='box-fill', children=[
+            sac.MenuItem('apple', icon='apple', tag=sac.Tag('USA', color='green', bordered=False)),
+            sac.MenuItem('other', icon='git', children=[
+                sac.MenuItem('google', icon='google'),
+                sac.MenuItem('gitlab', icon='gitlab'),
+                sac.MenuItem('wechat' * 5, icon='wechat'),
             ]),
         ]),
-        sac.MenuItem('multipleline' * 5, icon='twitter'),
         sac.MenuItem('disabled', icon='send', disabled=True),
         sac.MenuItem(type='divider'),
         sac.MenuItem('reference', type='group', children=[
-            sac.MenuItem('antd-menu', icon='heart', href='https://ant.design/components/menu#menu'),
+            sac.MenuItem('antd-menu', icon='heart-fill', href='https://ant.design/components/menu#menu'),
             sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
         ]),
     ], {code_kw(kw, sac.menu)})

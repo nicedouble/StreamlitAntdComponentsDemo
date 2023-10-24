@@ -17,64 +17,81 @@ def redirect(index=0):
 
 
 def overview():
-    st.subheader('Introduce', False)
+    st.header('Introduce', False)
     st.info(f'''
-    :heart: Streamlit-antd-component is inspired by [Ant Design](https://ant.design/components/overview/) and [Mantine](https://v6.mantine.dev/),
-     and has developed more than 10 customer components to extend streamlit,
-    and help users have more choices to display their data.   
+    :heart: **[Streamlit-antd-components](https://github.com/nicedouble/StreamlitAntdComponents)** is inspired by
+     [Ant Design](https://ant.design/components/overview/) and [Mantine](https://v6.mantine.dev/),
+     has developed more than 10 customer components to extend streamlit.   
     :heart: All components are designed to fit streamlit theme style.   
     :heart: Support [Bootstrap Icon](https://icons.getbootstrap.com/)(`v1.10.5`).   
     :heart: Give me a :star:  on [Github](https://github.com/nicedouble/StreamlitAntdComponents) if you like this package.
     Issues can be discussed in [Github issues](https://github.com/nicedouble/StreamlitAntdComponents/issues) or [streamlit-community](https://discuss.streamlit.io/t/new-component-streamlit-antd-components-more-widgets-to-extend-streamlit/43313)
     ''')
 
-    st.subheader('Install', False)
-    st.code('pip install streamlit-antd-components', language='shell')
-
-    st.subheader('Components', False)
+    st.header('Component preview', False)
     c = st.columns(3)
     with c[0].expander(':rainbow[Buttons]', True):
-        st.write('use `sac.buttons` to display a group of buttons.')
         sac.buttons(
             items=[
-                sac.ButtonsItem('btn1', 'house'),
-                sac.ButtonsItem('btn2', 'gear', color='orange'),
-                sac.ButtonsItem('btn3', 'person', disabled=True)
+                sac.ButtonsItem('apple', 'apple'),
+                sac.ButtonsItem('google', 'google'),
+                sac.ButtonsItem('wechat', 'wechat')
             ],
-            format_func='title', align='center', shape='round'
+            format_func='title', align='center',
         )
         st.button('Go to buttons', on_click=redirect, args=(2,))
-    with c[0].expander(':rainbow[Checkbox]', True):
-        st.write('use `sac.checkbox` to display a group of checkbox.')
-        sac.checkbox(
+    with c[0].expander(':rainbow[Segmented]', True):
+        sac.segmented(
             items=[
-                sac.CheckboxItem('apple'),
-                sac.CheckboxItem('google'),
-                sac.CheckboxItem('twitter', disabled=True)
+                sac.SegmentedItem('apple', 'apple'),
+                sac.SegmentedItem('google', 'google'),
+                sac.SegmentedItem('wechat', 'wechat')
             ],
-            format_func='title', align='center', check_all=True
+            format_func='title', align='center', index=1,
         )
-        st.button('Go to checkbox', on_click=redirect, args=(11,))
+        st.button('Go to segmented', on_click=redirect, args=(17,))
+    with c[0].expander(':rainbow[Chip]', True):
+        sac.chip(
+            items=[
+                sac.ChipItem('apple', 'apple'),
+                sac.ChipItem('google', 'google'),
+                sac.ChipItem('wechat', 'wechat')
+            ],
+            format_func='title', align='center', index=2,
+        )
+        st.button('Go to chip', on_click=redirect, args=(12,))
 
     with c[1].expander(':rainbow[Menu]', True):
-        st.write('use `sac.menu` to display a nested menu items.')
         sac.menu(
             items=[
-                sac.MenuItem('home', 'house', tag='Tag'),
-                sac.MenuItem('setting', 'gear', children=[
-                    sac.MenuItem('plot', 'bar-chart'),
-                    sac.MenuItem('data', 'table')
+                sac.MenuItem('home', 'house-fill'),
+                sac.MenuItem('products', 'box-fill', children=[
+                    sac.MenuItem('apple', 'apple'),
+                    sac.MenuItem('google', 'google'),
                 ]),
-                sac.MenuItem('admin', 'person')
             ],
-            open_all=True, format_func='title',
+            open_all=True, format_func='title', size='small', index=2
         )
         st.button('Go to menu', on_click=redirect, args=(6,))
+    with c[1].expander(':rainbow[Tree]', True):
+        sac.tree(
+            items=[
+                sac.TreeItem('home', 'house-fill'),
+                sac.TreeItem('products', 'box-fill', children=[
+                    sac.TreeItem('apple', 'apple'),
+                    sac.TreeItem('google', 'google'),
+                ]),
+            ],
+            open_all=True, format_func='title', checkbox=True, index=0
+        )
+        st.button('Go to tree', on_click=redirect, args=(19,))
+
     with c[2].expander(':rainbow[Transfer]', True):
-        st.write('use `sac.transfer` to display double column choice box.')
         sac.transfer(
             items=[f'item{i}' for i in range(30)],
-            index=[0, 1], reload=True,
-            format_func='title')
+            index=[0, 1],
+            reload=True,
+            height=420
+        )
         st.button('Go to transfer', on_click=redirect, args=(15,))
     st.caption('Click the sidebar menu to show more components detailed usage.')

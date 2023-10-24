@@ -42,7 +42,7 @@ def main(kw):
                 sac.SegmentedItem(label='apple'),
                 sac.SegmentedItem(icon='google'),
                 sac.SegmentedItem(label='github', icon='github'),
-                sac.SegmentedItem(label='link', icon='link', href='https://mantine.dev/core/segmented-control/'),
+                sac.SegmentedItem(label='link', icon='share-fill', href='https://mantine.dev/core/segmented-control/'),
                 sac.SegmentedItem(label='disabled', disabled=True),
             ], **kw
         )
@@ -53,7 +53,7 @@ def main(kw):
             sac.SegmentedItem(label='apple'),
             sac.SegmentedItem(icon='google'),
             sac.SegmentedItem(label='github', icon='github'),
-            sac.SegmentedItem(label='link', icon='link', href='https://mantine.dev/core/segmented-control/'),
+            sac.SegmentedItem(label='link', icon='share-fill', href='https://mantine.dev/core/segmented-control/'),
             sac.SegmentedItem(label='disabled', disabled=True),
         ], {code_kw(kw, sac.segmented)}
     )
