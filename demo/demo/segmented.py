@@ -20,8 +20,7 @@ def params():
     size = st.radio('size', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
     radius = st.radio('radius', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
     c = st.columns(2)
-    color = c[0].selectbox('color', [None, 'dark', 'gray', 'red', 'pink', 'grape', 'violet', 'indigo', 'blue',
-                                     'cyan', 'teal', 'green', 'lime', 'yellow', 'orange'])
+    color = c[0].selectbox('color', [None]+MartineColor)
     bg_color = c[1].selectbox('bg_color', [None, 'transparent', 'lightblue', '#fff'])
     align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
     direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)

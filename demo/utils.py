@@ -22,6 +22,9 @@ LABEL = [
     '**label**',
     '**label** <span class="badge rounded-pill badge-info">Info</span>'
 ]
+MartineColor = ['dark', 'gray', 'red', 'pink', 'grape', 'violet', 'indigo', 'blue', 'cyan', 'teal', 'green', 'lime',
+                'yellow', 'orange']
+MartineSize = ['xs', 'sm', 'md', 'lg', 'xl']
 
 
 def update_kw(d: dict, remove_keys: list = None):

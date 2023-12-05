@@ -39,14 +39,15 @@ with st.sidebar.container():
     modified = sac.Tag('Modified', color='blue', bordered=False)
     new = sac.Tag('New', color='green', bordered=False)
     deprecated = sac.Tag('Deprecated', color='orange', bordered=False)
+    redesign = sac.Tag('Redesign', color='purple', bordered=False)
     # title
-    st.subheader(f'Streamlit-antd-components(:violet[***v{sac.__VERSION__}***])')
+    st.subheader(f'Streamlit-antd-components')
     # menu
     menu = sac.menu(
         items=[
             sac.MenuItem('overview'),
             sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
-            sac.MenuItem('layout', type='group', children=['divider']),
+            sac.MenuItem('layout', type='group', children=[sac.MenuItem('divider', tag=redesign)]),
             sac.MenuItem(
                 label='navigation', type='group', children=[
                     sac.MenuItem('menu'),
@@ -58,16 +59,16 @@ with st.sidebar.container():
                 label='data entry', type='group',
                 children=[
                     sac.MenuItem('cascader'),
-                    sac.MenuItem('checkbox', tag=modified),
+                    sac.MenuItem('checkbox'),
                     sac.MenuItem('chip'),
                     'rate', 'switch',
-                    sac.MenuItem('transfer')
+                    sac.MenuItem('transfer', tag=modified)
                 ]
             ),
             sac.MenuItem(
                 label='data display', type='group',
                 children=[
-                    sac.MenuItem('segmented', tag=modified),
+                    sac.MenuItem('segmented'),
                     'tabs',
                     sac.MenuItem('tree'),
                     sac.MenuItem('tags'),
@@ -75,7 +76,7 @@ with st.sidebar.container():
             ),
             sac.MenuItem(
                 label='feedback', type='group', children=[
-                    sac.MenuItem('alert', tag=modified),
+                    sac.MenuItem('alert'),
                     sac.MenuItem('result')
                 ]
             ),

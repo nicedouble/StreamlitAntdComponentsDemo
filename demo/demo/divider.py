@@ -15,15 +15,18 @@ def params():
     label = st.text_input('label', 'divider')
     icon = st.selectbox('icon', [None, 'house'], 1)
     align = st.radio('align', ['start', 'center', 'end'], 1, help='label align', horizontal=True)
-    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
-    dashed = st.checkbox('dashed')
-    bold = st.checkbox('bold', help='label font weight bold')
+    color = st.selectbox('color', [None] + MartineColor)
+    variant = st.radio('variant', ['solid', 'dashed', 'dotted'], horizontal=True)
+    size = st.radio('size', MartineSize, horizontal=True)
+    label_style = st.selectbox('label_style', [None, {'font-size': '20px', 'font-weight': 'bold'}])
     return locals()
 
 
 def main(kw):
     with st.expander('demo', True):
+        st.markdown('<br>' * 3, unsafe_allow_html=True)
         sac.divider(**kw)
+        st.markdown('<br>' * 3, unsafe_allow_html=True)
     show_code(f'''
     sac.divider({code_kw(kw, sac.divider)})
     ''', True)

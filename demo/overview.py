@@ -17,7 +17,7 @@ def redirect(index=0):
 
 
 def overview():
-    st.header(':smile: Introduce', False)
+    st.subheader('Introduce', False)
     st.info(f'''
     :heart: **[Streamlit-antd-components](https://github.com/nicedouble/StreamlitAntdComponents)** is inspired by
      [Ant Design](https://ant.design/components/overview/) and [Mantine](https://v6.mantine.dev/),
@@ -28,9 +28,15 @@ def overview():
     Issues can be discussed in [Github issues](https://github.com/nicedouble/StreamlitAntdComponents/issues) or [streamlit-community](https://discuss.streamlit.io/t/new-component-streamlit-antd-components-more-widgets-to-extend-streamlit/43313)
     ''')
 
-    st.header(':sunglasses: Component preview', False)
+    st.subheader('Environment',False)
+    st.code(f'''
+    streamlit==1.26.0
+    streamlit-antd-components=={sac.__VERSION__}
+    ''')
+
+    st.subheader('Component preview', False)
     c = st.columns(3)
-    with c[0].expander(':rainbow[Buttons]', True):
+    with c[0].expander('Buttons', True):
         sac.buttons(
             items=[
                 sac.ButtonsItem('apple', 'apple'),
@@ -40,7 +46,7 @@ def overview():
             format_func='title', align='center',
         )
         st.button('Go to buttons', on_click=redirect, args=(2,))
-    with c[0].expander(':rainbow[Segmented]', True):
+    with c[0].expander('Segmented', True):
         sac.segmented(
             items=[
                 sac.SegmentedItem('apple', 'apple'),
@@ -50,7 +56,7 @@ def overview():
             format_func='title', align='center', index=1,
         )
         st.button('Go to segmented', on_click=redirect, args=(17,))
-    with c[0].expander(':rainbow[Chip]', True):
+    with c[0].expander('Chip', True):
         sac.chip(
             items=[
                 sac.ChipItem('apple', 'apple'),
@@ -61,7 +67,7 @@ def overview():
         )
         st.button('Go to chip', on_click=redirect, args=(12,))
 
-    with c[1].expander(':rainbow[Menu]', True):
+    with c[1].expander('Menu', True):
         sac.menu(
             items=[
                 sac.MenuItem('home', 'house-fill'),
@@ -73,7 +79,7 @@ def overview():
             open_all=True, format_func='title', size='small', index=2
         )
         st.button('Go to menu', on_click=redirect, args=(6,))
-    with c[1].expander(':rainbow[Tree]', True):
+    with c[1].expander('Tree', True):
         sac.tree(
             items=[
                 sac.TreeItem('home', 'house-fill'),
@@ -86,7 +92,7 @@ def overview():
         )
         st.button('Go to tree', on_click=redirect, args=(19,))
 
-    with c[2].expander(':rainbow[Transfer]', True):
+    with c[2].expander('Transfer', True):
         sac.transfer(
             items=[f'item{i}' for i in range(30)],
             index=[0, 1],
