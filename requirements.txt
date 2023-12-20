@@ -1,2 +1,2 @@
 streamlit==1.26.0
-streamlit-antd-components==0.2.4
+streamlit-antd-components==0.2.5
