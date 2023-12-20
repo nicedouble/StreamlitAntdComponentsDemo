@@ -13,22 +13,26 @@ from ..utils import *
 
 def params():
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL, 1)
-    value = st.checkbox('value', True)
-    checked = st.selectbox('checked', [None, 'yes', 'sac.BsIcon("sun")'])
-    unchecked = st.selectbox('unchecked', [None, 'no', 'sac.BsIcon("moon")'])
+    label = c[0].selectbox('label', [None, 'label'], 1)
+    description = c[1].selectbox('description', [None, 'description'])
+    value = st.checkbox('value')
+    on_label = c[0].selectbox('on_label', [None, 'On', 'sac.BsIcon("sun")'])
+    off_label = c[1].selectbox('off_label', [None, 'Off', 'sac.BsIcon("moon")'])
     align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
-    position = c[1].selectbox('position', ["top", "right", "bottom", "left"], help='label position')
-    size = st.radio('size', ["default", "small", "large"], horizontal=True)
+    position = st.radio('position', ["right", "left"], horizontal=True)
+    size = st.radio('size', MartineSize, index=1, horizontal=True)
+    radius = st.radio('radius', MartineSize, index=4, horizontal=True)
+    on_color = c[0].selectbox('on_color', [None] + MartineColor)
+    off_color = c[1].selectbox('off_color', [None] + MartineColor)
     disabled = st.checkbox('disabled')
     return update_kw(locals(), ['c'])
 
 
 def main(kw):
-    if kw.get('checked') == 'sac.BsIcon("sun")':
-        kw.update(checked=sac.BsIcon("sun"))
-    if kw.get('unchecked') == 'sac.BsIcon("moon")':
-        kw.update(unchecked=sac.BsIcon("moon"))
+    if kw.get('on_label') == 'sac.BsIcon("sun")':
+        kw.update(on_label=sac.BsIcon("sun"))
+    if kw.get('off_label') == 'sac.BsIcon("moon")':
+        kw.update(off_label=sac.BsIcon("moon"))
 
     with st.expander('demo', True):
         s = sac.switch(**kw)

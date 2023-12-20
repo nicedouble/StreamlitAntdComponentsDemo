@@ -12,8 +12,8 @@ import streamlit as st
 import streamlit_antd_components as sac
 
 
-def redirect(index=0):
-    st.session_state['index'] = index
+def redirect(item=0):
+    st.session_state['menu'] = item
 
 
 def overview():
@@ -28,12 +28,6 @@ def overview():
     Issues can be discussed in [Github issues](https://github.com/nicedouble/StreamlitAntdComponents/issues) or [streamlit-community](https://discuss.streamlit.io/t/new-component-streamlit-antd-components-more-widgets-to-extend-streamlit/43313)
     ''')
 
-    st.subheader('Environment',False)
-    st.code(f'''
-    streamlit==1.26.0
-    streamlit-antd-components=={sac.__VERSION__}
-    ''')
-
     st.subheader('Component preview', False)
     c = st.columns(3)
     with c[0].expander('Buttons', True):
@@ -45,7 +39,7 @@ def overview():
             ],
             format_func='title', align='center',
         )
-        st.button('Go to buttons', on_click=redirect, args=(2,))
+        st.button('Go to buttons', on_click=redirect, args=('buttons',))
     with c[0].expander('Segmented', True):
         sac.segmented(
             items=[
@@ -55,7 +49,7 @@ def overview():
             ],
             format_func='title', align='center', index=1,
         )
-        st.button('Go to segmented', on_click=redirect, args=(17,))
+        st.button('Go to segmented', on_click=redirect, args=("segmented",))
     with c[0].expander('Chip', True):
         sac.chip(
             items=[
@@ -65,7 +59,7 @@ def overview():
             ],
             format_func='title', align='center', index=2,
         )
-        st.button('Go to chip', on_click=redirect, args=(12,))
+        st.button('Go to chip', on_click=redirect, args=("chip",))
 
     with c[1].expander('Menu', True):
         sac.menu(
@@ -78,7 +72,7 @@ def overview():
             ],
             open_all=True, format_func='title', size='small', index=2
         )
-        st.button('Go to menu', on_click=redirect, args=(6,))
+        st.button('Go to menu', on_click=redirect, args=("menu",))
     with c[1].expander('Tree', True):
         sac.tree(
             items=[
@@ -90,7 +84,7 @@ def overview():
             ],
             open_all=True, format_func='title', checkbox=True, index=0
         )
-        st.button('Go to tree', on_click=redirect, args=(19,))
+        st.button('Go to tree', on_click=redirect, args=("tree",))
 
     with c[2].expander('Transfer', True):
         sac.transfer(
@@ -99,5 +93,5 @@ def overview():
             reload=True,
             height=420
         )
-        st.button('Go to transfer', on_click=redirect, args=(15,))
+        st.button('Go to transfer', on_click=redirect, args=("transfer",))
     st.caption('Click the sidebar menu to show more components detailed usage.')

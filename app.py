@@ -31,9 +31,6 @@ st.markdown(f'''
     </style>
     ''', unsafe_allow_html=True)
 
-if 'index' not in st.session_state:
-    st.session_state['index'] = 0
-
 with st.sidebar.container():
     # tag
     modified = sac.Tag('Modified', color='blue', bordered=False)
@@ -47,7 +44,7 @@ with st.sidebar.container():
         items=[
             sac.MenuItem('overview'),
             sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
-            sac.MenuItem('layout', type='group', children=[sac.MenuItem('divider', tag=redesign)]),
+            sac.MenuItem('layout', type='group', children=[sac.MenuItem('divider')]),
             sac.MenuItem(
                 label='navigation', type='group', children=[
                     sac.MenuItem('menu'),
@@ -61,8 +58,9 @@ with st.sidebar.container():
                     sac.MenuItem('cascader'),
                     sac.MenuItem('checkbox'),
                     sac.MenuItem('chip'),
-                    'rate', 'switch',
-                    sac.MenuItem('transfer', tag=modified)
+                    'rate',
+                    sac.MenuItem('switch', tag=redesign),
+                    sac.MenuItem('transfer')
                 ]
             ),
             sac.MenuItem(
@@ -80,22 +78,25 @@ with st.sidebar.container():
                     sac.MenuItem('result')
                 ]
             ),
-            sac.MenuItem(type='divider'),
-            sac.MenuItem('session state usage'),
-            sac.MenuItem('callback usage'),
+            sac.MenuItem(label='Advanced Usage', type='group', children=[
+                sac.MenuItem('session state'),
+                sac.MenuItem('callback'),
+            ]),
         ],
-        index=st.session_state['index'],
+        key='menu',
         open_all=True,
         size='small',
         format_func='title',
     )
+    sac.divider('Environment', color='gray')
+    sac.tags([sac.Tag(f'streamlit==1.26.0'), sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}')])
 
 with st.container():
     if menu == 'overview':
         overview()
-    elif menu == 'callback usage':
+    elif menu == 'callback':
         callback_usage()
-    elif menu == 'session state usage':
+    elif menu == 'session state':
         session_usage()
     else:
         com_ = DEMO.get(menu)
