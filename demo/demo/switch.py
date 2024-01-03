@@ -11,21 +11,24 @@
 from ..utils import *
 
 
-def params():
+def params(key):
     c = st.columns(2)
-    label = c[0].selectbox('label', [None, 'label'], 1)
-    description = c[1].selectbox('description', [None, 'description'])
-    value = st.checkbox('value')
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
     on_label = c[0].selectbox('on_label', [None, 'On', 'sac.BsIcon("sun")'])
     off_label = c[1].selectbox('off_label', [None, 'Off', 'sac.BsIcon("moon")'])
-    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
-    position = st.radio('position', ["right", "left"], horizontal=True)
-    size = st.radio('size', MartineSize, index=1, horizontal=True)
-    radius = st.radio('radius', MartineSize, index=4, horizontal=True)
-    on_color = c[0].selectbox('on_color', [None] + MartineColor)
-    off_color = c[1].selectbox('off_color', [None] + MartineColor)
-    disabled = st.checkbox('disabled')
-    return update_kw(locals(), ['c'])
+    value = show_checkbox('value',key=key)
+    align = show_align(key=key)
+    position = show_radio('position', ["right", "left"], key=key)
+    size = show_size(include_int=False, key=key)
+    radius = show_radius(key=key)
+    c = st.columns(2)
+    with c[0]:
+        on_color = show_color(label='on_color', key=f'{key}-on')
+    with c[1]:
+        off_color = show_color(label='off_color', key=f'{key}-off')
+    disabled = show_checkbox('disabled', key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

@@ -20,7 +20,7 @@ st.set_page_config(layout='wide', page_title='streamlit-antd-components')
 st.markdown(f'''
     <style>
     .stApp .main .block-container{{
-        padding-top:30px
+        padding:30px 50px
     }}
     .stApp [data-testid='stSidebar']>div:nth-child(1)>div:nth-child(2){{
         padding-top:50px
@@ -59,7 +59,7 @@ with st.sidebar.container():
                     sac.MenuItem('checkbox'),
                     sac.MenuItem('chip'),
                     'rate',
-                    sac.MenuItem('switch', tag=redesign),
+                    sac.MenuItem('switch'),
                     sac.MenuItem('transfer')
                 ]
             ),
@@ -84,12 +84,11 @@ with st.sidebar.container():
             ]),
         ],
         key='menu',
-        open_all=True,
-        size='small',
+        open_all=True, indent=20,
         format_func='title',
     )
     sac.divider('Environment', color='gray')
-    sac.tags([sac.Tag(f'streamlit==1.26.0'), sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}')])
+    sac.tags([sac.Tag(f'streamlit=={st.__version__}'), sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}')])
 
 with st.container():
     if menu == 'overview':
@@ -104,11 +103,11 @@ with st.container():
         st.subheader(menu.title(), anchor=False)
         st.write(com_.get('doc'))
         # component demo and api
-        tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], align='start')
+        tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], size='sm')
         if tabs == 'Demo':
-            col = st.columns([3, 1])
+            col = st.columns([2.2, 1])
             with col[-1].expander(f"{menu} params", True):
-                kw = com_.get('params')()
+                kw = com_.get('params')(key=menu)
             with col[0]:
                 com_.get('main')(kw)
         else:

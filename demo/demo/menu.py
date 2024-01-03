@@ -11,15 +11,19 @@
 from ..utils import *
 
 
-def params():
-    index = st.selectbox('index', [0, 2])
-    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    size = st.radio('size', ['middle', 'small', 'large'], horizontal=True)
-    indent = st.slider('indent(px)', 0, 30, 24)
-    open_index = st.selectbox('open_index', [None, [1, 3]])
-    open_all = st.checkbox('open_all', True)
-    return_index = st.checkbox('return_index')
-    return update_kw(locals())
+def params(key):
+    c = st.columns(2)
+    index = show_index(c[0], [0, 2], key=key)
+    format_func = show_format_func(c[1], key=key)
+    size = show_size(key=key)
+    color = show_color(key=key)
+    variant = show_variant(['light', 'filled', 'subtle'], key=key)
+    indent = show_radio('indent(px)', [5, 10, 24, 30], index=1, key=key)
+    height = show_radio('height', [None, 300], key=key)
+    open_index = show_radio('open_index', [None, [1, ]], key=key)
+    open_all = show_checkbox('open_all', value=True, key=key)
+    return_index = show_checkbox('return_index', key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):
@@ -29,18 +33,18 @@ def main(kw):
         c = st.columns(3)
         with c[1]:
             item = sac.menu([
-                sac.MenuItem('home', icon='house-fill'),
+                sac.MenuItem('home', icon='house-fill', tag=[sac.Tag('Tag1', color='green'), sac.Tag('Tag2', 'red')]),
                 sac.MenuItem('products', icon='box-fill', children=[
-                    sac.MenuItem('apple', icon='apple', tag=sac.Tag('USA', color='green', bordered=False)),
-                    sac.MenuItem('other', icon='git', children=[
-                        sac.MenuItem('google', icon='google'),
+                    sac.MenuItem('apple', icon='apple'),
+                    sac.MenuItem('other', icon='git', description='other items', children=[
+                        sac.MenuItem('google', icon='google', description='item description'),
                         sac.MenuItem('gitlab', icon='gitlab'),
-                        sac.MenuItem('wechat' * 5, icon='wechat'),
+                        sac.MenuItem('wechat', icon='wechat'),
                     ]),
                 ]),
-                sac.MenuItem('disabled', icon='send', disabled=True),
+                sac.MenuItem('disabled', disabled=True),
                 sac.MenuItem(type='divider'),
-                sac.MenuItem('reference', type='group', children=[
+                sac.MenuItem('link', type='group', children=[
                     sac.MenuItem('antd-menu', icon='heart-fill', href='https://ant.design/components/menu#menu'),
                     sac.MenuItem('bootstrap-icon', icon='bootstrap-fill', href='https://icons.getbootstrap.com/'),
                 ]),
@@ -48,20 +52,20 @@ def main(kw):
             st.write(f'The selected menu item {"index" if return_index else "label"} : {item}')
     show_code(f'''
     sac.menu([
-        sac.MenuItem('home', icon='house-fill'),
+        sac.MenuItem('home', icon='house-fill', tag=[sac.Tag('Tag1', color='green'), sac.Tag('Tag2', 'red')]),
         sac.MenuItem('products', icon='box-fill', children=[
-            sac.MenuItem('apple', icon='apple', tag=sac.Tag('USA', color='green', bordered=False)),
-            sac.MenuItem('other', icon='git', children=[
-                sac.MenuItem('google', icon='google'),
+            sac.MenuItem('apple', icon='apple'),
+            sac.MenuItem('other', icon='git', description='other items', children=[
+                sac.MenuItem('google', icon='google', description='item description'),
                 sac.MenuItem('gitlab', icon='gitlab'),
-                sac.MenuItem('wechat' * 5, icon='wechat'),
+                sac.MenuItem('wechat', icon='wechat'),
             ]),
         ]),
-        sac.MenuItem('disabled', icon='send', disabled=True),
+        sac.MenuItem('disabled', disabled=True),
         sac.MenuItem(type='divider'),
-        sac.MenuItem('reference', type='group', children=[
+        sac.MenuItem('link', type='group', children=[
             sac.MenuItem('antd-menu', icon='heart-fill', href='https://ant.design/components/menu#menu'),
-            sac.MenuItem('bootstrap-icon', icon='bootstrap', href='https://icons.getbootstrap.com/'),
+            sac.MenuItem('bootstrap-icon', icon='bootstrap-fill', href='https://icons.getbootstrap.com/'),
         ]),
     ], {code_kw(kw, sac.menu)})
     ''')

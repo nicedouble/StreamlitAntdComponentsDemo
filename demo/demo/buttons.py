@@ -11,20 +11,22 @@
 from ..utils import *
 
 
-def params():
+def params(key):
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL)
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
-    index = c[0].selectbox('index', [0, 1, None])
-    format_func = c[1].selectbox('format_func', FORMAT, 1)
-    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
-    size = st.radio('size', ['small', 'middle', 'large'], 1, horizontal=True)
-    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
-    shape = st.radio('shape', ["default", "round", "circle"], horizontal=True)
-    type = sac.segmented(label='type', items=['default', 'primary', 'dashed', 'text', 'link'], size='sm')
-    compact = st.checkbox('compact')
-    return_index = st.checkbox('return_index')
-    return update_kw(locals(), ['c'])
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
+    index = show_index(c[0], [0, 1, None], key=key)
+    format_func = show_format_func(c[1], key=key)
+    align = show_align(key=key)
+    size = show_size(key=key)
+    color = show_color(key=key)
+    radius = show_radius(key=key)
+    variant = show_variant(['filled', 'outline', 'dashed', 'text', 'link'], index=1, key=key)
+    direction = show_direction(key=key)
+    c = st.columns(2)
+    compact = c[0].checkbox('compact')
+    return_index = show_checkbox('return_index', c[1], key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

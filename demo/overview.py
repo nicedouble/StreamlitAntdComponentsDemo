@@ -70,7 +70,7 @@ def overview():
                     sac.MenuItem('google', 'google'),
                 ]),
             ],
-            open_all=True, format_func='title', size='small', index=2
+            open_all=True, format_func='title', index=2
         )
         st.button('Go to menu', on_click=redirect, args=("menu",))
     with c[1].expander('Tree', True):

@@ -11,16 +11,19 @@
 from ..utils import *
 
 
-def params():
-    index = st.selectbox('index', [0, 1])
-    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
+def params(key):
+    c = st.columns(2)
+    index = show_index(c[0], [0, 1], key=key)
+    format_func = show_format_func(c[1], key=key)
+    size = show_size(key=key)
+    color = show_color(key=key)
+    variant = show_variant(['default', 'navigation'], key=key)
     placement = st.radio('placement', ["horizontal", "vertical"], help='title placement', horizontal=True)
-    size = st.radio('size', ["default", "small"], horizontal=True)
-    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
-    type = st.radio('type', ['default', 'navigation', 'inline'], horizontal=True)
-    dot = st.checkbox('dot')
-    return_index = st.checkbox('return_index')
-    return update_kw(locals())
+    direction = show_direction(key=key)
+    c = st.columns(2)
+    dot = c[0].checkbox('dot')
+    return_index = show_checkbox('return_index', c[1], key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

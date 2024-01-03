@@ -11,15 +11,16 @@
 from ..utils import *
 
 
-def params():
-    label = st.text_input('label', 'divider')
-    icon = st.selectbox('icon', [None, 'house'], 1)
-    align = st.radio('align', ['start', 'center', 'end'], 1, help='label align', horizontal=True)
-    color = st.selectbox('color', [None] + MartineColor)
-    variant = st.radio('variant', ['solid', 'dashed', 'dotted'], horizontal=True)
-    size = st.radio('size', MartineSize, horizontal=True)
+def params(key):
+    c = st.columns(2)
+    label = show_label(c[0], key=key)
+    icon = c[1].selectbox('icon', [None, 'house'], 1, key=f'{key}-icon')
+    align = show_align(key=key)
+    size = show_size(index=0, key=key)
+    color = show_color(key=key)
+    variant = show_variant(['solid', 'dashed', 'dotted'], key=key)
     label_style = st.selectbox('label_style', [None, {'font-size': '20px', 'font-weight': 'bold'}])
-    return locals()
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

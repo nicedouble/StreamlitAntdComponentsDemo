@@ -11,18 +11,22 @@
 from ..utils import *
 
 
-def params():
-    label = st.selectbox('label', LABEL, 1)
-    index = st.selectbox('index', [None, 0, [1, 3, 6, 7]], 1)
-    format_func = st.selectbox('format_func', FORMAT, 1)
+def params(key):
+    c = st.columns(2)
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
+    index = show_index(c[0], [None, 0, [1, 3, 6, 7]], 1, key=key)
+    format_func = show_format_func(c[1], key=key)
     placeholder = st.text_input('placeholder', 'Please choose')
-    multiple = st.checkbox('multiple', True)
-    disabled = st.checkbox('disabled')
-    search = st.checkbox('search', True)
-    clear = st.checkbox('clear', True)
-    strict = st.checkbox('strict')
-    return_index = st.checkbox('return_index')
-    return update_kw(locals())
+    color = show_color(key=key)
+    c = st.columns(2)
+    multiple = show_checkbox('multiple', c[0], True, key=key)
+    disabled = show_checkbox('disabled', c[1], key=key)
+    search = c[0].checkbox('search', True)
+    clear = c[1].checkbox('clear', True)
+    strict = c[0].checkbox('strict')
+    return_index = show_checkbox('return_index', c[1], key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

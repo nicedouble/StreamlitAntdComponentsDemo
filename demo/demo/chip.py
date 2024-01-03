@@ -11,21 +11,22 @@
 from ..utils import *
 
 
-def params():
+def params(key):
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL, 1)
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
-    index = st.selectbox('index', [0, [0, 2], None], 1)
-    format_func = st.selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    radius = st.radio('radius', ['xs', 'sm', 'md', 'lg', 'xl'], 3, horizontal=True)
-    size = st.radio('size', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
-    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
-    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
-    variant = st.radio('variant', ['filled', 'outline', 'light'], horizontal=True)
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
+    index = show_index(c[0], [0, [0, 2], None], 1, key=key)
+    format_func = show_format_func(c[1], key=key)
+    align = show_align(key=key)
+    size = show_size(key=key)
+    color = show_color(key=key)
+    radius = show_radius(key=key)
+    direction = show_direction(key=key)
+    variant = show_variant(['outline', 'light', 'filled'], 2, key=key)
     c = st.columns(2)
-    multiple = c[0].checkbox('multiple', True)
-    return_index = c[1].checkbox('return_index')
-    return update_kw(locals(), ['c'])
+    multiple = show_checkbox('multiple', c[0], True, key=key)
+    return_index = show_checkbox('return_index', c[1], key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

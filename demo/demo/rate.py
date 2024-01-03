@@ -11,23 +11,22 @@
 from ..utils import *
 
 
-def params():
+def params(key):
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL, 1)
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
     container = st.container()
     c1 = st.columns([1, 1, 1.5])
-    half = c1[0].checkbox('half')
-    clear = c1[1].checkbox('clear')
-    readonly = c1[2].checkbox('readonly')
+    half = show_checkbox('half', c1[0], key=key)
     with container:
-        value = st.number_input('value', min_value=.0, max_value=5.0, value=2.0, step=0.5 if half else 1.0)
-        count = st.number_input('count', 5, 100, 5, 5)
+        c = st.columns(2)
+        value = c[0].number_input('value', min_value=.0, max_value=5.0, value=2.0, step=0.5 if half else 1.0)
+        count = c[1].number_input('count', 5, 100, 5, 5)
         symbol = st.selectbox('symbol', [None, 'A', 'sac.BsIcon("bell-fill")'])
-        align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
-        size = st.number_input('size', 10, 50, 20, 5)
-        color = show_color([None, 'orange', 'green'])
-    return update_kw(locals(), ['c', 'c1', 'container'])
+        align = show_align(key=key)
+        size = show_size(key=key)
+        color = show_color(key=key)
+    return update_kw(locals(), ['c', 'c1', 'container', 'key'])
 
 
 def main(kw):

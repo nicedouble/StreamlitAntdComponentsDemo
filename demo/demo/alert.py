@@ -12,20 +12,18 @@
 from ..utils import *
 
 
-def params():
-    message = st.selectbox(
-        label='message',
-        options=[
-            'Alert Message',
-            'Alert Message <a href="https://ant.design/components/overview" target="_blank" class="badge badge-info">link</a>'
-        ])
-    description = st.selectbox('description', [None, 'description text ' * 10], 1)
-    type = st.radio('type', ['info', 'success', 'warning', 'error'], horizontal=True)
-    radius = st.radio('radius', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
-    banner = st.selectbox('banner', [True, False, [True, False], [False, True]])
-    icon = st.checkbox('icon', True)
-    closable = st.checkbox('closable', True)
-    return locals()
+def params(key):
+    c = st.columns(2)
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], 'description', key=key)
+    size = show_size(key=key)
+    color = show_color(options=('info', 'success', 'warning', 'error', *MartineColor, '#4682b4'), key=key)
+    radius = show_radius(key=key)
+    variant = show_variant(['light', 'filled', 'outline', 'transparent'], key=key)
+    banner = st.radio('banner', [True, False, [True, False], [False, True]], horizontal=True, key=f'{key}-banner')
+    icon = st.radio('icon', [True, False, 'house'], horizontal=True, key=f'{key}-icon')
+    closable = st.checkbox('closable', True, key=f'{key}-close')
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

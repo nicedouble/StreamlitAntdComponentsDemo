@@ -11,12 +11,13 @@
 from ..utils import *
 
 
-def params():
-    title = st.selectbox('title', [None, 'title', '**title**'], 1)
-    subtitle = st.selectbox('subtitle', [None, 'subtitle', '**subtitle**'])
-    status = st.radio('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500], 1, horizontal=True)
-    icon = st.selectbox('icon', [None, 'house', 'google'])
-    return locals()
+def params(key):
+    c = st.columns(2)
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
+    status = show_radio('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500], key=key)
+    icon = show_radio('icon', [None, 'house', 'google'], key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

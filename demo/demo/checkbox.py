@@ -11,17 +11,21 @@
 from ..utils import *
 
 
-def params():
+def params(key):
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL, 1)
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
-    index = st.selectbox('index', [None, 0, [0, 1]], 2)
-    format_func = st.selectbox('format_func', FORMAT, 1)
-    check_all = st.selectbox('check_all', [False, True, 'Select all'])
-    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
-    disabled = st.checkbox('disabled')
-    return_index = st.checkbox('return_index')
-    return update_kw(locals(), ['c'])
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
+    index = show_index(c[0], [None, 0, [0, 1]], 2, key=key)
+    format_func = show_format_func(c[1], key=key)
+    align = show_align(key=key)
+    size = show_size(key=key)
+    color = show_color(key=key)
+    radius = show_radius(index=1)
+    check_all = show_radio('check_all', [False, True, 'Select all'], key=key)
+    c = st.columns(2)
+    disabled = show_checkbox('disabled', c[0], key=key)
+    return_index = show_checkbox('return_index', c[1], key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):

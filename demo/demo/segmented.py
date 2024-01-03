@@ -11,26 +11,28 @@
 from ..utils import *
 
 
-def params():
+def params(key):
     c = st.columns(2)
-    label = c[0].selectbox('label', LABEL)
-    position = c[1].selectbox('position', ['top', 'right', 'bottom', 'left'], help='label position')
-    index = c[0].selectbox('index', [0, 1])
-    format_func = c[1].selectbox('format_func', [None, 'title', 'upper', "lambda x: f'A_{x}'"], 1)
-    size = st.radio('size', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
-    radius = st.radio('radius', ['xs', 'sm', 'md', 'lg', 'xl'], 2, horizontal=True)
+    label = show_label(c[0], key=key)
+    description = show_description(c[1], key=key)
+    index = show_index(c[0], [0, 1], key=key)
+    format_func = show_format_func(c[1], key=key)
+    size = show_size(key=key)
+    radius = show_radius(key=key)
     c = st.columns(2)
-    color = c[0].selectbox('color', [None]+MartineColor)
-    bg_color = c[1].selectbox('bg_color', [None, 'transparent', 'lightblue', '#fff'])
-    align = st.radio('align', ["start", "center", "end"], 1, horizontal=True)
-    direction = st.radio('direction', ["horizontal", "vertical"], horizontal=True)
+    with c[0]:
+        color = show_color(key=key)
+    with c[1]:
+        bg_color = show_color(label='bg_color', options=(None, *MartineColor, 'transparent'), key=f'{key}-bg')
+    align = show_align(key=key)
+    direction = show_direction(key=key)
     c = st.columns(2)
-    divider = c[0].checkbox('divider', True)
-    grow = c[1].checkbox('grow')
-    disabled = c[0].checkbox('disabled')
-    readonly = c[1].checkbox('readonly')
-    return_index = c[0].checkbox('return_index')
-    return update_kw(locals(), ['c'])
+    divider = show_checkbox('divider', c[0], True, key=key)
+    use_container_width = show_checkbox('use_container_width', c[1], key=key)
+    disabled = show_checkbox('disabled', c[0], key=key)
+    readonly = show_checkbox('readonly', c[1], key=key)
+    return_index = show_checkbox('return_index', c[0], key=key)
+    return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):
