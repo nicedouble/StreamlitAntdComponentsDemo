@@ -13,7 +13,7 @@ import streamlit_antd_components as sac
 
 
 def session_usage():
-    st.subheader('Get component value from session state')
+    st.subheader('1.Get component value from session state')
     col = st.columns([1, 2])
     with col[0]:
         sac.buttons(['a', 'b', 'c'], key='sac.buttons')
@@ -27,7 +27,7 @@ def session_usage():
         st.write(f"sac.buttons session value **{st.session_state['sac.buttons']}**")
         ''')
 
-    st.subheader('Interactive with native component')
+    st.subheader('2.Interactive with native component')
     sac.divider('demo 1')
     col = st.columns([1, 2])
     with col[0]:
@@ -55,7 +55,7 @@ def session_usage():
         sac.checkbox(['a', 'b', 'c'], label='sac.checkbox', index=st.session_state['radio'])
         ''')
 
-    st.subheader('Change component value')
+    st.subheader('3.Change component value')
     col = st.columns([1, 2])
     with col[0]:
         menu_ph, btn_ph = st.empty(), st.empty()

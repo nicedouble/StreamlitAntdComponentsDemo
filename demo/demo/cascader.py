@@ -32,6 +32,7 @@ def params(key):
 def main(kw):
     return_index = kw.get('return_index')
     with st.expander('demo', True):
+        show_space()
         item = sac.cascader(items=[
             sac.CasItem('home', icon='house'),
             sac.CasItem('app', icon='app', children=[
@@ -50,6 +51,7 @@ def main(kw):
             sac.CasItem('other1'),
             sac.CasItem('other2'),
         ], **kw)
+        show_space()
         st.write(f'The selected cascader item {"index" if return_index else "label"} : {item}')
     show_code(f'''
     sac.cascader(items=[
@@ -70,7 +72,7 @@ def main(kw):
         sac.CasItem('other1'),
         sac.CasItem('other2')
     ], {code_kw(kw, sac.cascader)})
-    ''', True)
+    ''', False)
 
 
 def api():

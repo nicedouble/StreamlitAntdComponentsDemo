@@ -68,11 +68,12 @@ def show_color(index=0, label='color', options=(None, *MartineColor, '#4682b4', 
 
 def show_size(index=2, include_int=True, key=None):
     return st.radio('size', options=MartineSize + [25] if include_int else MartineSize, index=index, horizontal=True,
-                    key=f'{key}-size')
+                    key=f'{key}-size', help='support mantine size and int in px')
 
 
 def show_radius(index=2, key=None):
-    return st.radio('radius', MartineSize + [20, 2], index=index, horizontal=True, key=f'{key}-radius')
+    return st.radio('radius', MartineSize + [20, 2], index=index, horizontal=True, key=f'{key}-radius',
+                    help='support mantine size and int in px')
 
 
 def show_variant(options, index=0, key=None):
@@ -99,6 +100,10 @@ def show_radio(label=None, options=None, container=None, index=0, key=None):
         with container:
             return st.radio(label, options=options, index=index, horizontal=True, key=f'{key}-{label}')
     return st.radio(label, options=options, index=index, horizontal=True, key=f'{key}-{label}')
+
+
+def show_space(number=3):
+    st.markdown('<br>' * number, unsafe_allow_html=True)
 
 
 def update_kw(d: dict, remove_keys: list = None):

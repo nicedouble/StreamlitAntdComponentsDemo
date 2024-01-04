@@ -18,9 +18,9 @@ def params(key):
     page_size = c[2].number_input('page_size', 5, 20, 10, 5)
     align = st.radio('align', ["start", "center", "end"], 1, horizontal=True, key=key)
     size = show_size(key=key)
-    color = show_color(key=key)
     radius = show_radius(key=key)
     variant = show_variant(['light', 'filled', 'outline'], index=2, key=key)
+    color = show_color(key=key)
     c = st.columns(2)
     disabled = show_checkbox('disabled', c[0], key=key)
     jump = c[1].checkbox('jump', True)
@@ -31,7 +31,9 @@ def params(key):
 
 def main(kw):
     with st.expander('demo', True):
+        show_space()
         r = sac.pagination(**kw)
+        show_space()
         st.write(f'The selected pagination number is: {r}')
     show_code(f'''
     sac.pagination({code_kw(kw, sac.pagination)})

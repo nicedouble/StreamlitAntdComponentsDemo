@@ -17,17 +17,20 @@ def params(key):
     description = show_description(c[1], key=key)
     on_label = c[0].selectbox('on_label', [None, 'On', 'sac.BsIcon("sun")'])
     off_label = c[1].selectbox('off_label', [None, 'Off', 'sac.BsIcon("moon")'])
-    value = show_checkbox('value',key=key)
-    align = show_align(key=key)
-    position = show_radio('position', ["right", "left"], key=key)
+    c = st.columns(2)
+    with c[0]:
+        align = show_align(key=key)
+    with c[1]:
+        position = show_radio('position', ["right", "left"], key=key)
     size = show_size(include_int=False, key=key)
-    radius = show_radius(key=key)
+    radius = show_radius(index=3, key=key)
     c = st.columns(2)
     with c[0]:
         on_color = show_color(label='on_color', key=f'{key}-on')
     with c[1]:
         off_color = show_color(label='off_color', key=f'{key}-off')
-    disabled = show_checkbox('disabled', key=key)
+    value = show_checkbox('value', c[0], key=key)
+    disabled = show_checkbox('disabled', c[1], key=key)
     return update_kw(locals(), ['c', 'key'])
 
 
@@ -38,7 +41,9 @@ def main(kw):
         kw.update(off_label=sac.BsIcon("moon"))
 
     with st.expander('demo', True):
+        show_space()
         s = sac.switch(**kw)
+        show_space()
         st.write(f'switch return value: {s}')
 
     show_code(f'''

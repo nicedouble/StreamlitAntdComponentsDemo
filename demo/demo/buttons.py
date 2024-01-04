@@ -17,12 +17,14 @@ def params(key):
     description = show_description(c[1], key=key)
     index = show_index(c[0], [0, 1, None], key=key)
     format_func = show_format_func(c[1], key=key)
-    align = show_align(key=key)
+    with c[0]:
+        align = show_align(key=key)
+    with c[1]:
+        direction = show_direction(key=key)
     size = show_size(key=key)
-    color = show_color(key=key)
     radius = show_radius(key=key)
     variant = show_variant(['filled', 'outline', 'dashed', 'text', 'link'], index=1, key=key)
-    direction = show_direction(key=key)
+    color = show_color(key=key)
     c = st.columns(2)
     compact = c[0].checkbox('compact')
     return_index = show_checkbox('return_index', c[1], key=key)
@@ -33,6 +35,7 @@ def main(kw):
     return_index = kw.get('return_index')
 
     with st.expander('demo', True):
+        show_space()
         btn = sac.buttons([
             sac.ButtonsItem(label='button'),
             sac.ButtonsItem(icon='apple'),
@@ -41,6 +44,7 @@ def main(kw):
             sac.ButtonsItem(label='disabled', disabled=True),
             sac.ButtonsItem(label='link', icon='share-fill', href='https://ant.design/components/button'),
         ], **kw)
+        show_space()
         st.write(f'The selected button {"index" if return_index else "label"} is: {btn}')
     show_code(f'''
     sac.buttons([

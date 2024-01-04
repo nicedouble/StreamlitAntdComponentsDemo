@@ -17,6 +17,11 @@ def params(key):
     description = show_description(c[1], key=key)
     index = show_index(c[0], [0, 1], key=key)
     format_func = show_format_func(c[1], key=key)
+    c=st.columns(2)
+    with c[0]:
+        align = show_align(key=key)
+    with c[1]:
+        direction = show_direction(key=key)
     size = show_size(key=key)
     radius = show_radius(key=key)
     c = st.columns(2)
@@ -24,8 +29,8 @@ def params(key):
         color = show_color(key=key)
     with c[1]:
         bg_color = show_color(label='bg_color', options=(None, *MartineColor, 'transparent'), key=f'{key}-bg')
-    align = show_align(key=key)
-    direction = show_direction(key=key)
+
+
     c = st.columns(2)
     divider = show_checkbox('divider', c[0], True, key=key)
     use_container_width = show_checkbox('use_container_width', c[1], key=key)
@@ -38,6 +43,7 @@ def params(key):
 def main(kw):
     return_index = kw.get('return_index')
     with st.expander('demo', True):
+        show_space()
         seg = sac.segmented(
             items=[
                 sac.SegmentedItem(label='apple'),
@@ -47,6 +53,7 @@ def main(kw):
                 sac.SegmentedItem(label='disabled', disabled=True),
             ], **kw
         )
+        show_space()
         st.write(f'The selected segmented {"index" if return_index else "label"} is: {seg}')
     show_code(f'''
     sac.segmented(

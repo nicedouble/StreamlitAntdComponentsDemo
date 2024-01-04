@@ -28,6 +28,9 @@ st.markdown(f'''
     iframe{{
         display:block;
     }}
+    .stRadio div[role='radiogroup']>label{{
+        margin-right:5px
+    }}
     </style>
     ''', unsafe_allow_html=True)
 
@@ -43,7 +46,9 @@ with st.sidebar.container():
     menu = sac.menu(
         items=[
             sac.MenuItem('overview'),
-            sac.MenuItem('general', type='group', children=[sac.MenuItem('buttons')]),
+            sac.MenuItem('general', type='group', children=[
+                sac.MenuItem('buttons')
+            ]),
             sac.MenuItem('layout', type='group', children=[sac.MenuItem('divider')]),
             sac.MenuItem(
                 label='navigation', type='group', children=[
@@ -88,9 +93,14 @@ with st.sidebar.container():
         format_func='title',
     )
     sac.divider('Environment', color='gray')
-    sac.tags([sac.Tag(f'streamlit=={st.__version__}'), sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}')])
+    sac.tags(
+        [sac.Tag(f'streamlit=={st.__version__}', size='xs'),
+         sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}', size='xs')])
 
 with st.container():
+    sac.alert(
+        label='Happy new year! The sac new version 0.3.0 has released, which have more style params to all component!',
+        banner=True, closable=True, icon='emoji-smile', color='teal', size='sm')
     if menu == 'overview':
         overview()
     elif menu == 'callback':

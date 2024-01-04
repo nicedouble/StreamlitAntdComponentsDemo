@@ -16,8 +16,8 @@ def params(key):
     index = show_index(c[0], [0, 1], key=key)
     format_func = show_format_func(c[1], key=key)
     size = show_size(key=key)
-    color = show_color(key=key)
     variant = show_variant(['default', 'navigation'], key=key)
+    color = show_color(key=key)
     placement = st.radio('placement', ["horizontal", "vertical"], help='title placement', horizontal=True)
     direction = show_direction(key=key)
     c = st.columns(2)
@@ -30,6 +30,7 @@ def main(kw):
     return_index = kw.get('return_index')
 
     with st.expander('demo', True):
+        show_space()
         step = sac.steps(
             items=[
                 sac.StepsItem(title='step 1', subtitle='extra msg', description='description text'),
@@ -38,6 +39,7 @@ def main(kw):
                 sac.StepsItem(title='step 4', disabled=True),
             ], **kw
         )
+        show_space()
         st.write(f'The selected steps {"index" if return_index else "label"} is: {step}')
     show_code(f'''
     sac.steps(

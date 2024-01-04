@@ -17,12 +17,14 @@ def params(key):
     description = show_description(c[1], key=key)
     index = show_index(c[0], [0, [0, 2], None], 1, key=key)
     format_func = show_format_func(c[1], key=key)
-    align = show_align(key=key)
+    with c[0]:
+        align = show_align(key=key)
+    with c[1]:
+        direction = show_direction(key=key)
     size = show_size(key=key)
-    color = show_color(key=key)
     radius = show_radius(key=key)
-    direction = show_direction(key=key)
     variant = show_variant(['outline', 'light', 'filled'], 2, key=key)
+    color = show_color(key=key)
     c = st.columns(2)
     multiple = show_checkbox('multiple', c[0], True, key=key)
     return_index = show_checkbox('return_index', c[1], key=key)
@@ -32,6 +34,7 @@ def params(key):
 def main(kw):
     return_index = kw.get('return_index')
     with st.expander('demo', True):
+        show_space()
         seg = sac.chip(
             items=[
                 sac.ChipItem(label='apple'),
@@ -41,6 +44,7 @@ def main(kw):
                 sac.ChipItem(label='disabled', disabled=True),
             ], **kw
         )
+        show_space()
         st.write(f'The selected chip {"index" if return_index else "label"} is: {seg}')
     show_code(f'''
     sac.chip(

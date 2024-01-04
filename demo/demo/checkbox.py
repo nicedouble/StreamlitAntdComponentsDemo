@@ -19,8 +19,8 @@ def params(key):
     format_func = show_format_func(c[1], key=key)
     align = show_align(key=key)
     size = show_size(key=key)
-    color = show_color(key=key)
     radius = show_radius(index=1)
+    color = show_color(key=key)
     check_all = show_radio('check_all', [False, True, 'Select all'], key=key)
     c = st.columns(2)
     disabled = show_checkbox('disabled', c[0], key=key)
@@ -31,6 +31,7 @@ def params(key):
 def main(kw):
     return_index = kw.get('return_index')
     with st.expander('demo', True):
+        show_space()
         c = sac.checkbox(
             items=[
                 'item1',
@@ -40,6 +41,8 @@ def main(kw):
             ],
             **kw
         )
+        show_space()
+
         st.write(f'The selected checkbox {"index" if return_index else "label"} is: {c}')
     show_code(f'''
     sac.checkbox(

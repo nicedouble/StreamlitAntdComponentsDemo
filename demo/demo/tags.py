@@ -21,12 +21,14 @@ def params(key):
 
 def main(kw):
     with st.expander('demo', True):
+        show_space()
         sac.tags([
             sac.Tag(label='tag'),
             sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
             sac.Tag(label='orange', icon='google', color='orange', closable=True),
             sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
         ], **kw)
+        show_space()
     show_code(f'''
     sac.tags([
         sac.Tag(label='tag'),

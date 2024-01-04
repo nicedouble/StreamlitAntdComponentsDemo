@@ -14,7 +14,7 @@ from ..utils import *
 def params(key):
     c = st.columns(2)
     label = show_label(c[0], key=key)
-    description = show_description(c[1], key=key)
+    description = show_description(c[1], value='description', key=key)
     status = show_radio('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500], key=key)
     icon = show_radio('icon', [None, 'house', 'google'], key=key)
     return update_kw(locals(), ['c', 'key'])
@@ -22,7 +22,9 @@ def params(key):
 
 def main(kw):
     with st.expander('demo', True):
+        show_space()
         sac.result(**kw)
+        show_space()
     show_code(f'''
         sac.result({code_kw(kw, sac.result)})
         ''', open=True)

@@ -17,9 +17,9 @@ def params(key):
     label = show_label(c[0], key=key)
     description = show_description(c[1], 'description', key=key)
     size = show_size(key=key)
-    color = show_color(options=('info', 'success', 'warning', 'error', *MartineColor, '#4682b4'), key=key)
     radius = show_radius(key=key)
     variant = show_variant(['light', 'filled', 'outline', 'transparent'], key=key)
+    color = show_color(options=('info', 'success', 'warning', 'error', *MartineColor, '#4682b4'), key=key)
     banner = st.radio('banner', [True, False, [True, False], [False, True]], horizontal=True, key=f'{key}-banner')
     icon = st.radio('icon', [True, False, 'house'], horizontal=True, key=f'{key}-icon')
     closable = st.checkbox('closable', True, key=f'{key}-close')
@@ -28,7 +28,9 @@ def params(key):
 
 def main(kw):
     with st.expander('demo', True):
+        show_space()
         sac.alert(**kw)
+        show_space()
     show_code(f'''
         sac.alert({code_kw(kw, sac.alert)})
         ''', open=True)
