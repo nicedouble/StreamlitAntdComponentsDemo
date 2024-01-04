@@ -17,7 +17,7 @@ def params(key):
     description = show_description(c[1], key=key)
     index = show_index(c[0], [0, 1], key=key)
     format_func = show_format_func(c[1], key=key)
-    c=st.columns(2)
+    c = st.columns(2)
     with c[0]:
         align = show_align(key=key)
     with c[1]:
@@ -28,9 +28,8 @@ def params(key):
     with c[0]:
         color = show_color(key=key)
     with c[1]:
-        bg_color = show_color(label='bg_color', options=(None, *MartineColor, 'transparent'), key=f'{key}-bg')
-
-
+        bg_color = show_color(label='bg_color', none_color='--secondary-background-color',
+                              options=(None, *MartineColor, 'transparent'), key=f'{key}-bg')
     c = st.columns(2)
     divider = show_checkbox('divider', c[0], True, key=key)
     use_container_width = show_checkbox('use_container_width', c[1], key=key)

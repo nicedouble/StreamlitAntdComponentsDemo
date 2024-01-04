@@ -28,7 +28,7 @@ def params(key):
     with c[0]:
         on_color = show_color(label='on_color', key=f'{key}-on')
     with c[1]:
-        off_color = show_color(label='off_color', key=f'{key}-off')
+        off_color = show_color(label='off_color', none_color='--secondary-background-color', key=f'{key}-off')
     value = show_checkbox('value', c[0], key=key)
     disabled = show_checkbox('disabled', c[1], key=key)
     return update_kw(locals(), ['c', 'key'])

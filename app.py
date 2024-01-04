@@ -99,7 +99,7 @@ with st.sidebar.container():
 
 with st.container():
     sac.alert(
-        label='Happy new year! The sac new version 0.3.0 has released, which have more style params to all component!',
+        label='**Happy new year**! The sac new version 0.3.0 has released, which have more style params to all component!',
         banner=True, closable=True, icon='emoji-smile', color='teal', size='sm')
     if menu == 'overview':
         overview()

@@ -24,19 +24,22 @@ MartineColor = ['dark', 'gray', 'red', 'pink', 'grape', 'violet', 'indigo', 'blu
                 'yellow', 'orange']
 MartineSize = ['xs', 'sm', 'md', 'lg', 'xl']
 
+size_help = 'support mantine size and int in px'
+md_help = 'support str and markdown str'
+
 
 def show_label(container=None, value='label', key=None):
     if container is not None:
         with container:
-            return st.text_input('label', value, key=f'{key}-label')
-    return st.text_input('label', value, key=f'{key}-label')
+            return st.text_input('label', value, key=f'{key}-label', help=md_help)
+    return st.text_input('label', value, key=f'{key}-label', help=md_help)
 
 
 def show_description(container=None, value='', key=None):
     if container is not None:
         with container:
-            return st.text_input('description', value, key=f'{key}-desc')
-    return st.text_input('description', value, key=f'{key}-desc')
+            return st.text_input('description', value, key=f'{key}-desc', help=md_help)
+    return st.text_input('description', value, key=f'{key}-desc', help=md_help)
 
 
 def show_index(container=None, option=None, index=0, key=None):
@@ -49,31 +52,30 @@ def show_index(container=None, option=None, index=0, key=None):
 def show_format_func(container=None, key=None):
     if container is not None:
         with container:
-            return st.selectbox('format_func', FORMAT, 0, key=f'{key}-format')
-    return st.selectbox('format_func', FORMAT, 0, key=f'{key}-format')
+            return st.selectbox('format_func', FORMAT, 0, key=f'{key}-format', help='item label format')
+    return st.selectbox('format_func', FORMAT, 0, key=f'{key}-format', help='item label format')
 
 
-def show_color(index=0, label='color', options=(None, *MartineColor, '#4682b4', 'rgb(20,80,90)'), key=None):
-    # return st.radio(label, options, index=index, horizontal=True, key=f'{key}-color')
+def show_color(index=0, label='color', options=(None, *MartineColor, '#4682b4', 'rgb(20,80,90)'),
+               none_color='--primary-color', key=None):
     colors = {'info': 'rgb(0, 66, 128)', 'success': 'rgb(23, 114, 51)', 'warning': 'rgb(146, 108, 5)',
-              'error': 'rgb(125, 53, 59)', 'transparent': 'lightgray'}
+              'error': 'rgb(125, 53, 59)', 'transparent': 'lightgray', None: none_color}
     btn = sac.buttons(
         items=[sac.ButtonsItem(
             label='None' if i is None else i,
             color=colors.get(i) if i in colors.keys() else i) for i in options], label=label, index=index,
-        size='xs', key=f'{key}-color', variant='filled',
+        size='xs', gap=13, variant='filled', key=f'{key}-color',
     )
     return None if btn == 'None' else btn
 
 
 def show_size(index=2, include_int=True, key=None):
     return st.radio('size', options=MartineSize + [25] if include_int else MartineSize, index=index, horizontal=True,
-                    key=f'{key}-size', help='support mantine size and int in px')
+                    key=f'{key}-size', help=size_help)
 
 
 def show_radius(index=2, key=None):
-    return st.radio('radius', MartineSize + [20, 2], index=index, horizontal=True, key=f'{key}-radius',
-                    help='support mantine size and int in px')
+    return st.radio('radius', MartineSize + [20, 2], index=index, horizontal=True, key=f'{key}-radius', help=size_help)
 
 
 def show_variant(options, index=0, key=None):

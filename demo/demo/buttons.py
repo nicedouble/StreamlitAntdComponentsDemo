@@ -23,11 +23,10 @@ def params(key):
         direction = show_direction(key=key)
     size = show_size(key=key)
     radius = show_radius(key=key)
+    gap = show_radio('gap', ['xs', 'sm', 'md', 'lg', 'xl', 0], index=1, key=key)
     variant = show_variant(['filled', 'outline', 'dashed', 'text', 'link'], index=1, key=key)
     color = show_color(key=key)
-    c = st.columns(2)
-    compact = c[0].checkbox('compact')
-    return_index = show_checkbox('return_index', c[1], key=key)
+    return_index = show_checkbox('return_index', key=key)
     return update_kw(locals(), ['c', 'key'])
 
 

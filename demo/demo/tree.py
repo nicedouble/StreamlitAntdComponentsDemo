@@ -15,7 +15,7 @@ def params(key):
     c = st.columns(2)
     label = show_label(c[0], key=key)
     description = show_description(c[1], key=key)
-    index = show_index(c[0], [None, 0, 2, [0, 2]], index=1, key=key)
+    index = show_index(c[0], [None, 0, [2], [0, 2]], index=1, key=key)
     format_func = show_format_func(c[1], key=key)
     align = show_align(key=key)
     size = show_size(key=key)
