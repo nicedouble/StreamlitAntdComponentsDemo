@@ -22,6 +22,8 @@ def params(key):
     variant = show_variant(['light', 'filled', 'outline'], index=2, key=key)
     color = show_color(key=key)
     c = st.columns(2)
+    previous = show_radio('previous', [None, 'Previous'], c[0])
+    next = show_radio('next', [None, 'Next'], c[1])
     disabled = show_checkbox('disabled', c[0], key=key)
     jump = c[1].checkbox('jump', True)
     simple = c[0].checkbox('simple')

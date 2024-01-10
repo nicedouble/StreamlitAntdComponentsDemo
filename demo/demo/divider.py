@@ -16,7 +16,6 @@ def params(key):
     icon = show_radio('icon', [None, 'house'], index=1, key=key)
     align = show_align(key=key)
     size = show_size(index=0, key=key)
-    label_size = show_radio('label_size', ['xs', 'sm', 'md', 'lg', 'xl', 25], index=2, key=key)
     variant = show_variant(['solid', 'dashed', 'dotted'], key=key)
     color = show_color(none_color='lightgray', key=key)
     return update_kw(locals(), ['c', 'key'])

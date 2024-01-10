@@ -64,7 +64,7 @@ def show_color(index=0, label='color', options=(None, *MartineColor, '#4682b4', 
         items=[sac.ButtonsItem(
             label='None' if i is None else i,
             color=colors.get(i) if i in colors.keys() else i) for i in options], label=label, index=index,
-        size='xs', gap=13, variant='filled', key=f'{key}-color',
+        size='xs', gap='xs', variant='filled', radius='lg', key=f'{key}-color',
     )
     return None if btn == 'None' else btn
 

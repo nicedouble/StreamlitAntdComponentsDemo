@@ -13,6 +13,7 @@ from demo.demo import DEMO
 from demo.overview import overview
 from demo.callback import callback_usage
 from demo.session_state import session_usage
+from demo.icon import icon
 from demo.utils import *
 
 st.set_page_config(layout='wide', page_title='streamlit-antd-components')
@@ -46,6 +47,7 @@ with st.sidebar.container():
     menu = sac.menu(
         items=[
             sac.MenuItem('overview'),
+            sac.MenuItem('icon'),
             sac.MenuItem('general', type='group', children=[
                 sac.MenuItem('buttons')
             ]),
@@ -98,15 +100,14 @@ with st.sidebar.container():
          sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}', size='xs')])
 
 with st.container():
-    sac.alert(
-        label='**Happy new year**! The sac new version 0.3.0 has released, which have more style params to all component!',
-        banner=True, closable=True, icon='emoji-smile', color='teal', size='sm')
     if menu == 'overview':
         overview()
     elif menu == 'callback':
         callback_usage()
     elif menu == 'session state':
         session_usage()
+    elif menu=='icon':
+        icon()
     else:
         com_ = DEMO.get(menu)
         # component introduce
