@@ -13,21 +13,23 @@ from ..utils import *
 
 def params(key):
     label = show_label(key=key)
-    icon = show_radio('icon', [None, 'house'], index=1, key=key)
+    icon = show_radio('icon', [None, 'house', 'sac.BsIcon("house",size=20)'], index=1, key=key)
     align = show_align(key=key)
     size = show_size(index=0, key=key)
     variant = show_variant(['solid', 'dashed', 'dotted'], key=key)
-    color = show_color(none_color='lightgray', key=key)
+    color = show_color(none_color='lightgray', index=2, key=key)
     return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):
+    if kw.get('icon') == 'sac.BsIcon("house",size=20)':
+        kw.update(icon=sac.BsIcon("house", size=20))
     with st.expander('demo', True):
         show_space()
         sac.divider(**kw)
         show_space()
     show_code(f'''
-    sac.divider({code_kw(kw, sac.divider)})
+    sac.divider({code_kw(kw, sac.divider).replace('BsIcon', 'sac.BsIcon').replace(', color=None', '')})
     ''', True)
 
 

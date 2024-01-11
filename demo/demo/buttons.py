@@ -26,9 +26,9 @@ def params(key):
     gap = show_radio('gap', ['xs', 'sm', 'md', 'lg', 'xl', 0], index=1, key=key)
     variant = show_variant(['filled', 'outline', 'dashed', 'text', 'link'], index=1, key=key)
     color = show_color(key=key)
-    c=st.columns(2)
+    c = st.columns(2)
     use_container_width = show_checkbox('use_container_width', c[0], key=key)
-    return_index = show_checkbox('return_index',c[1], key=key)
+    return_index = show_checkbox('return_index', c[1], key=key)
     return update_kw(locals(), ['c', 'key'])
 
 

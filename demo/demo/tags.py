@@ -16,6 +16,9 @@ def params(key):
     format_func = show_format_func(key=key)
     align = show_align(key=key)
     direction = show_direction(key=key)
+    size = show_size(key=key, index=1)
+    radius = show_radius(key=key)
+    color = show_color(options=(None, *AntColor.keys(), '#4682b4'), none_color='--text-color', martine=False, key=key)
     return update_kw(locals(), ['key'])
 
 
@@ -24,17 +27,17 @@ def main(kw):
         show_space()
         sac.tags([
             sac.Tag(label='tag'),
-            sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
-            sac.Tag(label='orange', icon='google', color='orange', closable=True),
-            sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
+            sac.Tag(label='no border', bordered=False),
+            sac.Tag(label='closable', closable=True),
+            sac.Tag(label='link', icon='send', link='https://ant.design/components/tag'),
         ], **kw)
         show_space()
     show_code(f'''
     sac.tags([
         sac.Tag(label='tag'),
-        sac.Tag(label='blue', icon='gear', color='blue', bordered=False),
-        sac.Tag(label='orange', icon='google', color='orange', closable=True),
-        sac.Tag(label='link', icon='twitter', color='cyan', link='https://ant.design/components/tag'),
+        sac.Tag(label='no border', bordered=False),
+        sac.Tag(label='closable', closable=True),
+        sac.Tag(label='link', icon='send', link='https://ant.design/components/tag'),
     ], {code_kw(kw, sac.tags)})''', open=True)
 
 

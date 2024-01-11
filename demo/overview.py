@@ -82,7 +82,7 @@ def overview():
                     sac.TreeItem('google', 'google'),
                 ]),
             ],
-            open_all=True, format_func='title', checkbox=True, index=0
+            open_all=True, format_func='title', checkbox=True, index=0,
         )
         st.button('Go to tree', on_click=redirect, args=("tree",))
 
@@ -91,7 +91,7 @@ def overview():
             items=[f'item{i}' for i in range(30)],
             index=[0, 1],
             reload=True,
-            height=420
+            height=420, align='center'
         )
         st.button('Go to transfer', on_click=redirect, args=("transfer",))
     st.caption('Click the sidebar menu to show more components detailed usage.')

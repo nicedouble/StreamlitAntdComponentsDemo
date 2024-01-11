@@ -13,11 +13,11 @@ from .utils import *
 
 
 def icon():
-    st.subheader('icon', anchor=False)
+    st.subheader('Icon', anchor=False)
     st.info('''
     Currently, sac support [Boostrap icon](https://icons.getbootstrap.com/) and [Ant icon](https://ant.design/components/icon).  
-    The default setting of the icon parameter is `string` to display Boostrap icons, 
-    but it can also be set to class `AntIcon` and class `BsIcon` to display ant icons and more style settings.
+    The default setting of the icon parameter is **string** to display Boostrap icons, 
+    but it can also be set to class **AntIcon** and class **BsIcon** to display ant icons and more style settings.
     ''')
 
     tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], size='sm')

@@ -23,6 +23,19 @@ LABEL = [
 MartineColor = ['dark', 'gray', 'red', 'pink', 'grape', 'violet', 'indigo', 'blue', 'cyan', 'teal', 'green', 'lime',
                 'yellow', 'orange']
 MartineSize = ['xs', 'sm', 'md', 'lg', 'xl']
+AntColor = {
+    'magenta': '#c41d7f',
+    'red': '#cf1322',
+    'volcano': '#d4380d',
+    'orange': '#d46b08',
+    'gold': '#d48806',
+    'lime': '#7cb305',
+    'green': '#389e0d',
+    'cyan': '#08979c',
+    'blue': '#0958d9',
+    'geekblue': '#1d39c4',
+    'purple': '#531dab'
+}
 
 size_help = 'support mantine size and int in px'
 md_help = 'support str and markdown str'
@@ -57,14 +70,16 @@ def show_format_func(container=None, key=None):
 
 
 def show_color(index=0, label='color', options=(None, *MartineColor, '#4682b4', 'rgb(20,80,90)'),
-               none_color='--primary-color', key=None):
+               none_color='--primary-color', key=None, martine=True):
     colors = {'info': 'rgb(0, 66, 128)', 'success': 'rgb(23, 114, 51)', 'warning': 'rgb(146, 108, 5)',
               'error': 'rgb(125, 53, 59)', 'transparent': 'lightgray', None: none_color}
     btn = sac.buttons(
         items=[sac.ButtonsItem(
             label='None' if i is None else i,
-            color=colors.get(i) if i in colors.keys() else i) for i in options], label=label, index=index,
-        size='xs', gap='xs', variant='filled', radius='lg', key=f'{key}-color',
+            color=colors.get(i) if i in colors.keys() else (i if martine else AntColor.get(i, i))) for i in options
+        ],
+        label=label, index=index,
+        size='xs', gap='xs', variant='filled', radius='lg', key=f'{key}-color'
     )
     return None if btn == 'None' else btn
 

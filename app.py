@@ -47,7 +47,7 @@ with st.sidebar.container():
     menu = sac.menu(
         items=[
             sac.MenuItem('overview'),
-            sac.MenuItem('icon'),
+            sac.MenuItem('icon', tag=new),
             sac.MenuItem('general', type='group', children=[
                 sac.MenuItem('buttons')
             ]),
@@ -96,8 +96,8 @@ with st.sidebar.container():
     )
     sac.divider('Environment', color='gray')
     sac.tags(
-        [sac.Tag(f'streamlit=={st.__version__}', size='xs'),
-         sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}', size='xs')])
+        [sac.Tag(f'streamlit=={st.__version__}', size='xs', color='cyan'),
+         sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}', size='xs', color='blue')])
 
 with st.container():
     if menu == 'overview':
@@ -106,7 +106,7 @@ with st.container():
         callback_usage()
     elif menu == 'session state':
         session_usage()
-    elif menu=='icon':
+    elif menu == 'icon':
         icon()
     else:
         com_ = DEMO.get(menu)
