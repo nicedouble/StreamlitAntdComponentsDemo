@@ -16,17 +16,25 @@ def redirect(item=0):
     st.session_state['menu'] = item
 
 
+def link(text, href):
+    return f'<a class="text-primary" href="{href}" target="_blank">{text}</a> '
+
+
+def icon(x, class_=None):
+    bi = f'bi bi-{x}'
+    bi = bi + ' ' + class_ if class_ is not None else bi
+    return f'<i class="{bi}"></i>'
+
+
 def overview():
-    st.subheader('Introduce', False)
-    st.info(f'''
-    :heart: **[Streamlit-antd-components](https://github.com/nicedouble/StreamlitAntdComponents)** is inspired by
-     [Ant Design](https://ant.design/components/overview/) and [Mantine](https://v6.mantine.dev/),
-     has developed more than 10 custom components to extend streamlit.   
-    :heart: All components are designed to fit streamlit theme style.   
-    :heart: Support [Bootstrap Icon](https://icons.getbootstrap.com/)(`v1.10.5`).   
-    :heart: Give me a :star:  on [Github](https://github.com/nicedouble/StreamlitAntdComponents) if you like this package.
-    Issues can be discussed in [Github issues](https://github.com/nicedouble/StreamlitAntdComponents/issues) or [streamlit-community](https://discuss.streamlit.io/t/new-component-streamlit-antd-components-more-widgets-to-extend-streamlit/43313)
-    ''')
+    sac.alert(
+        label='**Highlight**',
+        description=f'''{icon('1-circle')} **Streamlit-antd-components(sac)** is inspired by {link('Ant Design', 'https://ant.design/components/overview/')} and {link('Mantine', 'https://v6.mantine.dev/')},has developed more than 10 custom components to extend streamlit.  
+    {icon('2-circle')} All components are designed to fit streamlit theme style by default.You can also use style parameters, such as `size`,`radius`,`color` to change the appearance of the component.  
+    {icon('3-circle')} Support {link('Bootstrap Icon', 'https://icons.getbootstrap.com/')} <span class="badge bg-info text-white">v1.10.5</span> and {link('Ant Icon', 'https://ant.design/components/icon')}.  
+    {icon('4-circle')} Give me a {icon('star-fill', 'text-danger')} on {link('Github', 'https://github.com/nicedouble/StreamlitAntdComponents')} if you like this package,
+    Issues can be discussed in {link('Github issues', 'https://github.com/nicedouble/StreamlitAntdComponents/issues')} or {link('streamlit-community', 'https://discuss.streamlit.io/t/new-component-streamlit-antd-components-more-widgets-to-extend-streamlit/43313')}.
+    ''', color='pink', icon='emoji-smile')
 
     st.subheader('Component preview', False)
     c = st.columns(3)
