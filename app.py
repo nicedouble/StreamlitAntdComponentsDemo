@@ -54,7 +54,7 @@ with st.sidebar.container():
             sac.MenuItem('layout', type='group', children=[sac.MenuItem('divider')]),
             sac.MenuItem(
                 label='navigation', type='group', children=[
-                    sac.MenuItem('menu'),
+                    sac.MenuItem('menu', tag=modified),
                     sac.MenuItem('pagination'),
                     'steps'
                 ]
@@ -74,14 +74,14 @@ with st.sidebar.container():
                 label='data display', type='group',
                 children=[
                     sac.MenuItem('segmented'),
-                    'tabs',
+                    sac.MenuItem('tabs', tag=modified),
                     sac.MenuItem('tree'),
                     sac.MenuItem('tags'),
                 ],
             ),
             sac.MenuItem(
                 label='feedback', type='group', children=[
-                    sac.MenuItem('alert'),
+                    sac.MenuItem('alert', tag=modified),
                     sac.MenuItem('result')
                 ]
             ),

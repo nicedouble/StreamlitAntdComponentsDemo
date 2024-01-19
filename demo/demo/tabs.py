@@ -33,7 +33,7 @@ def main(kw):
     with st.expander('demo', True):
         show_space()
         tab = sac.tabs([
-            sac.TabsItem(label='apple'),
+            sac.TabsItem(label='apple', tag="10"),
             sac.TabsItem(icon='google'),
             sac.TabsItem(label='github', icon='github'),
             sac.TabsItem(label='disabled', disabled=True),
@@ -42,7 +42,7 @@ def main(kw):
         st.write(f'The selected tabs {"index" if return_index else "label"} is: {tab}')
     show_code(f'''
     sac.tabs([
-        sac.TabsItem(label='apple'),
+        sac.TabsItem(label='apple', tag="10"),
         sac.TabsItem(icon='google'),
         sac.TabsItem(label='github', icon='github'),
         sac.TabsItem(label='disabled', disabled=True),

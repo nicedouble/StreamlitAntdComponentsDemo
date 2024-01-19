@@ -99,7 +99,7 @@ def overview():
             items=[f'item{i}' for i in range(30)],
             index=[0, 1],
             reload=True,
-            height=420, align='center'
+            height=420
         )
         st.button('Go to transfer', on_click=redirect, args=("transfer",))
     st.caption('Click the sidebar menu to show more components detailed usage.')

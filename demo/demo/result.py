@@ -16,17 +16,19 @@ def params(key):
     label = show_label(c[0], key=key)
     description = show_description(c[1], value='description', key=key)
     status = show_radio('status', ['info', 'success', 'warning', 'error', 'empty', 403, 404, 500], key=key)
-    icon = show_radio('icon', [None, 'house', 'google'], key=key)
+    icon = show_radio('icon', [None, 'house', "sac.BsIcon('house',size=30)"], key=key)
     return update_kw(locals(), ['c', 'key'])
 
 
 def main(kw):
+    if kw.get('icon') == "sac.BsIcon('house',size=30)":
+        kw.update(icon=sac.BsIcon('house', size=30))
     with st.expander('demo', True):
         show_space()
         sac.result(**kw)
         show_space()
     show_code(f'''
-        sac.result({code_kw(kw, sac.result)})
+        sac.result({code_kw(kw, sac.result).replace('BsIcon', 'sac.BsIcon')})
         ''', open=True)
 
 

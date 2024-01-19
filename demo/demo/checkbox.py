@@ -18,7 +18,7 @@ def params(key):
     index = show_index(c[0], [None, 0, [0, 1]], 2, key=key)
     format_func = show_format_func(c[1], key=key)
     align = show_align(key=key)
-    size = show_size(key=key)
+    size = show_size(key=key, index=1)
     radius = show_radius(index=1)
     color = show_color(key=key)
     check_all = show_radio('check_all', [False, True, 'Select all'], key=key)
