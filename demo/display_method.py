@@ -1,4 +1,78 @@
-methods = dict(
+import inspect
+from typing import get_origin, Union, Literal
+
+import streamlit as st
+import streamlit_antd_components as sac
+
+from demo.method_code import methods_code
+
+
+def get_args_dict(func):
+    sig = inspect.signature(func)
+    return {param.name: param.annotation for param in sig.parameters.values()}
+
+
+def display_method(method):
+    if method not in methods_code.keys():
+        raise ValueError(f'unsupported method {method}')
+
+    st.subheader(method.title(), anchor=False)
+    func = getattr(sac, method)
+    args = get_args_dict(func)
+    doc = func.__doc__
+    doc_ = doc.split(':param')[0].strip()
+    st.markdown(doc_)
+
+    # component demo and api
+    # tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], size='sm')
+    # if tabs == 'Demo':
+    c0, c1 = st.columns([2.2, 1])
+    params = {}
+    with c1.expander(f"{method} params", True):
+        c1_ = st.columns(2)
+        n = 0
+        for name, annotation in args.items():
+            # print(f"{name=}")
+            if n > 1:
+                n = 0
+                c1_ = st.columns(2)
+            if get_origin(annotation) is Union:
+                annotation_args = annotation.__args__
+                annotation_args_literal = [v for v in annotation_args if get_origin(v) is Literal]
+                if len(annotation_args_literal) == 0:
+                    annotation = annotation_args[0]
+                else:
+                    annotation = annotation_args_literal[0]
+
+            if annotation is str:
+                params[name] = c1_[n].text_input(name, name)
+            elif annotation is bool:
+                params[name] = c1_[n].checkbox(name, False)
+            elif get_origin(annotation) is Literal:
+                params[name] = c1_[n].selectbox(name, annotation.__args__)
+            else:
+                continue
+            n += 1
+    with c0:
+        # tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], size='sm')
+        tabs = 'Demo'
+        if tabs == 'Demo':
+            params_str = {f"{k}={v!r}" for k, v in params.items()}
+            params_str = ", ".join(params_str)
+            code = methods_code[method].format(params_str=params_str)
+            # with st.tabs(['demo', 'api']):
+            with st.expander('demo', True):
+                out = eval(code)
+                st.markdown(f"The selected button label is: {out}")
+
+            with st.expander('code', True):
+                code = f"import streamlit_antd_components as sac\n{code}"
+                st.code(code, line_numbers=True)
+        else:
+            st.write('tbd')
+
+
+method_code = dict(
     buttons="""
 sac.buttons([
     sac.ButtonsItem(label='button'),
