@@ -17,7 +17,7 @@ def get_args_dict(func):
         if name == 'color' and default is None:
             default = st.get_option('theme.primaryColor') or 'red'
         elif name == 'background_color' and default is None:
-            default = st.get_option('theme.backgroundColor') or 'gray'
+            default = st.get_option('theme.backgroundColor') or 'white'
         elif name == 'font' and default is None:
             default = st.get_option('theme.font') or 'arial'
         elif name == 'size' and default is None:
