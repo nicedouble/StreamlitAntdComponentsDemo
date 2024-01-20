@@ -111,13 +111,18 @@ sac.steps(
 sac.switch({params_str})
 
 """,
+#     tabs="""
+# sac.tabs([
+#     sac.TabsItem(label='apple', tag="10"),
+#     sac.TabsItem(icon='google'),
+#     sac.TabsItem(label='github', icon='github'),
+#     sac.TabsItem(label='disabled', disabled=True),
+# ], {params_str})
+# """,
     tabs="""
-sac.tabs([
-    sac.TabsItem(label='apple', tag="10"),
-    sac.TabsItem(icon='google'),
-    sac.TabsItem(label='github', icon='github'),
-    sac.TabsItem(label='disabled', disabled=True),
-], {params_str})
+sac.tabs(
+    ['apple', 'google','github','disabled'],
+    {params_str})
 """,
     tags="""
 sac.tags([
