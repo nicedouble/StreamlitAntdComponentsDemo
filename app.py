@@ -8,17 +8,14 @@
 @Project  : StreamlitAntdComponents
 @Software : PyCharm
 """
-import inspect
-from typing import Literal, get_origin, Union
 
-from demo.callback import callback_usage
-from demo.display_method import display_method
-from demo.icon import icon
-from demo.overview import overview
-from demo.session_state import session_usage
 import streamlit as st
 import streamlit_antd_components as sac
 
+from demo.callback import callback_usage
+from demo.display_method import display_method
+from demo.overview import overview
+from demo.session_state import session_usage
 
 st.set_page_config(layout='wide', page_title='streamlit-antd-components')
 
@@ -102,21 +99,18 @@ with st.sidebar.container():
         [sac.Tag(f'streamlit=={st.__version__}', size='xs', color='cyan'),
          sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}', size='xs', color='blue')])
 
-
-
-
-
 with st.container():
+    if 'icon' not in st.session_state:
+        st.session_state['icon'] = 'Bootstrap'
+
+    if method == 'icon':
+        method = st.session_state['icon']
+
     if method == 'overview':
         overview()
     elif method == 'callback':
         callback_usage()
     elif method == 'session state':
         session_usage()
-    elif method == 'icon':
-        icon()
     else:
         display_method(method)
-
-
-

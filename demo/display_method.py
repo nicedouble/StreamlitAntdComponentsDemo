@@ -29,6 +29,11 @@ def get_args_dict(func):
         if name == 'symbol':
             default = None
 
+        if func.__name__ == 'BsIcon' and name == 'name':
+            default = 'house'
+        if func.__name__ == 'AntIcon' and name == 'name':
+            default = 'HomeOutlined'
+
         out.append({'name': name,
                     'annotation': param.annotation,
                     'default': default})
@@ -57,6 +62,11 @@ def get_api(func):
 
 
 def get_params(func):
+    if func.__name__ in ['BsIcon', 'AntIcon']:
+        icon = sac.chip(['Bootstrap', 'Ant'], index=0, label='icon', size='sm')
+        if icon != st.session_state['icon']:
+            st.session_state['icon'] = icon
+            st.rerun()
     args = get_args_dict(func)
     params = {}
     c1_ = st.columns(2)
@@ -102,26 +112,28 @@ def get_doc_str(func):
 
 
 def display_method(method):
+    if method == 'Bootstrap':
+        method = 'BsIcon'
+    elif method == 'Ant':
+        method = 'AntIcon'
+
     if method not in methods_code.keys():
         raise ValueError(f'unsupported method {method}')
 
     st.subheader(method.title(), anchor=False)
+
     func = getattr(sac, method)
     get_doc_str(func)
 
-    #  demo and api
-    c0, c1 = st.columns([2.2, 1])
+    tab = sac.tabs(['Demo', 'Api'], size='sm')
 
-    with c1.expander(f"{method} params", True):
-        params = get_params(func)
-
-    with c0:
-        # tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], size='sm')
-        tabs = sac.tabs(['Demo', 'Api'], size='sm')
-
-        if tabs == 'Demo':
+    if tab == 'Demo':
+        c0, c1 = st.columns([2.2, 1])
+        with c1.expander(f"{method} params", True):
+            params = get_params(func)
+        with c0:
             get_demo(method, params)
-        elif tabs == 'Api':
-            get_api(func)
-        else:
-            raise ValueError(f'unsupported tab {tabs}')
+    elif tab == 'Api':
+        get_api(func)
+    else:
+        raise ValueError(f'unsupported tab {tab}')

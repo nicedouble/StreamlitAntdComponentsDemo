@@ -1,7 +1,7 @@
 methods_code = dict(
     alert="""
 sac.alert({params_str})
-            """,
+""",
     buttons="""
 sac.buttons([
     sac.ButtonsItem(label='button'),
@@ -31,18 +31,24 @@ sac.cascader(items=[
         sac.CasItem('other1'),
         sac.CasItem('other2')
     ], {params_str})
-    """,
+""",
+    BsIcon="""
+sac.buttons([sac.ButtonsItem(icon=sac.BsIcon({params_str}))], align='center', variant='text', index=None)
+""",
+    AntIcon="""
+sac.buttons([sac.ButtonsItem(icon=sac.AntIcon({params_str}))], align='center', variant='text', index=None)
+""",
     checkbox="""
-    sac.checkbox(
-        items=[
-            'item1',
-            'item2',
-            'item3',
-            sac.CheckboxItem('item4', disabled=True)
-        ],
-        {params_str}
-    )
-    """,
+sac.checkbox(
+    items=[
+        'item1',
+        'item2',
+        'item3',
+        sac.CheckboxItem('item4', disabled=True)
+    ],
+    {params_str}
+)
+""",
     chip="""
 sac.chip(
     items=[
@@ -77,14 +83,14 @@ sac.menu([
 ], {params_str})
 """,
     pagination="""
- sac.pagination({params_str})
- """,
+sac.pagination({params_str})
+""",
     rate="""
 sac.rate({params_str})
 """,
     result="""
-    sac.result({params_str})
-    """,
+sac.result({params_str})
+""",
     segmented="""
 sac.segmented(
     items=[
@@ -107,18 +113,16 @@ sac.steps(
 )
 """,
     switch="""
-
 sac.switch({params_str})
-
 """,
-#     tabs="""
-# sac.tabs([
-#     sac.TabsItem(label='apple', tag="10"),
-#     sac.TabsItem(icon='google'),
-#     sac.TabsItem(label='github', icon='github'),
-#     sac.TabsItem(label='disabled', disabled=True),
-# ], {params_str})
-# """,
+    #     tabs="""
+    # sac.tabs([
+    #     sac.TabsItem(label='apple', tag="10"),
+    #     sac.TabsItem(icon='google'),
+    #     sac.TabsItem(label='github', icon='github'),
+    #     sac.TabsItem(label='disabled', disabled=True),
+    # ], {params_str})
+    # """,
     tabs="""
 sac.tabs(
     ['apple', 'google','github','disabled'],
@@ -133,7 +137,6 @@ sac.tags([
 ], {params_str})""",
     transfer="""
 sac.transfer(items=[f'item{{i}}' for i in range(30)], {params_str})
-
 """,
     tree="""
 sac.tree(items=[
@@ -151,5 +154,6 @@ sac.tree(items=[
         sac.TreeItem('item3-1'),
         sac.TreeItem('item3-2'),
     ]),
-], {params_str})"""
+], {params_str})
+"""
 )
