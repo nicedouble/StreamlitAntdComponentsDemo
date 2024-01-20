@@ -27,7 +27,7 @@ sac.buttons([
         sac.CasItem('disabled', icon='send', disabled=True),
         sac.CasItem('other1'),
         sac.CasItem('other2')
-    ], {params_str)
+    ], {params_str})
     """,
     checkbox="""
     sac.checkbox(
@@ -52,7 +52,7 @@ sac.chip(
 )
 """,
     divider="""
-sac.divider({params_str(kw, sac.divider).replace('BsIcon', 'sac.BsIcon').replace(', color=None', '')})
+sac.divider({params_str})
 """,
     menu="""
 sac.menu([
@@ -104,7 +104,7 @@ sac.steps(
         sac.StepsItem(title='step 2'),
         sac.StepsItem(title='step 3'),
         sac.StepsItem(title='step 4', disabled=True),
-    ], {params_str(kw, sac.steps)}
+    ], {params_str}
 )
 """,
     switch="""

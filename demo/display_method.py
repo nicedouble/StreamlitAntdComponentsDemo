@@ -60,6 +60,7 @@ def display_method(method):
             params_str = {f"{k}={v!r}" for k, v in params.items()}
             params_str = ", ".join(params_str)
             code = methods_code[method].format(params_str=params_str)
+            code = code.strip()
             # with st.tabs(['demo', 'api']):
             with st.expander('demo', True):
                 out = eval(code)
