@@ -1,4 +1,7 @@
 methods_code = dict(
+    alert="""
+sac.alert({params_str})
+            """,
     buttons="""
 sac.buttons([
     sac.ButtonsItem(label='button'),
@@ -10,7 +13,7 @@ sac.buttons([
 ], {params_str})
 """,
     cascader="""
-    sac.cascader(items=[
+sac.cascader(items=[
         sac.CasItem('home', icon='house'),
         sac.CasItem('app', icon='app', children=[
             sac.CasItem('store', icon='bag-check'),
@@ -73,18 +76,14 @@ sac.menu([
     ]),
 ], {params_str})
 """,
-    icon="""
-            sac.buttons([sac.ButtonsItem(icon=sac.{"Bs" if icon_ == 'Bootstrap' else 'Ant'}Icon({code_kw(kw, sac.BsIcon)}))], align='center', variant='text', index=None)
-            """,
     pagination="""
  sac.pagination({params_str})
  """,
     rate="""
-sac.rate({params_str(kw, sac.rate).replace('BsIcon', 'sac.BsIcon').replace('name=', '')})
-
+sac.rate({params_str})
 """,
     result="""
-    sac.result({params_str(kw, sac.result).replace('BsIcon', 'sac.BsIcon')})
+    sac.result({params_str})
     """,
     segmented="""
 sac.segmented(
@@ -109,7 +108,7 @@ sac.steps(
 """,
     switch="""
 
-sac.switch({params_str(kw, sac.switch).replace('BsIcon', 'sac.BsIcon').replace('name=', '')})
+sac.switch({params_str})
 
 """,
     tabs="""
@@ -128,7 +127,7 @@ sac.tags([
     sac.Tag(label='link', icon='send', link='https://ant.design/components/tag'),
 ], {params_str})""",
     transfer="""
-sac.transfer(items=[f'item{{i}}' for i in range(30)], {params_str(kw, sac.transfer)})
+sac.transfer(items=[f'item{{i}}' for i in range(30)], {params_str})
 
 """,
     tree="""

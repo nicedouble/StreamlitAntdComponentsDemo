@@ -9,7 +9,31 @@ from demo.method_code import methods_code
 
 def get_args_dict(func):
     sig = inspect.signature(func)
-    return {param.name: param.annotation for param in sig.parameters.values()}
+    out = []
+    for param in sig.parameters.values():
+        default = param.default
+        name = param.name
+
+        if name == 'color' and default is None:
+            default = st.get_option('theme.primaryColor') or 'red'
+        elif name == 'background_color' and default is None:
+            default = st.get_option('theme.backgroundColor') or 'gray'
+        elif name == 'font' and default is None:
+            default = st.get_option('theme.font') or 'arial'
+        elif name == 'size' and default is None:
+            default = 'md'
+
+        if (default is inspect.Parameter.empty or default is None) and param.annotation is str:
+            default = name
+
+        if name == 'symbol':
+            default = None
+
+        out.append({'name': name,
+                    'annotation': param.annotation,
+                    'default': default})
+    # print(out)
+    return out
 
 
 def display_method(method):
@@ -23,15 +47,16 @@ def display_method(method):
     doc_ = doc.split(':param')[0].strip()
     st.markdown(doc_)
 
-    # component demo and api
-    # tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], size='sm')
-    # if tabs == 'Demo':
+    #  demo and api
     c0, c1 = st.columns([2.2, 1])
     params = {}
     with c1.expander(f"{method} params", True):
         c1_ = st.columns(2)
         n = 0
-        for name, annotation in args.items():
+        for args_ in args:
+            name = args_['name']
+            annotation = args_['annotation']
+            default = args_['default']
             # print(f"{name=}")
             if n > 1:
                 n = 0
@@ -45,11 +70,17 @@ def display_method(method):
                     annotation = annotation_args_literal[0]
 
             if annotation is str:
-                params[name] = c1_[n].text_input(name, name)
+                params[name] = c1_[n].text_input(name, default)
+            elif annotation is int or annotation is float:
+                params[name] = c1_[n].number_input(name, value=default)
             elif annotation is bool:
-                params[name] = c1_[n].checkbox(name, False)
+                params[name] = c1_[n].checkbox(name, default)
             elif get_origin(annotation) is Literal:
-                params[name] = c1_[n].selectbox(name, annotation.__args__)
+                if default in annotation.__args__:
+                    index = annotation.__args__.index(default)
+                else:
+                    index = 0
+                params[name] = c1_[n].selectbox(name, annotation.__args__, index)
             else:
                 continue
             n += 1
@@ -64,7 +95,7 @@ def display_method(method):
             # with st.tabs(['demo', 'api']):
             with st.expander('demo', True):
                 out = eval(code)
-                st.markdown(f"The selected button label is: {out}")
+                st.markdown(f"The selected {method} item is: {out}")
 
             with st.expander('code', True):
                 code = f"import streamlit_antd_components as sac\n{code}"
