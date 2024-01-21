@@ -61,6 +61,13 @@ def get_api(func):
     st.code(doc)
 
 
+def selectbox_color(label, options, index, c1):
+    with c1:
+        sac.menu([
+            sac.MenuItem('', tag=[sac.Tag(color, color=color)]) for color in options
+        ], index=index)
+
+
 def get_params(func):
     if func.__name__ in ['BsIcon', 'AntIcon']:
         icon = sac.chip(['Bootstrap', 'Ant'], index=0, label='icon', size='sm')
@@ -98,6 +105,8 @@ def get_params(func):
                 index = annotation.__args__.index(default)
             else:
                 index = 0
+            # if 'color' in name:
+            #     selectbox_color(name, annotation.__args__, index, c1_[n])
             params[name] = c1_[n].selectbox(name, annotation.__args__, index)
         else:
             continue
