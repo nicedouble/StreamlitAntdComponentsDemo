@@ -5,7 +5,7 @@ import streamlit as st
 import streamlit_antd_components as sac
 
 from demo.method_code import methods_code
-
+import webcolors
 
 def get_args_dict(func):
     sig = inspect.signature(func)
@@ -68,6 +68,19 @@ def selectbox_color(label, options, index, c1):
         ], index=index)
 
 
+
+def get_hex(color_name):
+    if color_name.startswith('#'):
+        return color_name
+    try:
+        rgb_tuple = webcolors.name_to_rgb(color_name)
+        hex_value = "#{:02x}{:02x}{:02x}".format(*rgb_tuple)
+        return hex_value
+    except ValueError:
+        return f"Color '{color_name}' not found"
+
+
+
 def get_params(func):
     if func.__name__ in ['BsIcon', 'AntIcon']:
         icon = sac.chip(['Bootstrap', 'Ant'], index=0, label='icon', size='sm')
@@ -105,9 +118,10 @@ def get_params(func):
                 index = annotation.__args__.index(default)
             else:
                 index = 0
-            # if 'color' in name:
-            #     selectbox_color(name, annotation.__args__, index, c1_[n])
-            params[name] = c1_[n].selectbox(name, annotation.__args__, index)
+            if 'color' in name:
+                params[name] = c1_[n].color_picker(name, get_hex(default))
+            else:
+                params[name] = c1_[n].selectbox(name, annotation.__args__, index)
         else:
             continue
         n += 1
