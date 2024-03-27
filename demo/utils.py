@@ -14,15 +14,7 @@ import streamlit_antd_components as sac
 import inspect
 
 FORMAT = [None, 'title', 'upper', "lambda x:f'A_{x}'"]
-LABEL = [
-    None,
-    'label',
-    '**label**',
-    '**label** <span class="badge rounded-pill badge-info">Info</span>'
-]
-MartineColor = ['dark', 'gray', 'red', 'pink', 'grape', 'violet', 'indigo', 'blue', 'cyan', 'teal', 'green', 'lime',
-                'yellow', 'orange']
-MartineSize = ['xs', 'sm', 'md', 'lg', 'xl']
+
 AntColor = {
     'magenta': '#c41d7f',
     'red': '#cf1322',
@@ -37,39 +29,9 @@ AntColor = {
     'purple': '#531dab'
 }
 
-size_help = 'support mantine size and int in px'
-md_help = 'support str and markdown str'
 
 
-def show_label(container=None, value='label', key=None):
-    if container is not None:
-        with container:
-            return st.text_input('label', value, key=f'{key}-label', help=md_help)
-    return st.text_input('label', value, key=f'{key}-label', help=md_help)
-
-
-def show_description(container=None, value='', key=None):
-    if container is not None:
-        with container:
-            return st.text_input('description', value, key=f'{key}-desc', help=md_help)
-    return st.text_input('description', value, key=f'{key}-desc', help=md_help)
-
-
-def show_index(container=None, option=None, index=0, key=None):
-    if container is not None:
-        with container:
-            return st.selectbox('index', option, index=index, key=f'{key}-index')
-    return st.selectbox('index', option, index=index, key=f'{key}-index')
-
-
-def show_format_func(container=None, key=None):
-    if container is not None:
-        with container:
-            return st.selectbox('format_func', FORMAT, 0, key=f'{key}-format', help='item label format')
-    return st.selectbox('format_func', FORMAT, 0, key=f'{key}-format', help='item label format')
-
-
-def show_color(index=0, label='color', options=(None, *MartineColor, '#4682b4', 'rgb(20,80,90)'),
+def show_color(index=0, label='color', options=(None, '#4682b4', 'rgb(20,80,90)'),
                none_color='--primary-color', key=None, martine=True):
     colors = {'info': 'rgb(0, 66, 128)', 'success': 'rgb(23, 114, 51)', 'warning': 'rgb(146, 108, 5)',
               'error': 'rgb(125, 53, 59)', 'transparent': 'lightgray', None: none_color}
@@ -82,34 +44,6 @@ def show_color(index=0, label='color', options=(None, *MartineColor, '#4682b4', 
         size='xs', gap='xs', variant='filled', radius='lg', key=f'{key}-color'
     )
     return None if btn == 'None' else btn
-
-
-def show_size(index=2, include_int=True, key=None):
-    return st.radio('size', options=MartineSize + [25] if include_int else MartineSize, index=index, horizontal=True,
-                    key=f'{key}-size', help=size_help)
-
-
-def show_radius(index=2, key=None):
-    return st.radio('radius', MartineSize + [20, 2], index=index, horizontal=True, key=f'{key}-radius', help=size_help)
-
-
-def show_variant(options, index=0, key=None):
-    return st.radio('variant', options, index=index, horizontal=True, key=f'{key}-variant')
-
-
-def show_align(index=1, key=None):
-    return st.radio('align', ['start', 'center', 'end'], index=index, horizontal=True, key=f'{key}-align')
-
-
-def show_direction(index=0, key=None):
-    return st.radio('direction', ["horizontal", "vertical"], index=index, horizontal=True, key=f'{key}-direction')
-
-
-def show_checkbox(label, container=None, value=False, key=None):
-    if container is not None:
-        with container:
-            return st.checkbox(label, value=value, key=f'{key}-{label}')
-    return st.checkbox(label, value=value, key=f'{key}-{label}')
 
 
 def show_radio(label=None, options=None, container=None, index=0, key=None):

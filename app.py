@@ -9,12 +9,13 @@
 @Software : PyCharm
 """
 
-from demo.demo import DEMO
-from demo.overview import overview
+import streamlit as st
+import streamlit_antd_components as sac
+
 from demo.callback import callback_usage
+from demo.display_method import display_method
+from demo.overview import overview
 from demo.session_state import session_usage
-from demo.icon import icon
-from demo.utils import *
 
 st.set_page_config(layout='wide', page_title='streamlit-antd-components')
 
@@ -43,8 +44,7 @@ with st.sidebar.container():
     redesign = sac.Tag('Redesign', color='purple', bordered=False)
     # title
     st.subheader(f'Streamlit-antd-components')
-    # menu
-    menu = sac.menu(
+    method = sac.menu(
         items=[
             sac.MenuItem('overview'),
             sac.MenuItem('icon', tag=new),
@@ -100,26 +100,17 @@ with st.sidebar.container():
          sac.Tag(f'streamlit-antd-components=={sac.__VERSION__}', size='xs', color='blue')])
 
 with st.container():
-    if menu == 'overview':
+    if 'icon' not in st.session_state:
+        st.session_state['icon'] = 'Bootstrap'
+
+    if method == 'icon':
+        method = st.session_state['icon']
+
+    if method == 'overview':
         overview()
-    elif menu == 'callback':
+    elif method == 'callback':
         callback_usage()
-    elif menu == 'session state':
+    elif method == 'session state':
         session_usage()
-    elif menu == 'icon':
-        icon()
     else:
-        com_ = DEMO.get(menu)
-        # component introduce
-        st.subheader(menu.title(), anchor=False)
-        st.write(com_.get('doc'))
-        # component demo and api
-        tabs = sac.tabs([sac.TabsItem('Demo', icon='easel'), sac.TabsItem('Api', icon='cursor')], size='sm')
-        if tabs == 'Demo':
-            col = st.columns([2.2, 1])
-            with col[-1].expander(f"{menu} params", True):
-                kw = com_.get('params')(key=menu)
-            with col[0]:
-                com_.get('main')(kw)
-        else:
-            com_.get('api')()
+        display_method(method)
